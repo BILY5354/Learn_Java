@@ -12,16 +12,16 @@
 
 ### 第一阶段(P001 - P373)
 
-#### [第01章 内容介绍(P001 - P006)](./TCH_Han/Charpter1.md)
+#### [第01章 内容介绍(P001 - P006)](./TCH_Han/Chapter1.md)
 
-- [基本简介](./TCH_Han/Charpter1.md#1)
+- [基本简介](./TCH_Han/Chapter1.md#1)
 
-#### [第02章 Java概述(P007 - P034)](./TCH_Han/Charpter2.md)
+#### [第02章 Java概述(P007 - P034)](./TCH_Han/Chapter2.md)
 
-- [](./TCH_Han/Charpter2.md#1)
-- [](./TCH_Han/Charpter2.md#2)
-- [](./TCH_Han/Charpter2.md#3)
-- [](./TCH_Han/Charpter2.md#4) 
+- [](./TCH_Han/Chapter2.md#1)
+- [](./TCH_Han/Chapter2.md#2)
+- [](./TCH_Han/Chapter2.md#3)
+- [](./TCH_Han/Chapter2.md#4) 
 
 #### 第03章 变量(P035 - P062)
 #### 第04章 运算符(P063 - P103)
