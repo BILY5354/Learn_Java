@@ -1,5 +1,13 @@
 # Learn Java
 
+**环境基于```JDK14```开发**，*如果有时候报错可能是因为版本不同导致的*，列：
+
+```
+var p = new Person();//JDK8时会报错
+```
+
+
+
 学习Java记录，课程参考的资料有
 
 - 零基础 快速学Java by 韩老师
@@ -17,7 +25,7 @@
 - [常用的转义字符](./TCH_Han/Chapter2.md#1)
 - [Java中注释类型](./TCH_Han/Chapter2.md#2)
 - [DOS命令](./TCH_Han/Chapter2.md#3)
-- [**用cmd编辑Java文件**](./TCH_Han/Chapter2.md#4) 
+- [**用cmd编辑Java文件**](./TCH_Han/Chapter2.md#4)  (*有Linux与Window*)
 #### [第03章 变量(P035 - P062)](./TCH_Han/Charpter3.md)  
 - [](./TCH_Han/Charpter3.md#1)
 - [](./TCH_Han/Charpter3.md#2)
