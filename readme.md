@@ -26,6 +26,7 @@ var p = new Person();//JDK8时会报错
 - [Java中注释类型](./TCH_Han/Chapter2.md#2)
 - [DOS命令](./TCH_Han/Chapter2.md#3)
 - [**用cmd编辑Java文件**](./TCH_Han/Chapter2.md#4)  (*有Linux与Window*)
+- [作业](./TCH_Han/Chapter2.md#5)
 #### [第03章 变量(P035 - P062)](./TCH_Han/Charpter3.md)  
 - [](./TCH_Han/Charpter3.md#1)
 - [](./TCH_Han/Charpter3.md#2)

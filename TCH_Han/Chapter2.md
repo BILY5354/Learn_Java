@@ -16,6 +16,7 @@
 2. [Java中注释类型](#2)
 3. [DOS命令](#3)
 4. [**用cmd编辑Java文件**](#4)  
+4. [作业](#5)
 ## 1
 ```
 \t ：一个制表位，实现对齐的功能
@@ -94,7 +95,7 @@ type,move[剪切]
 - [Java环境变量设置（CentOS）](https://www.cnblogs.com/ycyzharry/p/13934880.html)
 - 查看是否设置了环境变量```echo $CLASSPATH```
   		- 执行命令```echo $CLASSPATH```有显示并且```javac Hello.java```成功编译但```java Hello```出现以下错误，原因是**环境变量设置有误**
-  		- 可参考[Linux执行java命令 错误: 找不到或无法加载主类](https://blog.csdn.net/shepherd_dirk/article/details/90514982)
+    		- 可参考[Linux执行java命令 错误: 找不到或无法加载主类](https://blog.csdn.net/shepherd_dirk/article/details/90514982)
 
 > 错误：  找不到或无法加载主类 Hello
 >
@@ -103,4 +104,9 @@ type,move[剪切]
 ### 开始编译
 
 - [Window用cmd编译Java文件](https://www.cnblogs.com/maritimeclimate/p/13958301.html)
-- 
+- as
+
+
+
+## 5
+
