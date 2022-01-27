@@ -4,6 +4,7 @@
 2. [](#2)
 3. [](#3)
 4. [](#4)  
+4. [作业](#作业)
 ## 1
 ```
 ```
@@ -17,11 +18,11 @@
 ```
 ```
 
-## 5
+## 作业
 
-![](img/TCH_Han/ch3_0.png)
+<img src="../img\TCH_Han\ch3_0.png" style="zoom: 67%;" />
 
-![](img/TCH_Han/ch3_1.png)
+<img src="../img/TCH_Han/ch3_1.png" style="zoom: 67%;" />
 
 1. as
 
@@ -52,7 +53,7 @@ public class myHomework2 {
 }
 ```
 
-3. as
+3. **不要把```"\t"```写成```'\t'```否则会显示数字**，这是因为
 
 ```java
 public class myHomework3 {
