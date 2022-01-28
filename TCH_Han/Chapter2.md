@@ -39,10 +39,26 @@
 ```
 
 
-*这句话不是很懂什么意思 晚上看看*
+
+在编写好注释后，执行```javadoc```语句后，在e盘的temp文件夹会新出很多文件（版本和作者一一对应）。
 
 ```
-javadoc -d c://temp -author -version Chapter1.java
+javadoc -d e://temp -author -version Chapter1.java
+```
+
+![](../img/TCH_Han/ch2_0.png)
+
+```java
+/**print Hello, world
+ * @author CDUY
+ * @version 1.0
+ * */
+public class myHomework1 {
+	public static void main(String args[]) {
+		System.out.println("Hello, world");
+		System.out.println("你好世界");
+	}
+}
 ```
 
 
@@ -109,4 +125,35 @@ type,move[剪切]
 
 
 ## 5
+
+```java
+/**print Hello, world
+ * @author CDUY
+ * @version 1.0
+ * */
+public class myHomework1 {
+	public static void main(String args[]) {
+		System.out.println("Hello, world");
+		System.out.println("你好世界");
+	}
+}
+```
+
+
+
+```java
+/**
+ * @author CDUY
+ * */
+ public class myHomework2 {
+    public static main(String args[]) {
+        System.out.println("CDUY" + "\n" + "male" + "\n" + "China" + "\n" + "Guangdong");
+        System.out.println("male");
+        System.out.println("China");
+        System.out.println("the house in China");
+    }
+ }
+```
+
+
 
