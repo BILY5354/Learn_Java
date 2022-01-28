@@ -8,8 +8,8 @@
 
 1. [Java数据类型](#1)
 2. [数据类型转换](#2)
-3. [](#3)
-4. [](#4)  
+3. [ASIIC表](#3)
+4. [基本数据类型与```String```类型转换](#4)  
 4. [作业](#作业)
 ## 1
 
@@ -23,7 +23,7 @@
 
 ![](../img/TCH_Han/ch3_3.png)
 
-### 数据类型转换-自动转换
+### 2.1 数据类型转换-自动转换
 
 - 不同类型数据混合运算会自动转换成**容量（精度）最大**的数据类型
 
@@ -67,7 +67,7 @@ int num = pass;//错
 
 
 
-### 数据类型转换-强制转换
+### 2.2 数据类型转换-强制转换
 
 - 强制转换可使用小括号提升优先级
 - ```char```可以保存```int```的常量值，但**不可以保存**```int```变量
@@ -81,23 +81,63 @@ char c1 = 100;//正确
 int m = 100;
 char c2 = m;//错
 ```
+
+
 ## 3
-```
-```
+
+![](../img/TCH_Han/ch3_ASCII.png)
+
+
+
 ## 4
+
+### 4.1 基本型转```String```
+
+```java
+int n1 = 100;
+float f1 = 1.1f;
+double d1 = 4.5;
+boolean b1 =true;
+String s1 = n1 + "";
+String s2 = f1 + "";
+String s3 = d1 + "";
+String s4 = b1 + "";
 ```
+
+### 4.2 ```Stirng```转基本型
+
+```java
+String s5 = "123";
+int num1 = Integer.parseInt(s5);
+double num2 = Double.parseDouble(s5);
+float num3 = Float.parseFloat(s5);
+long num4 = Long.parseLong(s5);
+byte num5 = Byte.parseByte(s5);
+short num6 = Short.parseShort(s5);
+boolean b = Boolean.parseBoolean("true");
 ```
+
+### 4.3 ```String```转```char```
+
+```java
+String s1 = "Hello";
+char c1 = s1.charAt(0);
+System.out.println(c1);//输出 H
+```
+
+
 
 ## 作业
 
-<img src="../img\TCH_Han\ch3_0.png" style="zoom: 67%;" />
+<img src="../img/TCH_Han/ch3_0.png" style="zoom: 67%;" />
 
 <img src="../img/TCH_Han/ch3_1.png" style="zoom: 67%;" />
 
 1. as
 
 ```
-
+n3 = 30
+n5 = 8
 ```
 
 2. as
