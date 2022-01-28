@@ -43,11 +43,11 @@ javac -encoding utf8 test.java 					   //使编译汉字不会显示乱码
 
 #### [第04章 运算符(P063 - P103)](./TCH_Han/Chapter4.md)  
 
-- [](./TCH_Han/Chapter4.md#1)
-- [](./TCH_Han/Chapter4.md#2)
-- [](./TCH_Han/Chapter4.md#3)
-- [](./TCH_Han/Chapter4.md#4)  
-- [](./TCH_Han/Chapter4.md#作业)  
+- [看程序写答案](./TCH_Han/Chapter4.md#1)
+- [三元运算符与运算优先级](./TCH_Han/Chapter4.md#2)
+- [标识符的命名规则和规范](./TCH_Han/Chapter4.md#3)
+- [进制简要](./TCH_Han/Chapter4.md#4)  
+- [作业](./TCH_Han/Chapter4.md#作业)  
 
 #### 第05章 程序控制结构(P104 - P155)
 #### 第06章 数组、排序和查找(P156 - P191)
