@@ -118,3 +118,45 @@ public class myHomework4 {
 }
 ```
 
+
+
+### 输出1到100内不能被5整除的数，**每5个一行**
+
+**注意本题犯的错误！**，看注释。
+
+```java
+public class myHomework6 {
+	public static void main(String args[]) {
+		System.out.println("1到100内不能被5整除的数：");
+		int count = 0;
+		for(int i = 1; i <101; i++) {
+			if (i % 5 != 0) {
+				System.out.print(i + "\t");
+				count++;
+				
+			}
+			if (count % 5 == 0) System.out.print("\n");
+		}
+	}
+}
+
+//上面的写法会导致输出结果奇怪，其原因仅仅是将5个一行的判断没有放进判断整除的循环内。下面是正确写法。
+//上面代码只要count为5,前一步有没有输出不可整除的数没有关系，所以让25这些可以被5整除的数钻了空子。
+//所以，有些功能是符合一定条件才会执行的，也就是有这个“前提”才会执行，就需要放在判断该条件的循环内。
+public class myHomework6 {
+	public static void main(String args[]) {
+		System.out.println("1到100内不能被5整除的数：");
+		int count = 0;
+		for(int i = 1; i <101; i++) {
+			if (i % 5 != 0) {
+				System.out.print(i + "\t");
+				count++;
+
+				if (count % 5 == 0) System.out.print("\n");
+			}		
+		}
+	}
+}
+```
+
+<img src="../img/TCH_Han/ch5_2.png" style="zoom:67%;" />
