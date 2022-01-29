@@ -51,9 +51,9 @@ javac -encoding utf8 test.java 					   //使编译汉字不会显示乱码
 
 #### [第05章 程序控制结构(P104 - P155)](./TCH_Han/Chapter5.md)  
 
-- [](./TCH_Han/Chapter5.md#1)
-- [](./TCH_Han/Chapter5.md#2)
-- [](./TCH_Han/Chapter5.md#3)
+- [案例：输入同学成绩求平均分与不及格人数](./TCH_Han/Chapter5.md#1)
+- [打印9*9乘法表](./TCH_Han/Chapter5.md#2)
+- [循序渐进打印金字塔](./TCH_Han/Chapter5.md#3)
 - [](./TCH_Han/Chapter5.md#4)  
 - [作业](./TCH_Han/Chapter5.md#作业)  
 
