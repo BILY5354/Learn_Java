@@ -98,3 +98,23 @@ public class myHomework3 {
 
 
 
+### 输入整数判断水仙花
+
+```java
+import java.util.Scanner;
+
+public class myHomework4 {
+	public static void main(String args[]) {
+		System.out.println("输入需判断水仙花的整数：");
+		Scanner sca  = new Scanner(System.in);
+		int i = sca.nextInt();
+		int ge = i%10, shi = (i%100)/10, bai = i/100;
+		if(i == (ge*ge*ge + shi*shi*shi + bai*bai*bai)) {
+			System.out.println("恭喜");
+		} else {
+			System.out.println("很遗憾");
+		}
+	}
+}
+```
+
