@@ -121,10 +121,19 @@ public class copyTCH_HanTenaryOperatorDetail {
 
 
 
-
+ 
 
 ## 作业
-```
+
+- 写出```String```转```double```的语句
+- 写出将```char```转```String```的语句
+
+```java
+String str = "19.8";
+double d1 = Double.parseDouble(str);
+
+char c1 = '韩';
+String str2 = c1 + "";
 ```
 
 
