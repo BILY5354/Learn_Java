@@ -55,7 +55,7 @@ javac -encoding utf8 test.java 					   //使编译汉字不会显示乱码
 - [](./TCH_Han/Chapter5.md#2)
 - [](./TCH_Han/Chapter5.md#3)
 - [](./TCH_Han/Chapter5.md#4)  
-- [](./TCH_Han/Chapter5.md#作业)  
+- [作业](./TCH_Han/Chapter5.md#作业)  
 
 #### 第06章 数组、排序和查找(P156 - P191)
 #### 第07章 面向对象编程（基础部分）(P192 - P263)

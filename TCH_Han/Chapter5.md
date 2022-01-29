@@ -1,16 +1,54 @@
 # [程序控制结构](./TCH_Han/Chapter5.md)  
 # 值得注意的概念
-- 
-- 
-- 
--  
-1. [](#1)
+- ```switch```需要留意的地方
+
+<img src="../img/TCH_Han/ch5_3.png" style="zoom:67%;" />
+
+<img src="../img/TCH_Han/ch5_4.png" style="zoom: 67%;" />
+
+- 嵌套的循环**最好不要超过三层**
+
+
+
+1. [案例：输入同学成绩求平均分与不及格人数](#1)
 2. [](#2)
 3. [](#3)
 4. [](#4)
 5. [作业](#作业)  
 ## 1
-```
+```java
+import java.util.Scanner;
+
+public class myHomework {
+	public static void main(String args[]) {
+		int grade[][] = new int[3][5];//3个班，每班5同学的成绩
+		int pass[] = new int[3];//每个班及格人数
+		double total = 0, a_grade[] = new double[3];
+		Scanner sca  = new Scanner(System.in);
+		for (int i = 0; i < 3; i++) {//数据录入
+			double temp = 0;//用于计算每个班的平均值
+			for (int j = 0; j < 5; j++) {
+				grade[i][j] = sca.nextInt();
+				temp += grade[i][j];
+
+				if (grade[i][j] >= 60) {
+					pass[i]++;//及格人数加1
+				}
+			}
+			a_grade[i] = temp / 5.0;//别写3
+			total += a_grade[i];
+		}
+
+		for (int i = 0; i < 3; i++) {//数组输出
+			System.out.print("本班每位同学成绩分别为：");
+			for (int j = 0; j < 5; j++) {
+				System.out.print(grade[i][j] + " ");
+			}
+			System.out.print(" 本班的平均分为:" + a_grade[i] + ",及格人数为：" + pass[i] + "\n");
+		}
+		System.out.println("本年级的平均分为：" + total / 3.0);
+	}
+}
 ```
 ## 2
 ```
