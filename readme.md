@@ -46,7 +46,7 @@ javac -encoding utf8 test.java 					   //使编译汉字不会显示乱码
 - [看程序写答案](./TCH_Han/Chapter4.md#1)
 - [三元运算符与运算优先级](./TCH_Han/Chapter4.md#2)
 - [标识符的命名规则和规范](./TCH_Han/Chapter4.md#3)
-- [进制简要](./TCH_Han/Chapter4.md#4)  
+- [用户输入和进制简要](./TCH_Han/Chapter4.md#4)  
 - [作业](./TCH_Han/Chapter4.md#作业)  
 
 #### [第05章 程序控制结构(P104 - P155)](./TCH_Han/Chapter5.md)  

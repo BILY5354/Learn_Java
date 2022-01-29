@@ -24,7 +24,7 @@ b++;		//等价 b = (byte)(b+1);
 1. [看程序写答案](#1)
 2. [三元运算符与运算优先级](#2)
 3. [标识符的命名规则和规范](#3)
-4. [进制简要](#4)
+4. [用户输入和进制简要](#4)
 5. [作业](#作业)  
 ## 1
 ```java
@@ -115,6 +115,72 @@ public class copyTCH_HanTenaryOperatorDetail {
 
 
 ## 4
+
+### 用户输入 
+
+[该片段来自菜鸟教程](https://www.runoob.com/java/java-scanner-class.html)
+
+- 使用```next()```方法
+
+```java
+import java.util.Scanner;
+
+public class myHomework {
+	public static void main(String args[]) {
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("next方式接收：");
+		//判断是否还有输入
+		if (scan.hasNext()) {
+			String str1  = scan.next();
+			System.out.println("输入的数据为：" + str1);
+		}
+		scan.close();
+	}
+}
+
+//会发现输入Hello world只会显示Hello
+```
+
+
+
+- 使用```nextLine()```方法
+
+```java
+import java.util.Scanner;
+
+public class myHomework {
+	public static void main(String args[]) {
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("nextLine方式接收：");
+		//判断是否还有输入
+		if (scan.hasNextLine()) {
+			String str2  = scan.nextLine();
+			System.out.println("输入的数据为：" + str2);
+		}
+		scan.close();
+	}
+}
+//输入Hello world，输出Hello world
+```
+
+
+
+- 区别
+- next():
+  - 1、一定要读取到有效字符后才可以结束输入。
+  - 2、对输入有效字符之前遇到的空白，next() 方法会自动将其去掉。
+  - 3、只有输入有效字符后才将其后面输入的空白作为分隔符或者结束符。
+  - next() 不能得到带有空格的字符串。
+- nextLine()：
+  - 1、以Enter为结束符,也就是说 nextLine()方法返回的是输入回车之前的所有字符。
+  - 2、可以获得空白。
+
+如果输入```int```等类型数据，也可以用```hasNextInt()```等验证。
+
+
+
 ### 原码、反码、补码
 
 ![](../img/TCH_Han/ch4_1.png)
