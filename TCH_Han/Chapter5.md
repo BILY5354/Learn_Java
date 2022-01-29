@@ -168,6 +168,42 @@ public class Stars {
 
 
 
+重新写在第三种方法（把判断写在一起），在第一次写的基础上，化简的代码很快可以敲出来了。
+
+```java
+import java.util.Scanner;
+
+public class myHomework {
+	public static void main(String args[]) {
+		System.out.print("你想显示多少行的金字塔： ");
+		Scanner sca = new Scanner(System.in);//需要显示几行的金字塔
+		int line = sca.nextInt();
+
+		System.out.println("\n第三种：");
+		int num = 1;//每次循环将会输出*的个数
+		for (int i = 0; i < line; i++) {
+
+			for (int j = (line - i); j > 0; j--) {//输出空格，如果行数为2，那*前就有两空
+				System.out.print(" ");
+			}
+
+			for (int j = 0; j < num; j++) {//输出*
+				if (i == 0 || i == line - 1 || j == 0 || j == num - 1) {//第一行，最后一行，中间行一头一尾
+					System.out.print("*");
+				} else {
+					System.out.print(" ");
+				}
+			}
+			num += 2;
+
+			System.out.println("");
+		}
+	}
+}
+```
+
+
+
 ## 4
 
 ```
