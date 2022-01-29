@@ -12,7 +12,7 @@
 
 1. [案例：输入同学成绩求平均分与不及格人数](#1)
 2. [打印9*9乘法表](#2)
-3. [](#3)
+3. [循序渐进打印金字塔](#3)
 4. [](#4)
 5. [作业](#作业)  
 ## 1
@@ -51,12 +51,125 @@ public class myHomework {
 }
 ```
 ## 2
-```
+```java
+public class myHomework {
+	public static void main(String args[]) {
+		for (int i = 1; i <= 9; i++) {
+			for (int j = 1; j <= i; j++) {
+				System.out.print(i + " * " + j + " = " + i*j + "  ");
+			}
+			System.out.println();
+		}
+	}
+}
 ```
 ## 3
+
+金字塔样式如下
+
+![](../img/TCH_Han/ch5_5.png)
+
+```java
+import java.util.Scanner;
+
+public class myHomework {
+	public static void main(String args[]) {
+		System.out.print("你想显示多少行的金字塔： ");
+		Scanner sca = new Scanner(System.in);//需要显示几行的金字塔
+		int line = sca.nextInt();
+
+		System.out.println("第一种：");
+		for (int i = 1; i <= line; i++) {
+			for (int j = 0; j < i; j++) {//第一行1个，第二行2个
+				System.out.print("*");
+			}
+			System.out.println("");	
+		}
+
+
+		System.out.println("\n第二种：");
+		int num = 1;//每次循环将会输出*的个数
+		for (int i = 0; i < line; i++) {
+
+			for (int j = (line - i); j > 0; j--) {//输出空格，如果行数为2，那*前就有两空
+				System.out.print(" ");
+			}
+
+			
+			for (int j = 0; j < num; j++) {//输出*
+				System.out.print("*");
+			}
+			num += 2;
+
+			System.out.println("");
+		}
+
+
+		System.out.println("\n第三种：");
+		num = 1;//每次循环将会输出*的个数
+		for (int i = 0; i < line; i++) {
+
+			for (int j = (line - i); j > 0; j--) {//输出空格，如果行数为2，那*前就有两空
+				System.out.print(" ");
+			}
+
+			for (int j = 0; j < num; j++) {//输出*
+				if (i == 0) {//显示第一行
+					System.out.print("*");
+				} else if(i == line-1) {//显示最后一行
+					System.out.print("*");
+				} else {//中间行
+					if (j == 0 || j == num - 1) {//一头一尾显示*
+						System.out.print("*");
+					} else {//中间为空格
+						System.out.print(" ");
+					}
+
+				}
+			}
+			num += 2;
+
+			System.out.println("");
+		}
+
+	}
+}
 ```
+
+
+韩老师第三种写法，**反正都是输出```*```干脆就写在一个判断中**，不需要像上面代码那样写这么多```if``` ```else```语句了。
+
+```java
+public class Stars { 
+	public static void main(String[] args) {
+        
+		int totalLevel = 20; //层数
+		for(int i = 1; i <= totalLevel; i++) { //i 表示层数
+
+			//在输出*之前，还有输出 对应空格 = 总层数-当前层
+			for(int k = 1; k <= totalLevel - i; k++ ) {
+				System.out.print(" ");
+			}
+
+			//控制打印每层的*个数
+			for(int j = 1;j <= 2 * i - 1;j++) {
+				//当前行的第一个位置是*,最后一个位置也是*, 最后一层全部 *
+				if(j == 1 || j == 2 * i - 1 || i == totalLevel) {
+					System.out.print("*");
+				} else { //其他情况输出空格
+					System.out.print(" ");
+				}
+			}
+			System.out.println("");
+		}
+	}
+}
 ```
+
+
+
 ## 4
+
 ```
 ```
 ## 作业
