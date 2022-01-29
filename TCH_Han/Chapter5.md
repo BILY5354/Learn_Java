@@ -160,3 +160,94 @@ public class myHomework6 {
 ```
 
 <img src="../img/TCH_Han/ch5_2.png" style="zoom:67%;" />
+
+
+
+### 输出小写与大写的字母表
+
+```java
+public class myHomework7 {
+	public static void main(String args[]) {
+		for(int i = 0; i < 26; i++) {
+			char c1 = (char)('a' + i);
+			System.out.print(c1 + " ");
+		}
+		System.out.println();
+		for(int i = 0; i < 26; i++) {
+			char c1 = (char)('A' + i);
+			System.out.print(c1 + " ");
+		}
+	}
+}
+```
+
+韩老师是用字符运算转成字符串，我也应该想到这种方法。
+
+```java
+//韩老师做法
+public class Homework07 { 
+	public static void main(String[] args) {
+		
+		for(char c1 = 'a'; c1 <= 'z'; c1++) {
+			System.out.print(c1 +" ");
+		} 
+		System.out.println("============");
+		//灵活的使用，编程..
+		for(char c1 = 'Z'; c1 >= 'A'; c1--) {
+			System.out.print(c1 +" ");
+		}
+
+	}
+}
+```
+
+
+
+### 求```1-1/2+1/3-1/4...1/100```的和 **留意！**
+
+当分数计算时，```double temp = 1/2;```必为0，虽然```temp```是双精度，**但```1```是整型**，```1```与```2```先运算再赋值给```temp```，所以**小数便舍去了**。
+
+```java
+public class myHomework8 {
+	public static void main(String args[]) {
+		double sum=0;
+		for (int i = 1; i <= 100; i++) {
+			if (i % 2 == 0) {//偶数
+				double temp = 1.0 / i;//改成1是错误的
+				sum -= temp;
+			} else if(i % 2 == 1) {
+				double temp = 1.0 / i;
+				sum += temp;
+			}
+			
+		}
+		System.out.println("和的结果是：" + sum);
+	}
+}
+```
+
+```java
+System.out.println(1/2);		//为0
+System.out.println(1.0/2);		//为0.5
+```
+
+
+
+### 求```1+(1+2)+(1+2+3)+(1+2+3+4)+...+(1+2+3+...+100)``` **留意！**
+
+每个新增加的数本身就可以用一个```for```循环实现，由于共有100项，所以外面需要一个```for```循环。
+
+```java
+public class myHomework9 {
+	public static void main(String args[]) {
+		int sum = 0;
+		for (int i = 1; i <= 100; i++) {
+			for(int j = 1; j <= i; j++) {//这里一定要用小于等于！
+				sum += j;
+			}
+		}
+		System.out.println("和是：" + sum);
+	}
+}
+```
+
