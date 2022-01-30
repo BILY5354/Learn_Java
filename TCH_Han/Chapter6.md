@@ -76,6 +76,36 @@ myList2 = myList;//直接赋值机制
 
 用了```1.3```的概念，那我想独立的怎么办（修改```myList```并不会改变```myList2```）？
 
+```java
+//方法一:一个一个赋值
+for (int i =0; i < myList.length; i++) {
+    myList2[i] = myList[i];
+}
+```
+
+
+
+### 1.5 数组反转
+
+**需要注意的是判断次数```myList.length```错误**，因为这样写是调转又调转了，等于没调。
+
+```java
+//方法1:：原数组调转
+for (int i = 0; i < myList.length / 2; i++) {//一定要除2
+    int temp = myList[i];
+    myList[i] = myList[myList.length - 1 - i];
+    myList[myList.length - 1 - i] = temp;
+}
+
+//方法2：逆序赋值
+int[] myList2 = new int[myList.length]; //逆序遍历 myList 
+for (int i = myList.length - 1, j = 0; i >= 0; i--, j++) { 
+    myList2[j] = myList[i]; 
+}
+```
+
+
+
 
 
 ## 2
