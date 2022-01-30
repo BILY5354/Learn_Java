@@ -30,7 +30,7 @@ javac -encoding utf8 test.java 					   //使编译汉字不会显示乱码
 - [Typora](https://typora.io/):用```Markdown```语法记代码笔记，关键可以实时浏览
 - [Sublime](https://www.sublimetext.com/):敲```Java```代码的敌方
 - [Terminal](https://github.com/microsoft/terminal):用于编译```Java```文件，而且集成了```cmd```和```PowerShell```
-- [git](https://git-scm.com/):用于本地笔记的上传
+- [git](https://git-scm.com/):用于本地笔记的上传到码云或```GitHub```
 - [WinMerge](https://winmerge.org/):照老师代码敲时，比对自己写的代码和老师代码不同（Subline也有插件的）
 - [SniPaste](https://www.snipaste.com/#):截图，关键可以悬浮在屏幕最前面而且支持多张
 - idea:无需介绍YYDS
