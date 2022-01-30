@@ -62,13 +62,17 @@ javac -encoding utf8 test.java 					   //使编译汉字不会显示乱码
 - [作业](./TCH_Han/Chapter5.md#作业)  
 
 #### [第06章 数组、排序和查找(P156 - P191)](./TCH_Han/Chapter6.md)  
-- [](./TCH_Han/Chapter6.md#1)
-- [](./TCH_Han/Chapter6.md#2)
-- [](./TCH_Han/Chapter6.md#3)
-- [](./TCH_Han/Chapter6.md#4)  
+- [一维数组的基本概念](./TCH_Han/Chapter6.md#1)
+- [二维数组](./TCH_Han/Chapter6.md#2)
 - [作业](./TCH_Han/Chapter6.md#作业)  
 
-#### 第07章 面向对象编程（基础部分）(P192 - P263)
+#### [第07章 面向对象编程（基础部分）(P192 - P263)](./TCH_Han/Chapter7.md)  
+- [](./TCH_Han/Chapter7.md#1)
+- [](./TCH_Han/Chapter7.md#2)
+- [](./TCH_Han/Chapter7.md#3)
+- [](./TCH_Han/Chapter7.md#4)  
+- [作业](./TCH_Han/Chapter7.md#作业)  
+
 #### 第08章 面向对象编程（中级部分）(P264 - P361)
 #### 第09章 房屋出租系统(P362 - P373)
 ### 第二阶段(P374 - P661)
