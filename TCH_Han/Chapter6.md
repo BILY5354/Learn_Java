@@ -12,12 +12,9 @@
 5. [作业](#作业)  
 ## 1
 
-### 数组的使用
+### 1.1 数组的使用
 
 声明->创建->初始化
-
-- 动态定义
-- 
 
 ```java
 //声明
@@ -41,7 +38,48 @@ int a[] = new int[5];//这两句相当于静态初始化
 a[0] = 1;	a[1] = 2;	a[2] = 3;	
 a[3] = 4;	a[4] = 5;
 ```
+
+
+### 1.2 定义一个用于存放26个字母的数组并显示
+
+```java
+public class myHomework {
+	public static void main(String args[]) {
+		char[] chars = new char[26];
+
+		for (int i = 0; i < chars.length; i++) {
+			chars[i] = (char)('A' + i);//与整型相加会自动转换，故需强转
+		}
+
+		for (int i = 0; i < chars.length; i++) {
+			System.out.print(chars[i] + " ");
+		}
+	}
+}
+```
+
+
+
+### 1.3 数组赋值机制
+
+如果对数组直接复制（暂不考虑长度情况），**两数组会共用内存地址**。所以修改```myList```的值```myList2```的值也会被改变。
+
+```java
+int[] myList = {1,2,3,4};
+int[] myList2 = new int[4];
+myList2 = myList;//直接赋值机制
+```
+
+
+
+### 1.4 数组拷贝
+
+用了```1.3```的概念，那我想独立的怎么办（修改```myList```并不会改变```myList2```）？
+
+
+
 ## 2
+
 ```
 ```
 ## 3
