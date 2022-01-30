@@ -4,6 +4,7 @@
 
 ```java
 var p = new Person();//JDK8时会报错
+Person p = new Person();//JDK8正确
 ```
 
 **本笔记遇到的坑**
@@ -16,12 +17,9 @@ javac -encoding utf8 test.java 					   //使编译汉字不会显示乱码
 **学习中浏览过的网站**
 
 - [菜鸟教程](https://www.runoob.com/) 用于快速了解，比如```Java```中数组怎么定义
+- 
 
-
-
-
-
-学习Java记录，课程参考的资料有
+**学习中参考的资料有**，笔记主要以以下教程记录
 
 - 零基础 快速学Java by 韩老师
 - Java核心技术
@@ -63,7 +61,13 @@ javac -encoding utf8 test.java 					   //使编译汉字不会显示乱码
 - [](./TCH_Han/Chapter5.md#4)  
 - [作业](./TCH_Han/Chapter5.md#作业)  
 
-#### 第06章 数组、排序和查找(P156 - P191)
+#### [第06章 数组、排序和查找(P156 - P191)](./TCH_Han/Chapter6.md)  
+- [](./TCH_Han/Chapter6.md#1)
+- [](./TCH_Han/Chapter6.md#2)
+- [](./TCH_Han/Chapter6.md#3)
+- [](./TCH_Han/Chapter6.md#4)  
+- [作业](./TCH_Han/Chapter6.md#作业)  
+
 #### 第07章 面向对象编程（基础部分）(P192 - P263)
 #### 第08章 面向对象编程（中级部分）(P264 - P361)
 #### 第09章 房屋出租系统(P362 - P373)
