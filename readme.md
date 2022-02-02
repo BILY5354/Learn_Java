@@ -33,6 +33,7 @@ javac -encoding utf8 test.java 					   //使编译汉字不会显示乱码
 - [git](https://git-scm.com/):用于本地笔记的上传到码云或```GitHub```
 - [WinMerge](https://winmerge.org/):照老师代码敲时，比对自己写的代码和老师代码不同（Subline也有插件的）
 - [SniPaste](https://www.snipaste.com/#):截图，关键可以悬浮在屏幕最前面而且支持多张
+- [Notion的学习](./notion.md)
 - idea:无需介绍YYDS
 - 浏览Pdf软件
 
