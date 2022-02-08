@@ -74,8 +74,9 @@ javac -encoding utf8 test.java 					   //使编译汉字不会显示乱码
 - [作业](./TCH_Han/Chapter5.md#作业)  
 
 #### [第06章 数组、排序和查找(P156 - P191)](./TCH_Han/Chapter6.md)  
-- [一维数组的基本概念](./TCH_Han/Chapter6.md#1)
-- [二维数组](./TCH_Han/Chapter6.md#2)
+- [一维数组的基本概念](./TCH_Han/Chapter6.md#1) 
+- [实现三大排序](./TCH_Han/Chapter6.md#2) *这里还说明了使用```Java```与```C++```编程时的不同（以实现排序为例）*
+- [二维数组](./TCH_Han/Chapter6.md#3)
 - [作业](./TCH_Han/Chapter6.md#作业)  
 
 #### [第07章 面向对象编程（基础部分）(P192 - P263)](./TCH_Han/Chapter7.md)  
