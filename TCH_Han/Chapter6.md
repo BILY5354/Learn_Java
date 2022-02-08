@@ -455,4 +455,19 @@ public class myHomework5 {
 ### 冒泡排序
 
 ```java
+class Sort {
+	public void bubble (int a[], int size) {
+		int temp;
+		for (int i = 1; i < size; i++) {
+			for (int j = 0; j < size - i; j++) {//这里是 size - i
+				//注意是冒泡是在外循环下，内循环进行两两比较
+				if (a[j] > a[j + 1]) {//如果改成 < 便是降序，由大到小
+					temp = a[j];
+					a[j] = a[j + 1];
+					a[j + 1] = temp;
+				}
+			}
+		}
+	}
+}
 ```
