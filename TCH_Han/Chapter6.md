@@ -2,11 +2,12 @@
 
 # 值得注意的概念
 - 每个数组是存放**同一类型**数据的
-- 
-- 
--  
+
+- 二维数组实际上是多个一维数组组成，其中每个一维数组的长度可以不相同
+
+  
 1. [一维数组的基本概念](#1)
-2. [三大排序](#2)
+2. [冒泡、插入和选择排序](#2)
 3. [二维数组](#3)
 4. [](#4)
 5. [作业](#作业)  
@@ -307,6 +308,9 @@ public class myHomework {
 ### 3.1 二维数组的使用
 
 ```java
+//二维数组声明
+int[][] arr;	int[] arr[];	int arr[][];
+
 //动态初始化1
 类型 [][] 数组名 = new 类型[大小][大小];
 int a[][] = new int [2][3];
@@ -338,10 +342,72 @@ int[][] arr = {{1, 2, 3}, {8, 8, 8}, {66, 2}};
 
 ![](../img/TCH_Han/ch6_1.png)
 
+```java
+public class myHomework {
+	public static void main(String[] args) {
+		int[][] yh = new int[12][];
+
+		//初始化并赋值
+		for (int i = 0; i < yh.length; i++) {
+			yh[i] = new int[i + 1];
+
+			for (int j = 0; j < yh[i].length; j++) {
+				if (j == 0 || j == yh[i].length - 1) {//首尾为1
+					yh[i][j] = 1;
+				} else if(j > 0 && i > 0) {
+					yh[i][j] = yh[i - 1][j] + yh[i - 1][j - 1];
+				}
+			}
+		}
+
+		//显示
+		for (int i = 0; i < yh.length; i++) {
+			for (int j = 0; j < yh[i].length; j++) {
+				System.out.print(yh[i][j] + "\t");
+			}
+			System.out.println();
+		}
+	}
+}
+```
+
+
+
 ## 4
 
 ```
 ```
+
+
 ## 作业
+
+<img src="../img/TCH_Han/ch6_2.png" style="zoom:80%;" />
+
+<img src="../img/TCH_Han/ch6_3.png" style="zoom:80%;" />
+
+### 4.4
+
+```java
 ```
+
+
+
+### 4.5
+
+```java
+
+```
+
+
+
+### 4.6
+
+```java
+```
+
+
+
+### 4.7
+
+```java
 ```
