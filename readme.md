@@ -7,9 +7,16 @@ var p = new Person();//JDK8时会报错
 Person p = new Person();//JDK8正确
 ```
 
+**快速构建**,在```txt```编辑后将后缀改成```bat```
+
+```sh
+md 1											//新建文件夹并命名为1
+copy nul A5										 //新建空白txt文件并命名为A5
+```
+
 **本笔记遇到的坑**
 
-```
+```sh
 javac -encoding utf8 test.java 					   //使编译汉字不会显示乱码
 ../ 											//回上级目录，用于正确找到图片
 ```
