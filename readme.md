@@ -17,6 +17,7 @@ javac -encoding utf8 test.java 					   //使编译汉字不会显示乱码
 **学习中浏览过的网站**
 
 - [菜鸟教程](https://www.runoob.com/) 用于快速了解，比如```Java```中数组怎么定义
+- [Java中文在线文档](https://www.apiref.com/java11-zh/index.html)
 - 
 
 **学习中参考的资料有**，笔记主要以以下教程记录

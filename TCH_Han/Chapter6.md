@@ -379,35 +379,80 @@ public class myHomework {
 ```
 
 
+
+
 ## 作业
 
 <img src="../img/TCH_Han/ch6_2.png" style="zoom:80%;" />
 
 <img src="../img/TCH_Han/ch6_3.png" style="zoom:80%;" />
 
-### 4.4
+### 将元素插入升序数组
 
 ```java
 ```
 
 
 
-### 4.5
+### 随机生成10个数保存到数组并执行相关操作
+
+- 先找怎么随机生成一个数，发现值在0.0到1.0，所以要扩大100倍加1并且转型。
+
+<img src="../img/TCH_Han/ch6_4.png" style="zoom:80%;" />
 
 ```java
+public class myHomework5 {
+	public static void main(String args[]) {
+		int[] arr = new int[10];
+		int max = 0, max_nu = 0;//最大值、下标
+		double ava = 0;//平均值
+		boolean flag = false;
 
+		for (int i = 0; i < 10; i++) {
+			arr[i] = (int)(Math.random()*100+1);//使数为1到100且为整型
+			ava += arr[i];//求平均值先累加
+
+			if (max < arr[i]) {//求最大值和下标
+				max = arr[i];
+				max_nu = i;
+			}
+
+			if (arr[i] == 8) {//判断是否包含8
+				flag = true;
+			}
+		}
+
+		System.out.println("将原数组输出：");
+		for (int i = 0; i < 10; i++) {
+			System.out.print(arr[i] + "\t");
+		}
+		System.out.println("\n将原数组倒序输出：");
+		for (int i = arr.length - 1; i >= 0; i--) {
+			System.out.print(arr[i] + "\t");
+		}
+
+		System.out.println("\n" + "最大值为:" + max + "\t" + "改值对应初始下标为：" + max_nu + "\t" + "平均值为：" + ava/10);
+
+		if (flag) {
+			System.out.println("该数组包含8");
+		} else {
+			System.out.println("该数组没有包含8");
+		}
+
+	}
+}
 ```
 
 
 
-### 4.6
+### 试下出题目代码
 
 ```java
 ```
 
 
 
-### 4.7
+### 冒泡排序
 
 ```java
 ```
