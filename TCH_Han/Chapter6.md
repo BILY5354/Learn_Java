@@ -108,6 +108,43 @@ for (int i = myList.length - 1, j = 0; i >= 0; i--, j++) {
 
 ### 1.6 数组添加/扩容
 
+值得注意```next()```方法返回的是字符串，所以需要```charAt(0)```取一个字符。[注意这里使用```arr = arrNew;```](#1.3 数组赋值机制)
+
+```java
+import java.util.Scanner;
+
+public class myHomework {
+	public static void main(String[] args) {
+		Scanner sca = new Scanner(System.in);
+
+		int arr[] = {1, 2, 3};
+
+		do {
+			int[] arrNew = new int[arr.length + 1];
+			//遍历 arr 数组，依次将arr的元素拷贝到 arrNew数组
+			for(int i = 0; i < arr.length; i++) {
+				arrNew[i] = arr[i];
+			}
+			System.out.println("请输入你要添加的元素");
+			int addNum = sca.nextInt();
+			arrNew[arrNew.length - 1] = addNum;
+			arr = arrNew;//共用地址
+
+			System.out.println("====arr扩容后元素情况====");
+			for(int i = 0; i < arr.length; i++) {
+				System.out.print(arr[i] + "\t");
+			}
+			System.out.println("是否继续添加 y/n");
+			
+			char flag = sca.next().charAt(0);
+			if (flag == 'n') { 
+				break; 
+			}
+		} while(true);
+	}
+}
+```
+
 
 
 ## 2
