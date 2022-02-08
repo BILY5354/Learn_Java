@@ -121,7 +121,7 @@ public class myHomework {
 		int arr[] = {1, 2, 3};
 
 		do {
-			int[] arrNew = new int[arr.length + 1];//新建一个长度+1的数组扩容
+			int[] arrNew = new int[arr.length + 1];//新建一个长度+1的数组	扩容
 			//遍历 arr 数组，依次将arr的元素拷贝到 arrNew数组
 			for(int i = 0; i < arr.length; i++) {
 				arrNew[i] = arr[i];
@@ -389,8 +389,116 @@ public class myHomework {
 
 ### 将元素插入升序数组
 
+- 我的思路：判断插入的数在什么位置，如果在前面就逐个往后推，虽然增加了插入的数是自己输入的，但这样的判断有些太麻烦了
+
 ```java
+import java.util.Scanner;
+
+public class myHomework4 {
+	public static void main(String args[]) {
+		Scanner sca = new Scanner(System.in);
+		int a[] = {10, 12, 45, 90};
+		
+		System.out.println("插入前的数组：");
+		for (int i = 0; i < a.length; i++) {
+			System.out.print(a[i] + " ");
+		}
+
+		System.out.println("\n输入插入的整数：");
+		int insert = sca.nextInt();
+		
+		int[] a_new = new int[a.length + 1];//新数组长度加1
+		for (int i = 0; i < a.length; i++) {//先弄到新数组再插入
+			a_new[i] = a[i];
+		}
+
+		//开始插入
+		for (int i = 0; i < a_new.length; i++) {
+			if (insert < a_new[i]) {//小于情况
+				for (int j = a_new.length - 1; j > i; j--) {//都往后一位
+					a_new[j] = a[j - 1];
+				}
+				a_new[i] = insert;
+				break;//已经插入了，退出
+			} else if (insert > a_new[a_new.length - 2]) {//倒数第二位最大
+				a_new[a_new.length - 1] = insert;
+				break;
+			} else if(insert == a_new[i]) {//等于情况
+				for (int j = a_new.length - 1; j > i; j--) {//都往后一位
+					a_new[j] = a[j - 1];
+				}
+				a_new[i] = insert;
+				break;
+			}
+		}
+
+		System.out.println("插入后的数组：");
+		for (int i = 0; i < a_new.length; i++) {
+			System.out.print(a_new[i] + " ");
+		}
+	}
+}
 ```
+
+
+
+- 韩老师思路：先确定 添加数应该插入到哪个索引，然后扩容
+
+```java
+import java.util.Scanner;
+
+public class myHomework4 {
+	public static void main(String args[]) {
+		Scanner sca = new Scanner(System.in);
+		int a[] = {10, 12, 45, 90};
+		int index = -1; //index就是要插入的位置
+		
+		System.out.println("插入前的数组：");
+		for (int i = 0; i < a.length; i++) {
+			System.out.print(a[i] + " ");
+		}
+
+		System.out.println("\n输入插入的整数：");
+		int insertNum = sca.nextInt();
+		
+		int[] a_new = new int[a.length + 1];//新数组长度加1
+		for (int i = 0; i < a.length; i++) {//先弄到新数组再插入
+			a_new[i] = a[i];
+		}
+
+        //韩老师：
+	 	for(int i = 0; i < a.length; i++) {//遍历数组赵插入的下标
+            if(insertNum <= a[i]) {
+                index = i;
+                break; //找到位置后，就退出
+            }
+        }
+
+        //判断index 的值
+        if(index == -1) { //说明没有还没有找到位置
+                index = a.length;
+        }
+
+     	for(int i = 0, j = 0; i < a_new.length; i++) { //i 控制a_new的下标  , j用来控制a数组的下标
+            if( i != index ) { //说明可以把 a的元素拷贝到 a_new
+                a_new[i] = a[j++];//先赋值后自增	
+            } else { //i这个位置就是要插入的数
+                    a_new[i] = insertNum;
+            }
+        }
+
+        //让a 指向 a_new , 原来的数组，就成为垃圾，被销毁
+        a = a_new;
+
+		System.out.println("插入后的数组：");
+		for (int i = 0; i < a_new.length; i++) {
+			System.out.print(a_new[i] + " ");
+		}
+	}
+}
+```
+
+
 
 
 
@@ -441,13 +549,6 @@ public class myHomework5 {
 
 	}
 }
-```
-
-
-
-### 试下出题目代码
-
-```java
 ```
 
 
