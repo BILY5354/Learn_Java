@@ -154,6 +154,66 @@ for (int i = myList.length - 1, j = 0; i >= 0; i--, j++) {
 
 
 
+### 实现相同功能时与```C```的对比
+
+```C```面向过程的语言，在实现一个具体功能时（冒泡排序为例）。只需写一个实现冒泡的**函数**并在主函数**直接调用**即可。可```Java```不同，面向对象的思想就是将世界的不同对象封装成类，所以我不可能单独写一个函数然后像```C```那样直接调用。那么怎么定义？
+
+```c
+int main()
+{
+    int a[] = {5, 4, 3, 2, 1};
+    bubble(a, 5);//直接使用即可
+    return 0;
+}
+
+//test2_1 冒泡排序
+void bubble(int a[], int size)
+{
+	int temp;
+	//略略
+}
+```
+
+
+
+- 方法一：
+  - 那就将排序都封装成一个```class```(类)，里面包括排序、插入等不同的排序方法。需要使用时，**先创建一个新的对象，再用这个对象调用排序方法**
+  - 需要注意的是，一个```Java```文件最好只有一个类，这里不太规范
+
+```java
+public class myHomework {
+	public static void main(String[] args) {
+		int a[] = {10,8,6,4,1};
+		Sort sort = new Sort();//先创建一个新的排序对象
+		sort.bubble(a, a.length);//使用该对象的冒泡排序方法
+	}
+}
+
+class Sort {//这里不能写public，因为一个文件中只能有一个class被声明为public
+	public void bubble(int a[], int size) {
+		//略略
+	}
+}
+```
+
+
+
+- 方法二：使用静态内部类，（这个知识点有些超现在的进度了，先记录下）
+
+```java
+public class myHomework {
+	public static void main(String[] args) {
+		int a[] = {10,8,6,4,1};
+		bubble(a, a.length);
+	}
+
+	static void bubble(int a[], int size) {//使用静态内部类
+		int temp;
+		//略略
+	}
+}
+```
+
 
 
 ## 3
