@@ -121,7 +121,7 @@ public class myHomework {
 		int arr[] = {1, 2, 3};
 
 		do {
-			int[] arrNew = new int[arr.length + 1];
+			int[] arrNew = new int[arr.length + 1];//新建一个长度+1的数组扩容
 			//遍历 arr 数组，依次将arr的元素拷贝到 arrNew数组
 			for(int i = 0; i < arr.length; i++) {
 				arrNew[i] = arr[i];
