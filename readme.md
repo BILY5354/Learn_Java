@@ -12,8 +12,6 @@ Person p = new Person();//JDK8正确
 ```sh
 md 1		//新建文件夹并命名为1
 copy nul A5	//新建空白txt文件并命名为A5
-find . "(" -name "*.java"  ")" -print | xargs wc -l//看java代码有多少行
-find . "(" -name "*.md"  ")" -print | xargs wc -l//行md文件有多少行
 ```
 
 **本笔记遇到的坑**
@@ -23,11 +21,19 @@ javac -encoding utf8 test.java 		//使编译汉字不会显示乱码
 ../ 							  //回上级目录，用于正确找到图片
 ```
 
+**便捷的命令**（在本仓库根目录代右键Git Bash here）
+
+```shell
+find . "(" -name "*.java"  ")" -print | xargs wc -l//看java代码有多少行
+find . "(" -name "*.md"  ")" -print | xargs wc -l//行md文件有多少行
+grep -nri 命名 TCH_Han | cat --number//在TCH_Han文件夹下搜索“命名”
+```
+
 **学习中浏览过的网站**
 
 - [菜鸟教程](https://www.runoob.com/) 用于快速了解，比如```Java```中数组怎么定义
 - [Java中文在线文档](https://www.apiref.com/java11-zh/index.html) 用于查看类的方法等
-- 
+- ...
 
 **学习中参考的资料有**，笔记主要以以下教程记录
 
