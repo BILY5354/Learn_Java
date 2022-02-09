@@ -69,10 +69,85 @@ class B {
 
 
 
-### 1.4 课堂练习：写方法判断奇偶数并返回```boolean```
+### 1.4 课堂练习(1)：写方法判断奇偶数并返回```boolean```
 
 ```java
+import java.util.Scanner;
+
+public class myHomework {
+	public static void main(String[] args) {
+		Scanner sca = new Scanner(System.in);
+		System.out.print("输入要判断奇偶的数：");
+		int nu = sca.nextInt();
+
+		AA a = new AA();
+
+		if (nu < 0) {//负数的处理
+			nu *= -1;
+		}
+
+		if (a.panDuan(nu)) {
+			System.out.println("输入的是奇数");
+		} else {
+			System.out.println("输入的偶数");
+		}
+	} 
+}
+
+class AA {
+	public boolean panDuan(int n) {
+		if (n % 2 == 1) { //奇数
+			return true;//奇数为真
+		} else {
+			return false;
+		}
+	}
+} 	
 ```
+
+
+
+### 1.5课堂练习(2)：输入行、列与符号打印出对应效果
+
+```java
+import java.util.Scanner;
+
+public class myHomework {
+	public static void main(String[] args) {
+		Scanner sca = new Scanner(System.in);
+		AA a = new AA();
+
+		a.printTip("输入行：");
+		int hang = sca.nextInt();
+		a.printTip("输入列：");
+		int lie = sca.nextInt();
+		a.printTip("输入字符：");
+		char c = sca.next().charAt(0);
+		
+		a.printSth(hang, lie, c);
+
+		sca.close();
+	} 
+}
+
+class AA {
+	public void printTip(String str) {//其实用语
+		System.out.println(str);
+	}
+
+	public void printSth(int i, int j, char c) {//行、列、所打印的字符
+		printTip("输出结果：");//同类调用
+		for (int a = 0; a < i; a++) {
+			for (int b = 0; b < j; b++) {
+				System.out.print(c);
+			}
+			printTip("\t");//同类调用，换行
+		}
+	}
+} 	
+```
+
+
 
 
 
