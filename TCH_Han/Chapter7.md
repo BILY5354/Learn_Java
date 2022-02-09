@@ -3,7 +3,11 @@
 - 体会面相过程与面向对象的不同之处
 - 在一个类中，方法内不能再定义一个方法，**不能嵌套**
 - 实参和形参的类型要一致或兼容、个数、顺序必须一致
--  
+-  形参拷贝是不会影响实参的
+-  as
+
+
+
 1. [类与对象](#1)
 2. [](#2)
 3. [](#3)
@@ -153,9 +157,33 @@ class AA {
 
 ## 2
 
+### 2.1  形参改变并不会影响实参
+
+```java
+public class myHomework {
+	public static void main(String[] args) {
+		int a = 10; int b = 20; //创建 AA 对象 名字 obj 
+		AA obj = new AA(); 
+		obj.swap(a, b); //调用 swap 
+		System.out.println("main 方法 a=" + a + " b=" + b);//a=10 b=20
+	} 
+}
+
+class AA {
+	public void swap(int a, int b) {
+		int temp = a;
+		a =b;
+		b= temp;
+		System.out.println("swap 方法 a=" + a + " b=" + b);
+	}
+} 	
 ```
-```
+
+
+
+
 ## 3
+
 ```
 ```
 ## 4
