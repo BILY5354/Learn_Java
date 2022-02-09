@@ -106,7 +106,7 @@ public class copyTCH_HanTenaryOperatorDetail {
 1. 变量名不能以数字开头
 
 2. 包名：多单词组成时左右字母都要**小写**
-   - ```aaa.bbb.ccc```或```com.CDUY.learn```
+   - ```aaa.bbb.ccc```或```com.cduy.learn```
 
 3. 类名、接口名：多单词组成时，所有**单词的首字母大写**
    - ```XxxYyyZzz```或```MyMethods```
