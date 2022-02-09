@@ -26,7 +26,7 @@ javac -encoding utf8 test.java 		//使编译汉字不会显示乱码
 **学习中浏览过的网站**
 
 - [菜鸟教程](https://www.runoob.com/) 用于快速了解，比如```Java```中数组怎么定义
-- [Java中文在线文档](https://www.apiref.com/java11-zh/index.html)
+- [Java中文在线文档](https://www.apiref.com/java11-zh/index.html) 用于查看类的方法等
 - 
 
 **学习中参考的资料有**，笔记主要以以下教程记录
@@ -43,7 +43,7 @@ javac -encoding utf8 test.java 		//使编译汉字不会显示乱码
 - [git](https://git-scm.com/):用于本地笔记的上传到码云或```GitHub```
 - [WinMerge](https://winmerge.org/):照老师代码敲时，比对自己写的代码和老师代码不同（Subline也有插件的）
 - [SniPaste](https://www.snipaste.com/#):截图，关键可以悬浮在屏幕最前面而且支持多张
-- [Notion]()：
+- [Notion](https://www.notion.so/zh-cn)：很强大
 - idea:无需介绍YYDS
 - 浏览Pdf软件
 
