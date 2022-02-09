@@ -326,6 +326,32 @@ class MyTools {
 ### 3.1 课堂练习(1)：递归实现斐波那契
 
 ```java
+import java.util.Scanner;
+
+public class myHomework {
+	public static void main(String[] args) {
+
+		Scanner sca = new Scanner(System.in);
+		T t = new T();
+		System.out.print("输入整数：");
+		int i = sca.nextInt();
+		System.out.println(i + " 的斐波那契数是： " + t.fibonacci(i));
+	} 
+}
+
+class T {
+	public int fibonacci(int n) {
+		if( n >= 1) { 
+			if( n == 1 || n == 2) { 
+				return 1; 
+			} else { 
+				return fibonacci(n-1) + fibonacci(n-2); 
+			} 
+		} else { 
+			System.out.println("要求输入的 n>=1 的整数"); return -1; 
+		}
+	}
+}
 ```
 
 
