@@ -157,7 +157,9 @@ class AA {
 
 ## 2
 
-### 2.1  形参改变并不会影响实参
+### 2.1  基本数据类型传参机制
+
+**形参改变并不会影响实参**。
 
 ```java
 public class myHomework {
@@ -178,6 +180,107 @@ class AA {
 	}
 } 	
 ```
+
+
+### 2.2 引用数据类型传参机制 （数组，对象）
+
+**引用类型**传递的是地址（传递也是值，但是值是地址），可以通过**形参影响实参**。
+
+- 数组
+
+```java
+public class myHomework {
+	public static void main(String[] args) {
+
+		int[] arr = {1, 2, 3};
+		System.out.println("main方法中的数组 ");
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + "\t");
+		}
+		System.out.println();
+
+		BB b = new BB();
+		b.test100(arr);//调用
+	} 
+}
+
+class BB {
+	public void test100(int[] arr) {
+		arr[0] = 200;
+		System.out.println("test100方法中的数组 ");
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + "\t");
+		}
+		System.out.println();
+	}
+} 		
+```
+
+![](../img/TCH_Han/ch7_1.png)
+
+
+
+- 对象
+
+为什么p=null 和 p = new Person(); 对应示意图！不懂！
+
+```java
+public class myHomework {
+	public static void main(String[] args) {
+
+		BB b = new BB();
+		
+		//操作1
+		Person p = new Person();
+		p.name = "jack";
+		p.age = 10;
+		System.out.println("main 的 p.name 和p.age:\n" + p.name + "\t" + p.age);
+		b.test200(p);
+		System.out.println("执行操作一 的 p.name 和 p.age:\n" + p.name + "\t" + p.age);
+		
+		//操作2
+		Person p1 = new Person();
+		p1.name = "jack";
+		p1.age = 10;
+		System.out.println("\nmain 的 p1.name 和p1.age:\n" + p1.name + "\t" + p1.age);
+		b.test201(p1);
+		System.out.println("执行操作二 和p1.age:\n" + p1.name + "\t" + p1.age);
+		
+		//操作3
+		Person p2 = new Person();
+		p2.name = "jack";
+		p2.age = 10;
+		System.out.println("\nmain 的 p2.name 和p2.age:\n" + p2.name + "\t" + p2.age);
+		b.test201(p2);
+		System.out.println("执行操作三 和p2.age:\n" + p2.name + "\t" + p2.age);
+	} 
+}
+
+class Person {
+	String name;
+	int age;
+}
+
+class BB {
+	//操作1
+	public void test200(Person p) {
+		p.age = 9999;//修改属性
+	}
+	//操作2
+	public void test201(Person p) {
+		p = new Person();//修改属性
+		p.name = "tom";
+		p.age = 99;
+	}
+	//操作3
+	public void test202(Person p) {
+		p = null;
+	}
+} 	
+```
+
+<img src="../img/TCH_Han/ch7_2.png" style="zoom:67%;" />
+
 
 
 
