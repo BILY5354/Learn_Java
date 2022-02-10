@@ -610,6 +610,19 @@ class Methods {
 
 4. 全局变量（属性）可以不赋值直接使用，因为有默认值。局部变量必须赋值后，才能使用，因为**没有默认值**
 
+```java
+class Method {
+    int kk;//全局，有默认值
+    public void showScore() {
+        int i = 0;//局部变量，必须赋默认值
+    }
+    
+    public void test() {
+        int y = i;//错误！ 使用本类其它方法的变量
+    }
+}
+```
+
 
 
 **注意细节**：
@@ -625,9 +638,19 @@ class Methods {
    - 局部变量不哭加修饰符
 
 ```java
+class Method {
+    public int i;//全局，可以添加修饰符
+    public void showScore() {
+        int i = 99;//局部变量可以和属性重名，
+        System.out.println(i);//使用时就近原则，也就是用showScore方法中的i
+    }
+    
+    public void test() {
+        String str1 = "hi";
+        String str1 = "hello";//错误，重名
+    }
+}
 ```
-
-
 
 
 
@@ -637,7 +660,11 @@ class Methods {
 
 ### 6.1 构造方法/构造器
 
+
+
 ### 6.2 课堂练习(1):
+
+
 
 ### 6.3 对象创建的流程
 
