@@ -402,11 +402,35 @@ class T {
 
 ## 4
 
-### 4.1 方法重载
+### 4.1 方法重载注意事项
+
+1. 方法名：必须**相同**
+2. 形参列表：必须**不同**，（形参类型或个数或顺序，至少有一样不同，参数名无要求）
+3. 返回类型：无要求
+
+
+
+```java
+void show (int a, char b, double c) {} //构成重载的有
+
+void show (int x, char y, double z) {}	 //不是，对参数名无要求
+int show (int a, double c, char b) {}	 //是，形参顺序不同（返回类型无要求）
+void show (int a, double c, char b) {}	 //是，形参顺序不同
+boolean show (int c, char b) {}			//是，形参个数不同
+void show (double c) {}				    //是，形参个数不同
+double show (int x, char y, double z) {} //不是，形参无改变（名字无要求返回类型无要求）
+void shows() {}						   //方法名不同，所以不是
+```
+
+
+
+
 
 ### 4.2 课堂练习(1):
 
 ### 4.3 课堂练习(2):
+
+
 
 ## 5
 
