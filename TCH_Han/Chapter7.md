@@ -424,11 +424,9 @@ void shows() {}						   //方法名不同，所以不是
 
 
 
-### 4.2 课堂练习(1):
+### 4.2 课堂练习(1)：重载联系
 
 <img src="../img/TCH_Han/ch7_5.png" style="zoom:67%;" />
-
-
 
 ```java
 //1
@@ -497,7 +495,75 @@ class Methods {
 
 ## 5
 
-### 5.1 可变参数
+### 5.1 可变参数概念
+
+- ```Java``` 允许将同一个类中多个同名同功能但参数个数不同的方法，封装成一个方法---通过**可变参数**实现。
+- 基本语法
+
+```java
+访问修饰符 返回类型 方法名(数据类型... 形参名) { }
+```
+
+- 例子
+
+```java
+//普通做法
+class Methods {
+	public double max(double d1, double d2) {
+		return d1 + d2;
+	}
+	public double max(double d1, double d2, doubel d3) {
+		return d1 + d2 + d3;
+	}
+	public double max(double d1, double d2, doubel d3, doubel d4) {
+		return d1 + d2 + d3 + d4;
+	}
+}
+
+//可变参数
+class Methods {
+	public double max(double... ds) {
+		double sum = 0;
+		for (int i = 0; i < ds.length; i++) {
+			sum += ds[i];
+		}
+		return sum;
+	}
+}
+```
+
+
+
+
+
+### 5.3 可变参数注意事项
+
+1. 可变参数的实参可以为0个或任意过个
+2. 可变参数的实参可以为数组
+3. 可变参数的**本质就是数组**
+4. 可变参数可以和普通类型的参数一起放在形参列表，但必须保证可变参数在最后
+5. 一个形参列表中只能出现一个可变参数
+
+
+
+```java
+class T { 
+    public void f1(int... nums) { 
+        System.out.println("长度=" + nums.length); }
+    
+    //细节: 可变参数可以和普通类型的参数一起放在形参列表，但必须保证可变参数在最后 
+    public void f2(String str, double... nums) { 
+    }
+    
+    //细节: 一个形参列表中只能出现一个可变参数 
+    public void f3(int... nums1, double... nums2) { //写法是错误
+    } 
+}
+```
+
+
+
+
 
 ### 5.2 课堂练习(1):
 
