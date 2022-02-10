@@ -424,11 +424,74 @@ void shows() {}						   //方法名不同，所以不是
 
 
 
-
-
 ### 4.2 课堂练习(1):
 
-### 4.3 课堂练习(2):
+<img src="../img/TCH_Han/ch7_5.png" style="zoom:67%;" />
+
+
+
+```java
+//1
+public class myHomework {
+	public static void main(String[] args) {
+		Methods methods = new Methods();
+
+		System.out.println("重载1： " + methods.m(2));
+		System.out.println("重载2： " + methods.m(3,4));
+		System.out.println("重载3： " + methods.m("我爱罗"));
+	} 
+}
+
+class Methods {
+	public double m(int n1) {
+		return n1 * n1;
+	}
+	public double m(int n1, int n2) {
+		return n1 * n2;
+	}
+	public String m(String str) {
+		return str;
+	}
+}
+```
+
+
+
+```java
+//2.
+public class myHomework {
+	public static void main(String[] args) {
+		Methods methods = new Methods();
+
+		System.out.println("重载1： " + methods.max(2, 4));
+		System.out.println("重载2： " + methods.max(3, 4));
+		System.out.println("重载3： " + methods.max(1, 2, 3));
+	} 
+}
+
+class Methods {
+	public int max(int n1, int n2) {
+		if (n1 > n2) {
+			return n1;
+		} else {
+			return n2;
+		}
+	}
+	public double max(double d1, double d2) {
+		if (d1 > d2) {
+			return d1;
+		} else {
+			return d2;
+		}
+	}
+	public double max(double d1, double d2, double d3) {
+		double max1 = d1 > d2 ? d1 : d2;
+		return max1 > d3 ? max1 : d3;
+	}
+}
+```
+
+
 
 
 
