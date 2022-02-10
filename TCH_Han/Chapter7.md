@@ -424,7 +424,7 @@ void shows() {}						   //方法名不同，所以不是
 
 
 
-### 4.2 课堂练习(1)：重载联系
+### 4.2 课堂练习(1)：重载练习
 
 <img src="../img/TCH_Han/ch7_5.png" style="zoom:67%;" />
 
@@ -565,9 +565,73 @@ class T {
 
 
 
-### 5.2 课堂练习(1):
+### 5.2 课堂练习(1)：可变参数练习
 
-### 5.3 作用域
+<img src="../img/TCH_Han/ch7_6.png" style="zoom:67%;" />
+
+```java
+public class myHomework {
+	public static void main(String[] args) {
+		Methods methods = new Methods();
+
+		System.out.println(methods.showScore("李明", 90, 90, 90));
+		System.out.println(methods.showScore("李华", 70, 70, 70));
+		System.out.println(methods.showScore("李明华", 80, 80, 80, 100, 100));
+	} 
+}
+
+
+class Methods {
+	public String showScore (String name, int... scores) {
+
+		int sum = 0;
+		for (int i = 0; i < scores.length; i++) {
+			sum += scores[i];
+		}
+		String str = (name + scores.length + "科总成绩是：" + sum);
+		return str;
+	}
+}
+```
+
+
+
+
+
+### 5.3 作用域相关
+
+**基本使用**：
+
+1. 在```Java```中，主要变量就是属性（成员变量）和局部变量
+2. 局部变量就是**在成员方法中定义的变量**
+3. ```Java```作用域分类
+   - 全局变量：也就是属性，作用域为整个类体
+   - 局部变量：除了属性之外的其它变量，作用域为它的代码块中
+
+4. 全局变量（属性）可以不赋值直接使用，因为有默认值。局部变量必须赋值后，才能使用，因为**没有默认值**
+
+
+
+**注意细节**：
+
+1. 属性和局部变量可以重名，访问是遵循就近原则
+2. 在同一个作用域中，比如同一个成员方法内，两个局部变量，不能重名
+3. 属性生命周期较长，伴随着对象的创建而创建，伴随着对象的销毁而销毁。局部变量，**生命周期较短**，伴随着它的代码块的执行而创建，伴随着代码块的结束而销毁。
+4. 作用域范围不同
+   - 全局变量/属性：可以呗本类使用，或其它类使用（通过对象调用）
+   - 局部变量：只能在本类中的对应的方法中使用
+5. 修饰符不同：
+   - 全局变量/属性：可以添加修饰符
+   - 局部变量不哭加修饰符
+
+```java
+```
+
+
+
+
+
+
 
 ## 6
 
