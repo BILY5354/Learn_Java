@@ -668,13 +668,59 @@ class Method {
 6. 没有没有定义构造器，系统会自动给类生成一个默认无参构造器，可用```javap```反编译看看
 7. 一旦定义了自己的构造器默认的便被覆盖了，**除非再显示定义**
 
+```java
+class Person {
+
+	String name;
+	int age;
+
+	public Person(String pName, int pAge) {//第 1 个构造器 
+        name = pName; age = pAge; 
+    }
+    
+    public Person(String pName) {//第 2 个构造器, 只指定人名，不需要指定年龄 
+        name = pName; 
+    }
+}
+```
 
 
-### 6.2 课堂练习(1):
+
+### 6.2 课堂练习(1)：构造器
+
+```java
+public class myHomework {
+	public static void main(String[] args) {
+		Person p1 = new Person();//无参
+		System.out.println("p1 的信息: name = " + p1.name + " age = " + p1.age);
+
+		Person p2 = new Person("Mary", 20);
+		System.out.println("p2 的信息: name = " + p2.name + " age = " + p2.age);
+	} 
+}
+
+class Person {
+	String name;
+	int age;
+
+	public Person() {//无参构造设定默认值
+		age = 18;
+	}
+
+	public Person(String pName, int pAge) {
+		name = pName;
+		age = pAge;
+	}
+}
+```
+
+<img src="../img/TCH_Han/ch7_7.png"  />
 
 
 
 ### 6.3 对象创建的流程
+
+# 看视频
 
 
 
@@ -682,7 +728,78 @@ class Method {
 
 ### 7.1 ```this```关键字
 
-### 7.2 课堂练习(1):
+```this```即表示当前对象。
+
+1. ```this```关键字可以访问本类的属性、方法、构造器
+
+2. ```this```用于区分当前类的属性和局部变量
+
+3. 访问成员方法的语法：```this.方法名(参数列表);```
+
+4. 访问构造器语法：```this(参数列表);```，**注意只能在构造器使用**，(即只能在构造器中访问另外一个构造器, 必须放在第一 
+
+   条语句) 
+
+5. ```this```不能再类定义的外部使用，只能在类定义的方法中使用
+
+```java
+//之前是这样写的
+class Person {
+    String name;
+    int age;
+    public Person(String pName, int pAge) {
+        name = pName;
+        age = pAge;
+    }
+}
+
+//现在可以
+class Person {
+    String name;
+    int age;
+    public Person(String name, int age) {
+       this.name = name;//就是当前对象的属性 name
+       this.age = age;
+    }
+    
+    public void info() {
+        System.out.println(this.name + "\t" + this.age);//使用
+    }
+}
+```
+
+
+
+### 7.2 课堂练习(1)：```this```练习
+
+```java
+public class myHomework {
+	public static void main(String[] args) {
+		Person p1 = new Person("mary", 20);
+		Person p2 = new Person("mary", 20);
+
+		System.out.println("p1 和 p2 比较结为：" + p1.compareTo(p2));
+	} 
+}
+
+class Person {
+
+	String name;
+	int age;
+
+	public Person(String name, int age) {
+		this.name = name;
+		this.age = age;
+	}
+
+	public boolean compareTo(Person p) {
+		return this.name.equals(p.name) && this.age == p.age;
+	}
+}
+//结果为true
+```
+
+
 
 
 
