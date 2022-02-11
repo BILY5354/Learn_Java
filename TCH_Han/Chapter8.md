@@ -271,9 +271,107 @@ public class Account {
 
 ## 3
 
+### 3.1 面向对象编程三大特性之继承
+
+```class 子类 extends 父类{}```便是继承
+
+1. 子类自动拥有父类定义的属性和方法
+2. 父类又称超类、基类
+3. 子类又称派生类
+
+```java
+//Extends01.java
+package com.java.learn_han.chapter8.extend_;
+
+public class Extends01 {
+    public static void main(String[] args) {
+        Pupil pupil = new Pupil();
+        pupil.name = "银角大王";
+        pupil.age = 11;
+        pupil.testing();
+        pupil.setScore(50);
+        pupil.showInfo();
+
+        System.out.println("=========================");
+        Graduate graduate = new Graduate();
+        graduate.name = "金角大王";
+        graduate.age = 21;
+        graduate.testing();
+        graduate.setScore(90);
+        graduate.showInfo();
+    }
+
+}
+
+//Student.java
+package com.java.learn_han.chapter8.extend_;
+
+public class Student {
+
+    public String name;
+    public int age;
+    private double score;
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    public void showInfo() {
+        System.out.println("学生名：" + name + " 年龄：" + age + " 成绩：" + score);
+    }
+}
+
+//Pupil.java
+package com.java.learn_han.chapter8.extend_;
+
+public class Pupil extends Student {
+
+    public void testing() {
+        System.out.println("小学生：" + name + "正在考小学数学");
+    }
+}
+
+//Graduate.java
+package com.java.learn_han.chapter8.extend_;
+
+public class Graduate extends Student {
+
+    public void testing() {
+        System.out.println("大学生：" + name + "正在考大学数学");
+    }
+}
 ```
+
+
+
+### 3.2 继承的讨论/细节问题
+
+>韩老师笔记：
+>
+>1. 子类继承了所有的属性和方法，非私有的属性和方法可以在子类直接访问, 但是**私有**属性和方法**不能**在子类**直接访问**，要通过父类提供公共的方法去访问。
+>2. 子类必须调用父类的构造器， 完成父类的初始化 。
+>3. 当创建子类对象时，不管使用子类的哪个构造器，默认情况下总会去调用父类的无参构造器，如果父类没有提供无参构造器，则必须在子类的构造器中用```super```去指定使用父类的哪个构造器完成对父类的初始化工作，否则，编译不会通过。
+>4.  如果希望指定去调用父类的某个构造器，则显式的调用一下 : ```super(参数列表)。```
+>5. ```super```在使用时，必须放在构造器第一行(```super```只能在构造器中使用) 。
+>6. ```super()```和```this()```都只能放在构造器第一行，因此这两个方法不能共存在一个构造器。
+>7. java 所有类都是```Object```类的子类，```Object```是所有类的基类。
+>8. 父类构造器的调用不限于直接父类！将一直往上追溯直到```Object```类(顶级父类)。
+>9. 子类最多只能继承一个父类(指直接继承)，即 java 中是单继承机制。
+>   - 思考：如何让```A```类继承```B```类和```C```类？ ```A```继承```B```，```B```继承```C``` 
+>10. 不能滥用继承，子类和父类之间必须满足```is-a```的逻辑关系。
+
+
+
+```java
 ```
+
+
+
+
+
+
 ## 4
+
 ```
 ```
 ## 作业
