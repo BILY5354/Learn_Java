@@ -360,21 +360,137 @@ public class Graduate extends Student {
 >   - 思考：如何让```A```类继承```B```类和```C```类？ ```A```继承```B```，```B```继承```C``` 
 >10. 不能滥用继承，子类和父类之间必须满足```is-a```的逻辑关系。
 
-
+重点理解**第三条**。
 
 ```java
+//ExdendsDetail.java 				
+package com.java.learn_han.chapter8.extend_;
+
+public class ExdendsDetail {
+    public static void main(String[] args) {
+        System.out.println("======第一个对象======");
+        Sub sub = new Sub();
+        System.out.println("======第二个对象======");
+        Sub sub2 = new Sub("jack");//创建了子对象sub2
+        System.out.println("======第三个对象======");
+        Sub sub3 = new Sub("King", 10);
+    }
+}
+
+//Sub.java
+package com.java.learn_han.chapter8.extend_;
+
+public class Sub extends Base{
+
+    public Sub() {//无参构造器
+        //super(); //默认调用父类的无参构造器
+        System.out.println("子类Sub()构造器被调用....");
+    }
+    //当创建子类对象时，不管使用子类的哪个构造器，默认情况下总会去调用父类的无参构造器
+    public Sub(String name) {
+        super("tom");
+        System.out.println("子类Sub(String name)构造器被调用....");
+    }
+
+    public Sub(String name, int age) {
+        super("king", 20);
+        System.out.println("子类Sub(String name, int age)构造器被调用....");
+    }
+}
+
+//Base.java
+package com.java.learn_han.chapter8.extend_;
+
+public class Base extends TopBase {
+
+    public Base() { //无参构造器
+        System.out.println("父类Base()构造器被调用....");
+    }
+    public Base(String name) {//有参构造器
+        System.out.println("父类Base(String name)构造器被调用....");
+    }
+    public Base(String name, int age) {//有参构造器
+        //默认super()
+        System.out.println("父类Base(String name, int age)构造器被调用....");
+    }
+}
+
+//TopBase.java
+package com.java.learn_han.chapter8.extend_;
+
+public class TopBase {
+
+    public TopBase() {
+        //super(); Object的无参构造器
+        System.out.println("构造器TopBase() 被调用...");
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch8_3.png" style="zoom:80%;" />
+
+```ctrl```+```h```看继承关系。
+
+<img src="../img/TCH_Han/ch8_2.png" style="zoom:99%;" />
+
+
+
+
+
+### 3.3 继承的本质分析
+
+# 看下不理解
+
+
+
+## 4 
+
+### 4.1 ```super```关键字基本介绍
+
+
+
+### 4.？ ```super```与```this```区别
+
+| No.  | 区别点     | this                                                   | super                                    |
+| ---- | ---------- | ------------------------------------------------------ | ---------------------------------------- |
+| 1    | 访问属性   | 访问本类中的属性，如果本类没有此属性则从父类中继续查找 | 从父类开始查找属性                       |
+| 2    | 调用方法   | 访问本类中的方法，如果本类没有此方法则从父类继续查找   | 从父类开始查找方法                       |
+| 3    | 调用构造器 | 调用本类构造器，必须放在构造器的首行                   | 调用父类构造器，必须放在子类构造器的首行 |
+| 4    | 特殊       | 表示当前对象                                           | 子类中访问父类对象                       |
+
+ 
+
+
+
+## 5
+
+### 5.1方法重写/覆盖```override```
+
+
+
+### 5.？ 重写与重载区别
+
+| 名称           | 发生范围 | 方法名   | 形参列表                         | 返回类型                                                     | 修饰符                             |
+| -------------- | -------- | -------- | -------------------------------- | ------------------------------------------------------------ | ---------------------------------- |
+| 重载(overload) | 本类     | 必须一样 | 类型，个数或者顺序只有有一个不同 | 无要求                                                       | 无要求                             |
+| 重写(override) | 父子类   | 必须一样 | 相同                             | 子类重写的方法，返回的类型喝父类返回的类型一致，或者是其子类 | 子类方法不能缩小父类方法的访问范围 |
+
+
+
+```
 ```
 
 
+## 6
+
+### 6.1  面向对象编程三大特性之多态
 
 
 
 
-## 4
 
-```
-```
 ## 作业
+
 ```
 ```
 
