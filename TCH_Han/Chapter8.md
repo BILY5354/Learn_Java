@@ -459,18 +459,111 @@ public class TopBase {
 2. 访问父类的方法（不可访问```private```方法）：```super.方法名(参数列表)```
 3. 访问父类的构造器：**只能出现在第一句**
 
+>**访问属性规则**（n1 和 this.n1 查找的规则）：
+>
+>- (1) 先找本类，如果有，则调用
+>- (2) 如果没有，则找父类(如果有，并可以调用，则调用)
+>- (3) 如果父类没有，则继续找父类的父类,整个规则，就是一样的,直到 Object类
+>- 提示：
+>  - 如果查找属性的过程中，找到了，但是不能访问， 则报错, cannot access
+>  - 如果查找属性的过程中，没有找到，则提示属性不存在
+>
+>
+>
+>**方法访问规则**（找```cal```方法时(```cal()```和```this.cal()```)，顺序是）：
+>
+>- (1)先找本类，如果有，则调用
+>- (2)如果没有，则找父类(如果有，并可以调用，则调用)
+>-  (3)如果父类没有，则继续找父类的父类,整个规则，就是一样的,直到 Object类
+>-  提示：
+>  - 如果查找方法的过程中，找到了，但是不能访问， 则报错, cannot access
+>  - 如果查找方法的过程中，没有找到，则提示方法不存在
+
 ```java
-//.java
+//Super01.java
+package com.java.learn_han.chapter8.super_;
+
+public class Super01 {
+    public static void main(String[] args) {
+        B b = new B();
+        b.test();
+    }
+}
+
+//Base.java
+package com.java.learn_han.chapter8.super_;
+
+public class Base {
+
+    public int n1 = 888;
+    public int age = 111;
+
+    public void cal() {
+        System.out.println("Base类的cal() 方法...");
+    }
+}
+
+//A.java
+package com.java.learn_han.chapter8.super_;
+
+public class A extends Base {
+
+    //n1 是继承了Base类中的
+    protected int n2 = 200;
+    int n3 = 300;
+    private int n4 = 400;//子类是不可访问的
+
+    public void test100() {
+    }
+
+    protected void test200() {
+    }
+
+    void test300() {
+    }
+
+    private void test400() {//子类是不可访问的
+    }
+}
 
 
-//.java
+//B.java
+package com.java.learn_han.chapter8.super_;
 
+public class B extends A {
 
+    public int n1 = 888;
 
-//.java
+    public void test() {
+        System.out.println("B类的test()运行并开始调用父类的属性和方法");
+        System.out.println("super.n1= " + super.n1);//找父类的n1，
+        super.cal();//寻找父类的cal()
 
+        System.out.println("现在开始调用了本类的属性和方法");
+        System.out.println("用n1调用本类属性：" + n1);
+        System.out.println("用this.n1调用本类属性：" + this.n1);
+        System.out.print("用cal()调用本类方法");
+        cal();
+        System.out.print("用this.cal()调用本类方法");
+        this.cal();//调用本类的cal()
+    }
 
-//.java
+    public void cal() {
+        System.out.println("B类的cal()方法...");
+    }
+
+    public void ok() {
+        super.test100();//可以，公共
+        super.test200();//可以，保护
+        super.test300();//可以，默认
+        //super.test400();//不可以，不能访问父类private方法
+    }
+
+    //回顾：访问父类的构造器，只能放在构造器的第一句且只出现一句
+    public B() {
+        super();
+    }
+}
 ```
 
 
