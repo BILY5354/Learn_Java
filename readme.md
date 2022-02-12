@@ -105,13 +105,23 @@ grep -nri 命名 TCH_Han | cat --number//在TCH_Han文件夹下搜索“命名�
 - [作业](./TCH_Han/Chapter7.md#作业)  
 
 #### [第08章 面向对象编程（中级部分）(P264 - P361)](./TCH_Han/Chapter8.md)  
-- [](./TCH_Han/Chapter8.md#1) *并简要介绍了```IDEA```*的设置
-- [](./TCH_Han/Chapter8.md#2)
-- [](./TCH_Han/Chapter8.md#3)
-- [](./TCH_Han/Chapter8.md#4)  
+- [```IDEA```的使用](./TCH_Han/Chapter8.md#1) *并简要介绍了```IDEA```*的设置
+- [面向对象特性-封装](./TCH_Han/Chapter8.md#2)
+- [面向对象特性-继承](./TCH_Han/Chapter8.md#3)
+- [```super```关键字](./TCH_Han/Chapter8.md#4)  
+- [方法重写/覆盖```override```](./TCH_Han/Chapter8.md#5)  
+- [面向对象特性-多态](./TCH_Han/Chapter8.md#6)  
+- [```object```类](./TCH_Han/Chapter8.md#7)  
+- [课堂练习:零钱通](./TCH_Han/Chapter8.md#8)  
 - [作业](./TCH_Han/Chapter8.md#作业)  
 
-#### 第09章 房屋出租系统(P362 - P373)
+#### [第09章 房屋出租系统(P362 - P373)](./TCH_Han/Chapter9.md)  
+- [](./TCH_Han/Chapter9.md#1)
+- [](./TCH_Han/Chapter9.md#2)
+- [](./TCH_Han/Chapter9.md#3)
+- [](./TCH_Han/Chapter9.md#4)  
+- [作业](./TCH_Han/Chapter9.md#作业)  
+
 ### 第二阶段(P374 - P661)
 #### 第10章 面向对象编程（高级部分）(P374 - P424)
 #### 第11章 枚举和注解(P425 - P443)
