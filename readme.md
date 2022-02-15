@@ -30,9 +30,12 @@ javac -encoding utf8 test.java 		//使编译汉字不会显示乱码
 **便捷的命令**（在本仓库根目录代右键Git Bash here）
 
 ```shell
-find . "(" -name "*.java"  ")" -print | xargs wc -l//看java代码有多少行
-find . "(" -name "*.md"  ")" -print | xargs wc -l//行md文件有多少行
-grep -nri 命名 TCH_Han | cat --number//在TCH_Han文件夹下搜索“命名”
+//看java代码有多少行
+find . "(" -name "*.java"  ")" -print | xargs wc -l
+//行md文件有多少行
+find . "(" -name "*.md"  ")" -print | xargs wc -l
+//在TCH_Han文件夹下搜索“命名”
+grep -nri 命名 TCH_Han | cat --number
 ```
 
 **学习中浏览过的网站**
