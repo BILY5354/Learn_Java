@@ -635,10 +635,6 @@ public class Animal {
         return null;
     }
 
-    public AAA m3() {
-        return null;
-    }
-
     protected void eat() {
     }
 }
@@ -660,14 +656,6 @@ public class Dog extends Animal {
 
     public void eat() {
     }
-
-}
-
-class AAA {
-
-}
-
-class BBB extends AAA {
 
 }
 ```
@@ -873,9 +861,8 @@ public class Master {
 
 ### 6.2 多态的基本介绍（难点）
 
-> 我（**片面**）理解：
+> 校长在学校网站说下周一开学，那么学校后勤处、老师、家长和学生听到这一消息后都会有不同的反应，即执行不同的方法。
 >
-> 
 
 作为面向对象三大特性，多态是建立在封装与继承基础之上的。
 
