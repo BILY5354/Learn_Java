@@ -106,6 +106,8 @@ import java.awt.*;		//界面开发GUI
 > 我（**片面**）理解封装：
 >
 > 将属性（成员变量）设为```private```，同时设置两个```public```的```setXXX```和```getXXX```方法。
+>
+> 因为```private```再同类中可以直接调用但在不同类中，是不可以直接访问的。这时候就需要调用共有方法，也即```getxxx```。这体现了编程的封装性。
 
 ```java
 package com.java.learn_han.chapter8.encap;
@@ -760,7 +762,7 @@ public class Student extends Person {
     }
 
     public void Say() {
-        super.Say();
+        super.Say();//调用父类Say方法
         System.out.println( "也是学生"  + "\t" + getId() + "\t" + getScore());
     }
 }
