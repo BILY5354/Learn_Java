@@ -797,9 +797,88 @@ public class Student extends Person {
 
 ### 6.1  面向对象编程三大特性之多态
 
+```java
+package com.hspedu.poly_; 
+
+public class Animal { 
+    private String name; 
+    public Animal(String name) { 
+        this.name = name; 
+    }
+     //省略getName，setName
+}
+
+package com.hspedu.poly_; 
+public class Bone extends Food { 
+    public Bone(String name) { 
+        super(name); 
+    } 
+}
+
+package com.hspedu.poly_; 
+public class Cat extends Animal { 
+    public Cat(String name) { 
+        super(name); 
+    } 
+}
+
+package com.hspedu.poly_; 
+public class Dog extends Animal { 
+    public Dog(String name) {
+        super(name); 
+    } 
+}
+
+package com.hspedu.poly_; 
+public class Fish extends Food { 
+    public Fish(String name) { 
+        super(name); 
+    } 
+}
+
+package com.hspedu.poly_; 
+public class Food { 
+    private String name; 
+    public Food(String name) { 
+        this.name = name; 
+    }
+    //省略getName，setName
+}
+
+package com.hspedu.poly_; 
+public class Master { 
+    private String name; 
+    public Master(String name) { 
+        this.name = name; 
+    }
+    //省略getName，setName
+    
+    //使用多态机制，可以统一的管理主人喂食的问题，animal 编译类型是 Animal,可以指向(接收) Animal 子类的对象， food 同
+    public void feed(Animal animal, Food food) { 
+        System.out.println("主人 " + name + " 给 " + animal.getName() + " 吃 " + food.getName());
+    }
+    
+    /** 如果动物很多，食物很多 feed 方法很多，不利于管理和维护
+    public void feed(Dog dog, Bone bone) { 
+    System.out.println("主人 " + name + " 给 " + dog.getName() + " 吃 " + bone.getName());
+    } 
+    public void feed(Cat cat, Fish fish) { 
+        System.out.println("主人 " + name + " 给 " + cat.getName() + " 吃 " + fish.getName()); 
+    }*/   
+} 
+//省略.....
+```
+
+  
+
+### 6.2 多态的基本介绍（难点）
+
+作为面向对象三大特性，多态是建立在封装与继承基础之上的。
+
+1. 方法的多态
+2. 对象的多态（**核心，难点**）
 
 
-### 6.2 
 
 ### 6. ```Java```的动态绑定机制
 
