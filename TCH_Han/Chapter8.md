@@ -445,6 +445,8 @@ public class TopBase {
 
 ### 3.3 继承的本质分析
 
+<img src="../img/TCH_Han/ch8_6.png" style="zoom:67%;" />
+
 # 看下不理解内存管理
 
 
