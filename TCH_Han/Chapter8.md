@@ -105,7 +105,7 @@ import java.awt.*;		//界面开发GUI
 
 > 我（**片面**）理解封装：
 >
-> 将属性（成员变量）设为```private```，同时设置两个```public```的```setXXX```和```getXXX```方法
+> 将属性（成员变量）设为```private```，同时设置两个```public```的```setXXX```和```getXXX```方法。
 
 ```java
 package com.java.learn_han.chapter8.encap;
@@ -597,15 +597,180 @@ public class B extends A {
 
 方法覆盖（重写）是**子类**有一个方法和**父类**的某个方法名称、返回类型、参数一样，那么子类的此方法便覆盖了父类的方法。
 
+**载注意事项和使用细节**:
+
+1. 子类的方法的**形参列表**，**方法名称**，要和**父类**的方法的形参列表，方法名称**完全一样**
+2. 子类方法的**返回类型**和**父类**方法类型**一样**，或者**是**父类返回类型的**子类**，比如这样定义是正确的
+   - 父类```public Object getInfo() {}```
+   - 子类```public String getInfo() {}```
+3. 子类方法不能缩小父类方法的访问权限
+
 ```java
-//
+//Override01.java
+package com.java.learn_han.chapter8.override_;
+
+public class Override01 {
+
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.cry();
+    }
+}
+
+//Animal.java
+package com.java.learn_han.chapter8.override_;
+
+public class Animal {
+    public void cry() {
+        System.out.println("动物呼唤..");
+    }
+
+    public Object m1() {
+        return null;
+    }
+
+    public String m2() {
+        return null;
+    }
+
+    public AAA m3() {
+        return null;
+    }
+
+    protected void eat() {
+    }
+}
+
+//Dog.java
+package com.java.learn_han.chapter8.override_;
+
+public class Dog extends Animal {
+
+    //因为是重写Dog的 cry方法和 Animal的 cry定义形式一样(名称、返回类型、参数)
+    public void cry() {
+        System.out.println("小狗旺旺叫..");
+    }
+
+    //细节: 子类方法的返回类型是父类返回类型的子类
+    public String m1() {
+        return null;
+    }
+
+    public void eat() {
+    }
+
+}
+
+class AAA {
+
+}
+
+class BBB extends AAA {
+
+}
 ```
 
 
 
+# 5.2 3 这里不懂
 
 
-### 5.？ 重写与重载区别
+
+
+
+### 5.2 课堂联系(1)：
+
+```java
+//OverrideExercise.java
+package com.java.learn_han.chapter8.override_;
+
+public class OverrideExercise {
+    public static void main(String[] args) {
+
+        Person person = new Person("Boss", 62);
+        person.Say();
+
+        Student student = new Student("stuMartin", 12, 123, 99);
+        student.Say();
+    }
+}
+
+//Person.java
+package com.java.learn_han.chapter8.override_;
+
+public class Person {
+
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void Say() {
+        System.out.println("我是人" + getName() + "\t" + getAge());
+    }
+}
+
+//Student.java
+package com.java.learn_han.chapter8.override_;
+
+public class Student extends Person {
+
+    private int id;
+    private double score;
+
+    public Student(String name, int age, int id, double score) {
+        super(name, age);
+        this.id = id;
+        this.score = score;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    public void Say() {
+        super.Say();
+        System.out.println( "也是学生"  + "\t" + getId() + "\t" + getScore());
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch8_4.png" style="zoom:99%;" />
+
+
+
+### 5.3 重写与重载区别
 
 | 名称           | 发生范围 | 方法名   | 形参列表                         | 返回类型                                                     | 修饰符                             |
 | -------------- | -------- | -------- | -------------------------------- | ------------------------------------------------------------ | ---------------------------------- |
@@ -614,8 +779,12 @@ public class B extends A {
 
 
 
-```
-```
+
+
+
+
+
+
 
 
 ## 6
