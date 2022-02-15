@@ -925,6 +925,10 @@ class A extends B {
 
 2. 对象的多态（**核心，难点**）
 
+# 看下
+
+
+
 > 韩老师的几句话：
 >
 > 1. 一个对象的编译类型和运行类型可以不一致。
@@ -933,6 +937,47 @@ class A extends B {
 > 4. 编译类型看定义时```=```的左边，运行类型看```=```的右边
 
 ```java
+//PolyObject.java
+package com.hspedu.poly_.objectpoly_; 
+
+public class PolyObject { 
+    public static void main(String[] args) { 
+        //体验对象多态特点，animal 编译类型就是 Animal , 运行类型 Dog 
+        Animal animal = new Dog(); 
+        //因为运行时 , 执行到改行时，animal 运行类型是 Dog,所以 cry 就是 Dog 的 cry 
+        animal.cry(); //小狗汪汪叫 
+        //animal 编译类型 Animal,运行类型就是 Cat 
+        animal = new Cat(); 
+        animal.cry(); //小猫喵喵叫 
+    } 
+}
+
+//Animal.java
+package com.hspedu.poly_.objectpoly_; 
+
+public class Animal { 
+    public void cry() { 
+        System.out.println("Animal cry() 动物在叫...."); 
+    } 
+}
+
+//Cat.java
+package com.hspedu.poly_.objectpoly_; 
+
+public class Cat extends Animal { 
+    public void cry() { 
+        System.out.println("Cat cry() 小猫喵喵叫..."); 
+    } 
+}
+
+//Dog.java
+package com.hspedu.poly_.objectpoly_; 
+
+public class Dog extends Animal {
+    public void cry() { 
+        System.out.println("Dog cry() 小狗汪汪叫..."); 
+    } 
+}
 ```
 
 
@@ -954,6 +999,8 @@ class A extends B {
   2. 只能强转父类的引用，不能强转父类的对象
   3. 要求父类的引用必须指向的是当前目标类型的对象
   4. 当向下转型后，可以调用子类类型中所有的成员
+- 属性没有重写的说法，属性的值看编译类型
+- ```instancedOf```比较操作符
 
 
 
@@ -996,8 +1043,4 @@ class A extends B {
 ```
 
 
-
-```sh
-
-```
 
