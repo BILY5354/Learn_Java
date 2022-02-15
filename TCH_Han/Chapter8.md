@@ -445,9 +445,49 @@ public class TopBase {
 
 ### 3.3 继承的本质分析
 
-<img src="../img/TCH_Han/ch8_6.png" style="zoom:67%;" />
+> 韩老师解读：
+>
+> 1. 首先看子类是否有该属性 。
+> 2. 如果子类有这个属性，并且可以访问，则返回信息。 
+> 3. 如果子类没有这个属性，就看父类有没有这个属性(如果父类有该属性，并且可以访问，就返回信息..)。 
+> 4.  如果父类没有就按照(3)的规则，继续找上级父类，直到 Object... 。
+>
+> 其中第3点，**不可跨类寻找**，比如一属性，父类是私有爷爷是公有，但子类也是找不到的。
 
-# 看下不理解内存管理
+```java
+package com.hspedu.extend_; 
+
+public class ExtendsTheory { 
+    public static void main(String[] args) { 
+        Son son = new Son();//内存的布局 
+        System.out.println(son.name);//返回就是大头儿子 
+        //System.out.println(son.age);//错误，因为 son 无，但是父类此属性为私有
+        System.out.println(son.getAge());//返回的就是 39，正确，调用父类有子类无的方法，这也是封住的意义
+        System.out.println(son.hobby);//返回的就是旅游 
+    } 
+}
+
+class GrandPa { //爷类 
+    String name = "大头爷爷";
+    String hobby = "旅游"; 
+}
+
+class Father extends GrandPa {//父类 
+    String name = "大头爸爸"; 
+    private int age = 39; 
+    public int getAge() { //分装
+        return age; 
+    } 
+}
+
+class Son extends Father { //子类
+    String name = "大头儿子"; 
+}
+```
+
+
+
+<img src="../img/TCH_Han/ch8_6.png" style="zoom:67%;" />
 
 
 
