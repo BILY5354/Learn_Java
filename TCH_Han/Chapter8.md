@@ -873,12 +873,53 @@ public class Master {
 
 ### 6.2 多态的基本介绍（难点）
 
+> 我（**片面**）理解：
+>
+> 
+
 作为面向对象三大特性，多态是建立在封装与继承基础之上的。
 
 1. 方法的多态
 
 ```java
+package com.java.learn_han.chapter8.poly_;
+
+public class PloyMethod {
+    public static void main(String[] args) {
+        //方法重载体现多态
+        A a = new A();
+        System.out.println(a.sum(10, 20));
+        System.out.println(a.sum(10, 20, 30));
+
+        //方法重写体现多态
+        B b = new B();
+        a.say();
+        b.say();
+    }
+}
+
+class B {
+    public void say() {
+        System.out.println("B say() 方法被调用...");
+    }
+}
+
+class A extends B {
+    public int sum(int n1, int n2) {
+        return n1 + n2;
+    }
+
+    public int sum(int n1, int n2, int n3) {
+        return n1 + n2 + n3;
+    }
+
+    public void say() {
+        System.out.println("A say() 方法被调用...");
+    }
+}
 ```
+
+<img src="../img/TCH_Han/ch8_5.png" style="zoom:99%;" />
 
 
 
