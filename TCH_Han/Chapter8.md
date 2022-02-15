@@ -674,7 +674,7 @@ class BBB extends AAA {
 
 
 
-# 5.2 3 这里不懂
+# 5.1.3 这里不懂
 
 
 
@@ -1019,13 +1019,21 @@ public class Dog extends Animal {
 
 
 
+### 6.6 多态的应用
+
 
 
 ## 7
 
 ### 7.1 ```object```类详解
 
-### 7.2 
+### 7.2  ```equals```方法
+
+### 7.3 ```hashCode```方法
+
+### 7.4 ```toString```方法
+
+### 7.5 ```finalize```方法
 
 
 
