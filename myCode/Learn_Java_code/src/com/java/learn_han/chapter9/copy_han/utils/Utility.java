@@ -43,16 +43,17 @@ public class Utility {
 
     /**
      * 功能：读取键盘输入的整型，长度小于2位
+     *
      * @return 整数
      */
     public static int readInt() {
         int n;
-        for (;;) {
-            String str = readKeyBoard(10,false);
+        for (; ; ) {
+            String str = readKeyBoard(10, false);
             try {
                 n = Integer.parseInt(str);//将字符串转换成整数
                 break;
-            }catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.print("数字输入错误，请重新输入：");
             }
         }
@@ -61,13 +62,14 @@ public class Utility {
 
     /**
      * 功能：读取键盘输入的 整数或默认值，如果直接回车，则返回默认值，否则返回输入的整数
+     *
      * @param defaultValue 指定的默认值
      * @return 整数或默认值
      */
     public static int readInt(int defaultValue) {
         int n;
-        for (;;) {
-            String str = readKeyBoard(10,true);
+        for (; ; ) {
+            String str = readKeyBoard(10, true);
             if (str.equals("")) {
                 return defaultValue;
             }
@@ -103,5 +105,47 @@ public class Utility {
     public static String readString(int limit, String defaultValue) {
         String str = readKeyBoard(limit, true);
         return str.equals("") ? defaultValue : str;//如果没有输入任何东西（直接回车）则默认值
+    }
+
+    /**
+     * 功能：读取键盘输入的一个字符
+     *
+     * @return 一个字符
+     */
+    public static char readChar() {
+        String str = readKeyBoard(1, false);
+        return str.charAt(0);
+    }
+
+    /**
+     * 功能：读取键盘输入的一个字符，如果直接按回车，则返回指定的默认值；否则返回输入的那个字符
+     *
+     * @param defaultValue 指定的默认值
+     * @return 默认值或输入的字符
+     */
+    public static char readChar(char defaultValue) {
+        String str = readKeyBoard(1, true);
+        return (str.length() == 0) ? defaultValue : str.charAt(0);//要么是空字符串，要么是一个字符
+    }
+
+    /**
+     * 功能：读取键盘输入的确认选项，Y或N
+     * 将小的功能，封装到一个方法中.
+     *
+     * @return Y或N
+     */
+    public static char readConfirmSelection() {
+        System.out.println("请输入你的选择（Y/N）：请小心选择");
+        char c;
+        for (; ; ) {
+            String str = readKeyBoard(1, false).toUpperCase();//在这里，将接受到字符，转成了大写字母
+            c = str.charAt(0);
+            if (c=='Y'||c=='N') {
+                break;
+            } else {
+                System.out.println("选择错误，请重新输入：");
+            }
+        }
+        return c;
     }
 }
