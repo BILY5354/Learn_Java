@@ -521,9 +521,9 @@ class Son extends Father { //子类
 >- (1)先找本类，如果有，则调用
 >- (2)如果没有，则找父类(如果有，并可以调用，则调用)
 >-  (3)如果父类没有，则继续找父类的父类,整个规则，就是一样的,直到 Object类
->-  提示：
-> - 如果查找方法的过程中，找到了，但是不能访问， 则报错, cannot access
-> - 如果查找方法的过程中，没有找到，则提示方法不存在
+>- 提示：
+>   - 如果查找方法的过程中，找到了，但是不能访问， 则报错, cannot access
+>   - 如果查找方法的过程中，没有找到，则提示方法不存在
 
 ```java
 //Super01.java
@@ -1019,23 +1019,149 @@ public class Dog extends Animal {
 
 ### 6.3 多态的快速入门案例
 
+# 6.3完全不懂 需要看视频和书
+
 - 多态的前提是：两个对象（类）存在继承关系
+
 - 多态的向上转型
   1. 本质：父类的引用指向了子类的对象
   2. 语法：```父类类型 引用名 = new 子类类型();```
   3. 特点：编译类型看左边，运行类型看右边
      - 可以调用父类中所有成员（需遵守访问权限）
-     - 不能调用子类中特有成员
-     - 最终运行效果看子类的具体实现
+     - 不能调用子类中特有成员，因为在编译阶段，能调用哪些成员,是由编译类型来决定的 
+     - 最终运行效果看子类的具体实现，即调用方法时，按照从子类(运行类型)开始查找方法
+  
 - 多态的向下转型
   1. 语法：```子类类型 引用名 = (子类类型) 父类引用;```
   2. 只能强转父类的引用，不能强转父类的对象
   3. 要求父类的引用必须指向的是当前目标类型的对象
   4. 当向下转型后，可以调用子类类型中所有的成员
+  
+  >
+  >
+  >
+
+```java
+//PolyDetail.java
+package com.hspedu.poly_.detail_; 
+
+public class PolyDetail {
+    public static void main(String[] args) { 
+        //向上转型: 父类的引用指向了子类的对象, 语法：父类类型引用名 = new 子类类型(); 
+        Animal animal = new Cat(); 
+        Object obj = new Cat();//可以吗? 可以 Object 也是 Cat 的父类 
+        
+        //animal.catchMouse();错误 
+       
+        animal.eat();//猫吃鱼.. 
+        animal.run();//跑 
+        animal.show();//hello,你好 
+        animal.sleep();//睡 
+        
+        //老师希望，可以调用 Cat 的 catchMouse 方法 
+        //多态的向下转型:  ，语法：子类类型 引用名 =（子类类型）父类引用; 
+        //问一个问题? cat 的编译类型 Cat,运行类型是 ？
+        Cat Cat = (Cat) animal; 
+        cat.catchMouse();//猫抓老鼠 
+        //(2)要求父类的引用必须指向的是当前目标类型的对象
+        Dog dog = (Dog) animal; //可以吗？ 可以的	
+    } 
+}
+
+
+//Animal.java
+package com.hspedu.poly_.detail_; 
+
+public class Animal { 
+    String name = "动物"; 
+    int age = 10; 
+    public void sleep() { 
+        System.out.println("睡"); 
+    }
+    public void run() { 
+        System.out.println("跑");
+    }
+    public void eat() { 
+        System.out.println("吃"); 
+    }
+    public void show(){ 
+        System.out.println("hello,你好"); 
+    } 
+}
+
+
+//Cat.java
+package com.hspedu.poly_.detail_; 
+
+public class Cat extends Animal { 
+    public void eat(){//方法重写 
+        System.out.println("猫吃鱼"); 
+    }
+    public void catchMouse(){//Cat 特有方法 
+        System.out.println("猫抓老鼠"); 
+    } 
+}
+
+
+//Dog.java
+package com.hspedu.poly_.detail_; 
+
+public class Dog extends Animal {//Dog 是 Animal 的子类 
+}
+```
+
 - 属性没有重写的说法，属性的值看编译类型
+
+```java
+package com.hspedu.poly_.detail_; 
+
+public class PolyDetail02 { 
+    public static void main(String[] args) { 
+        //属性没有重写之说！属性的值看编译类型 
+        Base base = new Sub();//向上转型 
+        System.out.println(base.count);// ？ 看编译类型 10 
+        Sub sub = new Sub(); 
+        System.out.println(sub.count);//? 20 
+    } 
+}
+
+class Base { //父类 
+    int count = 10;//属性 
+}
+
+class Sub extends Base {//子类 
+    int count = 20;//属性 
+}
+```
+
 - ```instancedOf```比较操作符
 
+```java
+package com.hspedu.poly_.detail_; 
 
+public class PolyDetail03 { 
+    public static void main(String[] args) { 
+        BB bb = new BB(); 
+        System.out.println(bb instanceof BB);// true 
+        System.out.println(bb instanceof AA);// true 
+        
+        //aa 编译类型 AA, 运行类型是 BB 
+        //BB 是 AA 子类
+        AA aa = new BB(); 
+        System.out.println(aa instanceof AA); 
+        System.out.println(aa instanceof BB); 
+        Object obj = new Object(); 
+        System.out.println(obj instanceof AA);//false 
+        String str = "hello"; 
+        //System.out.println(str instanceof AA); 
+        System.out.println(str instanceof Object);//true 
+    } 
+}
+
+class AA {} //父类
+
+class BB extends AA {}//子类
+```
 
 
 
@@ -1054,25 +1180,50 @@ public class Dog extends Animal {
 
 ### 6.6 多态的应用
 
+****
+
 
 
 ## 7
 
-### 7.1 ```object```类详解
+### 7.1 ```equals```方法
 
-### 7.2  ```equals```方法
+**```==```和```equals```的对比**
+
+1. ```==```是一个比较运算符
+   - 即可以判断基本类型，有可以判断引用类型
+   - 如果判断基本类型，判断的是值是否相等
+   - 如果判断引用类型，判断的是地址是否相等（即判断不试试同一个对象）
+2. ```equals```是```object```类中的方法，只能判断引用类型
+3. 默认判断的是地址是否相等，子类中往往重写改方法，用于判断内容是否相等，比如```Integer```,```String```
+
+
+
+### 7.2  如何重写```equals```方法
+
+
 
 ### 7.3 ```hashCode```方法
 
+
+
 ### 7.4 ```toString```方法
+
+
 
 ### 7.5 ```finalize```方法
 
 
 
+
+
+****
+
 ## 8
 
 ### 8.1 断点调试```debug```
+
+
 
 ### 8.2 零钱通
 
