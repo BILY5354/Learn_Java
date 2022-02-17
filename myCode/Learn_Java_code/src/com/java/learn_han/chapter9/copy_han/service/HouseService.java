@@ -2,7 +2,6 @@ package com.java.learn_han.chapter9.copy_han.service;
 
 import com.java.learn_han.chapter9.copy_han.domain.House;
 
-import java.util.Scanner;
 
 public class HouseService {
 
