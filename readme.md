@@ -131,12 +131,6 @@ grep -nri 命名 TCH_Han | cat --number
 - [作业](./TCH_Han/Chapter8.md#作业)  
 
 #### [第09章 房屋出租系统(P362 - P373)](./TCH_Han/Chapter9.md)   *代码项目章节*
-- [](./TCH_Han/Chapter9.md#1)
-- [](./TCH_Han/Chapter9.md#2)
-- [](./TCH_Han/Chapter9.md#3)
-- [](./TCH_Han/Chapter9.md#4)  
-- [作业](./TCH_Han/Chapter9.md#作业)  
-
 ### 第二阶段(P374 - P661)
 #### [第10章 面向对象编程（高级部分）(P374 - P424)](./TCH_Han/Chapter10.md)  
 - [](./TCH_Han/Chapter10.md#1)
