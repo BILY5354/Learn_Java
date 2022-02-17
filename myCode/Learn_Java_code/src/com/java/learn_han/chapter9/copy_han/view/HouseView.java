@@ -88,16 +88,55 @@ public class HouseView {
             return;
         }
 
-        System.out.print("姓名（"+ house.getName()  +"）：");
+        System.out.print("姓名(" + house.getName() + "): ");
         String name = Utility.readString(8, "");//这里如果用户直接回车表示不修改该信息,默认""
-        if (!"".equals(name)) {//不是直接回车，也就是要修改
+        if (!"".equals(name)) {//修改
             house.setName(name);
         }
-
-        System.out.print("（"+ house.getPhone()  +"）：");
-
+        System.out.print("电话(" + house.getPhone() + "):");
+        String phone = Utility.readString(12, "");
+        if (!"".equals(phone)) {
+            house.setPhone(phone);
+        }
+        System.out.print("地址(" + house.getAddress() + "): ");
+        String address = Utility.readString(18, "");
+        if (!"".equals(address)) {
+            house.setAddress(address);
+        }
+        System.out.print("租金(" + house.getRent() + "):");
+        int rent = Utility.readInt(-1);
+        if (rent != -1) {
+            house.setRent(rent);
+        }
+        System.out.print("状态(" + house.getState() + "):");
+        String state = Utility.readString(3, "");
+        if (!"".equals(state)) {
+            house.setState(state);
+        }
 
         System.out.println("修改房屋信息成功");
+    }
+
+    //编写listHouses()显示房屋列表
+    public void listHouse() {
+        System.out.println("房屋列表");
+        System.out.println("编号\t\t房主\t\t电话\t\t地址\t\t月租\t\t状态（未出租/已出租）");
+        House[] houses = houseService.list();
+        for (int i = 0; i < houses.length; i++) {//琢磨下韩老师说的有什么？雷,坑
+            if (houses[i] == null) {//如果为null,就不用再显示了
+                break;
+            }
+            System.out.println(houses[i]);
+        }
+        System.out.println("房屋列表显示完毕");
+    }
+
+    //完成退出确认
+    public void exit() {
+        char c = Utility.readConfirmSelection();
+        if (c == 'Y') {
+            loop = false;
+        }
     }
 
     public void mainMenu() {

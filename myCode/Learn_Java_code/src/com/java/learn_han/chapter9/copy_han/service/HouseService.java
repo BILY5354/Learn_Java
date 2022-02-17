@@ -64,4 +64,9 @@ public class HouseService {
         houses[--houseNums] = null;
         return true;
     }
+
+    //list方法，返回houses
+    public House[] list() {
+        return houses;
+    }
 }
