@@ -960,7 +960,6 @@ class A01 {
 					max = arr[i];
 				}
 			}
-
 			return max;//double
 		} else {
 			return null;
@@ -968,3 +967,55 @@ class A01 {
 	}
 }
 ```
+
+
+
+### 查找字符是否在数组中返回索引否返回```-1```
+
+定义了字符串数组``` String[] str_arrays = {"hello", "apple", "banana"};```与```String str = "hello";```
+
+为什么获取```str_arrays```的长度可以使用```str_arrays.length```，但是```str```则需要```str.length()```因为是数组包数组，```str_arrays```是数组，但```str```是字符串。
+
+>[关于Java中length、length()、size()的区别](https://blog.csdn.net/qq_33236248/article/details/79884874)
+>
+>**```length```——数组的属性**。
+>
+>**```length()```——String的方法**。
+>
+>**```size()```——集合的方法**。
+
+```java
+public class myHomework2 {
+	public static void main(String args[]) {
+		String str = "hello";
+		A02 a02 = new A02();
+		int res = a02.find(str);
+		if (res == -1) {
+			System.out.println("找不到或不存在");
+		} else {
+			System.out.println("索引是" + res);
+		}
+	}
+}
+
+class A02 {
+	private String[] str_arrays = {"hello", "apple", "banana"};
+
+	public int find(String str) {
+		if (str != null && str.length() > 0) {
+
+			for (int i = 0; i < str_arrays.length; i++) {
+				if (str.equals(str_arrays[i])) {
+					return i;
+				} else {
+					continue;
+				}
+			}
+		}
+		return -1;
+	}
+}
+```
+
+
+
