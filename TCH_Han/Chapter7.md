@@ -931,5 +931,40 @@ class Person {
 
 ## 作业
 
-```
+### 编写一个类定义方法使返回数组最大值
+
+写本题时，应该想到数组是否合理是否为空，所以韩老师使用了```arr!= null && arr.length > 0```判断。
+
+```java
+public class myHomework1 {
+	public static void main(String args[]) {
+		double[] arrays = {1, 2, 100, 3, 4, 5};
+		A01 a01 = new A01();
+		Double res = a01.max(arr);
+		if(res != null) {
+			System.out.println("arr的最大值=" + res);
+		} else {
+			System.out.println("arr的输入有误, 数组不能为null, 或者{}");
+		}
+	}
+}
+
+class A01 {
+	public double max (double[] array) {
+		if ( arr!= null && arr.length > 0 ) {//韩老师先判断arr是否为null,然后再判断 length 是否>0
+
+			//保证arr至少有一个元素 
+			double max = arr[0];//假定第一个元素就是最大值
+			for (int i = 1; i < arr.length; i++) {
+				if (max < arr[i]) {
+					max = arr[i];
+				}
+			}
+
+			return max;//double
+		} else {
+			return null;
+		}
+	}
+}
 ```
