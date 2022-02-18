@@ -1096,5 +1096,91 @@ class A03 {
 
 ### 定义圆及其方法及其方法
 
-```java```用**Math.PI**使用pi
+```java```用**```Math.PI```**使用pi
+
+```java
+public class Homework05 { 
+
+	//编写一个main方法
+	public static void main(String[] args) {
+		Circle circle = new Circle(3);
+		System.out.println("面积=" + circle.area());
+		System.out.println("周长=" + circle.len());
+	}
+}
+/*
+定义一个圆类Circle, 定义属性：半径，提供显示圆周长功能的方法， 提供显示圆面积的方法
+ */
+class Circle {
+	double radius;
+
+	public Circle(double radius) {
+		this.radius = radius;
+	}
+
+	public double area() { //面积
+		return Math.PI * radius * radius;
+	}
+
+	public double len() { //周长
+		return 2 * Math.PI * radius;
+	}
+}
+```
+
+
+
+### 定义类实现计算的方法
+
+除法的分母不可为0，如果为0时，就不执行该语句。但是```double```类型是不可以返回```null```的，需要用```Double```。
+
+- [Double和double的区别](https://blog.csdn.net/zhongguomao/article/details/54576166)
+- [[java中double和Double的区别](https://www.cnblogs.com/yoyowin/p/13614784.html)](https://www.cnblogs.com/yoyowin/p/13614784.html)
+
+```java
+public class myHomework6 {
+	public static void main(String args[]) {
+		Cale cale = new Cale(2, 10);
+		System.out.println("和=" + cale.jia());
+		System.out.println("差=" + cale.jian());
+		System.out.println("乘=" + cale.cheng());
+		Double divRes = cale.chu();
+		if(divRes != null) {
+			System.out.println("除=" + divRes);
+		} 
+	}
+}
+
+class Cale {
+
+	private double n1;
+	private double n2;
+
+	public Cale(double n1, double n2) {
+		this.n1 = n1;
+		this.n2 = n2;
+	}
+
+	public double jia() {
+		return n1 + n2;
+	}
+
+	public double jian() {
+		return n1 - n2;
+	}
+
+	public double cheng() {
+		return n1 * n2;
+	}
+
+	public Double chu() {//注意本句的返回是Double
+		if (n2 == 0) {
+			System.out.println("除数不能为0");
+			return null;//返回空
+		} else {
+			return n1 / n2;
+		}
+	}
+}
+```
 
