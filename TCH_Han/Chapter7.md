@@ -907,7 +907,7 @@ public class myHomework {
 		System.out.println("p1 和 p2 比较结为：" + p1.compareTo(p2));
 	} 
 }
-
+ 
 class Person {
 
 	String name;
