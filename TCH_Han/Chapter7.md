@@ -1245,3 +1245,118 @@ public class myHomework8 {
 }
 ```
 
+
+
+### 定义音乐类
+
+```java
+public class myHomework9 {
+	public static void main(String args[]) {
+		Music music = new Music("代码歌", 300.2);
+		music.getInfo();
+		music.play();
+	}
+}
+
+class Music {
+
+	String name;
+	double times;
+
+	public Music(String name, double times) {
+		this.name = name;
+		this.times = times;
+	}
+
+	public void play() {
+		System.out.println("歌曲“" + name + "”正在播放中，时长为" + times);
+	}
+
+	public void getInfo() {
+		System.out.println("歌名“" + name + "”时长为" + times);
+	}
+}
+```
+
+
+
+### 充分利用构造器
+
+```java
+public class myHomework10 {
+	public static void main(String args[]) {
+		
+	}
+}
+
+class Employee {
+
+	private String name;
+	private char sex;
+	private int age;
+	private String offer;
+	private double salary;
+	
+	public Employee(String offer, double salary) {
+		this.offer = offer;
+		this.salary = salary;
+	}
+
+	public Employee(String name, char sex, int age) {
+		this.name = name;
+		this.sex = sex;
+		this.age = age;
+	}
+
+	public Employee(String name, char sex, int age, String offer, double salary) {
+		this(name, sex, age);//使用到 前面的 构造器
+		this.offer = offer;
+		this.salary = salary;
+	}
+}
+```
+
+
+
+### 实现园类
+
+```java
+public class myHomework {
+	public static void main(String[] args) {
+
+		PassObject passObject = new PassObject();
+		passObject.printAreas(new Circle(), 5);
+	}
+}
+
+
+class Circle {
+	double radius;
+
+	public Circle () { //无参构造器
+	}
+
+	public Circle (double radius) {
+		this.radius = radius;
+	}
+
+	public double findArea() {
+		return Math.PI * radius * radius;
+	}
+}
+
+class PassObject {
+	public void printAreas (Circle c, int times) {
+		if (times > 0) {
+			System.out.println("Radius\t\t\tArea");
+			for (double i = 1; i <= times; i++) {
+				c = new Circle(i);
+				System.out.print(i + "\t\t" + c.findArea() + "\n");
+			}
+		} else {
+			System.out.println("times输入错误");
+		}
+	}
+}
+```
+
