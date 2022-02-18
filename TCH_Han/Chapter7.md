@@ -1019,3 +1019,82 @@ class A02 {
 
 
 
+### 编写类实现更改某书价格
+
+```java
+public class myHomework3 {
+	public static void main(String args[]) {
+		Book book = new Book("Java宝典", 1000);
+		System.out.println(book.getName() + "修改前价格" + book.getPrice());
+		book.updatePrice();
+		System.out.println(book.getName() + "修改后价格" + book.getPrice());
+	}
+}
+
+class Book {
+
+	private String name;
+	private int price;
+
+	public Book(String name, int price) {
+		this.name = name;
+		this.price = price;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void updatePrice() {
+		if (price > 150) {
+			price = 150;
+		} else if(price > 100 && price < 150) {
+			price = 100;
+		}
+	}
+}
+```
+
+
+
+### 输入旧驻足返回一个一样的新数组
+
+```java
+public class myHomework4 {
+	public static void main(String args[]) {
+		int a[] = {1, 2, 3, 4, 5};
+		System.out.println("原数组");
+		for (int i = 0; i < a.length; i++) {
+			System.out.print(a[i] + "\t");
+		}
+
+		A03 a03 = new A03();
+		System.out.println("\n复制后的数组");
+		int b[] = a03.cpoyArr(a);
+		for (int i = 0; i < a.length; i++) {
+			System.out.print(b[i] + "\t");
+		}
+	}
+}
+
+class A03 {
+	public int[] cpoyArr(int[] array) {
+		int[] n_array = new int[array.length];
+		for (int i = 0; i < array.length;i++) {
+			n_array[i] = array[i];
+		}
+		return n_array;
+	} 
+}
+```
+
+
+
+### 定义圆及其方法及其方法
+
+```java```用**Math.PI**使用pi
+
