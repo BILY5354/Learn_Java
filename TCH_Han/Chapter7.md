@@ -1184,3 +1184,64 @@ class Cale {
 }
 ```
 
+
+
+### 实现小狗类
+
+```java
+public class myHomework7 {
+	public static void main(String args[]) {
+		Dog dog = new Dog("aaa", "white", 8);
+		dog.show();
+	}
+}
+
+class Dog {
+	
+	String name;
+	String color;
+	int age;
+
+	public Dog(String name, String color, int age) {
+		this.name = name;
+		this.color = color;
+		this.age = age;
+	}
+
+	public void show() {
+		System.out.print("小狗名字是：" + name);
+		System.out.print("，颜色是：" + color);
+		System.out.print("，年龄是：" + age);
+	}
+}
+```
+
+
+
+### 作业8
+
+```java
+public class myHomework8 {
+	int count = 9; //属性
+    public void count1() { //Test类的成员方法
+ 			count=10;//这个count就是属性  改成 10
+        	System.out.println("count1=" + count); //10  
+    }
+    public void count2() {  //Test类的成员方法
+        System.out.println("count1=" + count++);
+    } 
+   
+   	//这是myHomework8类的main方法, 任何一个类，都可有main
+    public static void main(String args[]) {
+       //老韩解读
+       //1.  new myHomework8()	是匿名对象， 匿名对象使用后，就不能使用
+       //2.  new myHomework8().count1() 创建好匿名对象后, 就调用count1()
+       new myHomework8().count1(); 
+      
+       myHomework8 t1= new myHomework8();
+       t1.count2();
+       t1.count2();
+    }
+}
+```
+
