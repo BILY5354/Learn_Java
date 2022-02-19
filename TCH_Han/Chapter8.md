@@ -1215,7 +1215,7 @@ class Sub extends Base {//子类
 
 <img src="../img/TCH_Han/ch8_8.png" style="zoom:99%;" />
 
-- ```instancedOf```比较操作符
+- ```instancedOf```比较操作符，比较操作符，用于判断**对象**的**运行类型**是否为 XX 类型或 XX 类型的子类型
 
 ```java
 package com.hspedu.poly_.detail_; 
@@ -1234,7 +1234,7 @@ public class PolyDetail03 {
         Object obj = new Object(); 
         System.out.println(obj instanceof AA);//false 
         String str = "hello"; 
-        //System.out.println(str instanceof AA); 
+        //System.out.println(str instanceof AA); 没法比 因为一个是字符串 一个是类
         System.out.println(str instanceof Object);//true 
     } 
 }
@@ -1243,6 +1243,8 @@ class AA {} //父类
 
 class BB extends AA {}//子类
 ```
+
+<img src="../img/TCH_Han/ch8_9.png" style="zoom:99%;" />
 
 
 
