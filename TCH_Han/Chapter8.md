@@ -913,6 +913,8 @@ public class Master {
 作为面向对象三大特性，多态是建立在封装与继承基础之上的。
 
 1. 方法的多态
+   - 方法重载体现多态
+   - 方法重写体现多态
 
 ```java
 package com.java.learn_han.chapter8.poly_;
@@ -921,7 +923,7 @@ public class PloyMethod {
     public static void main(String[] args) {
         //方法重载体现多态
         A a = new A();
-        System.out.println(a.sum(10, 20));
+        System.out.println(a.sum(10, 20));//这里传入不同的参数，就会调用不同 sum 方法，就体现多态
         System.out.println(a.sum(10, 20, 30));
 
         //方法重写体现多态
@@ -938,7 +940,7 @@ class B {
 }
 
 class A extends B {
-    public int sum(int n1, int n2) {
+    public int sum(int n1, int n2) {//与下面的 sum 构成重载
         return n1 + n2;
     }
 
@@ -957,10 +959,6 @@ class A extends B {
 
 
 2. 对象的多态（**核心，难点**）
-
-# 看下
-
-
 
 > 韩老师的几句话：
 >
