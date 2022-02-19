@@ -832,9 +832,28 @@ public class Student extends Person {
 ### 6.1  面向对象编程三大特性之多态
 
 ```java
+//Poly01.java
+package com.hspedu.poly_;
+
+public class Poly01 {
+    public static void main(String[] args) {
+
+        Master tom = new Master("汤姆");
+        Dog dog = new Dog("大黄~");
+        Bone bone = new Bone("大棒骨~");
+        tom.feed(dog, bone);
+
+        Cat cat = new Cat("小花猫~");
+        Fish fish = new Fish("黄花鱼~");
+        System.out.println("===========-------");
+        tom.feed(cat, fish);
+    }
+}
+
+//Bone.java
 package com.hspedu.poly_; 
 
-public class Animal { 
+public class Bone { 
     private String name; 
     public Animal(String name) { 
         this.name = name; 
@@ -842,6 +861,7 @@ public class Animal {
      //省略getName，setName
 }
 
+//Bone.java
 package com.hspedu.poly_; 
 public class Bone extends Food { 
     public Bone(String name) { 
@@ -849,6 +869,7 @@ public class Bone extends Food {
     } 
 }
 
+//Cat.java
 package com.hspedu.poly_; 
 public class Cat extends Animal { 
     public Cat(String name) { 
@@ -856,6 +877,7 @@ public class Cat extends Animal {
     } 
 }
 
+//Dog.java
 package com.hspedu.poly_; 
 public class Dog extends Animal { 
     public Dog(String name) {
@@ -863,6 +885,7 @@ public class Dog extends Animal {
     } 
 }
 
+//Fish.java
 package com.hspedu.poly_; 
 public class Fish extends Food { 
     public Fish(String name) { 
@@ -870,6 +893,7 @@ public class Fish extends Food {
     } 
 }
 
+//Food.java
 package com.hspedu.poly_; 
 public class Food { 
     private String name; 
@@ -879,6 +903,7 @@ public class Food {
     //省略getName，setName
 }
 
+//Master.java
 package com.hspedu.poly_; 
 public class Master { 
     private String name; 
@@ -898,9 +923,11 @@ public class Master {
     } 
     public void feed(Cat cat, Fish fish) { 
         System.out.println("主人 " + name + " 给 " + cat.getName() + " 吃 " + fish.getName()); 
-    }*/   
+    }
+    //省略.....
+    */   
 } 
-//省略.....
+
 ```
 
   
@@ -978,8 +1005,7 @@ public class PolyObject {
     public static void main(String[] args) { 
        
         Animal animal = new Dog(); 
-        //因为运行时 , 执行到改行时，animal 运行类型是 Dog,所以 cry 就是 Dog 的 cry 
-        animal.cry(); //小狗汪汪叫 
+        animal.cry(); //小狗汪汪叫 因为animal 运行类型是 Dog,所以 cry 就是 Dog 的 cry 
         animal = new Cat(); //animal 编译类型 Animal,运行类型就是 Cat 
         animal.cry(); //小猫喵喵叫 
     } 
@@ -1013,13 +1039,56 @@ public class Dog extends Animal {
 }
 ```
 
-
+<img src="../img/TCH_Han/ch8_7.png" style="zoom:99%;" />
 
   
 
+
+
 ### 6.3 多态的快速入门案例
 
-# 6.3完全不懂 需要看视频和书
+[在一开始的案例中](#6.1  面向对象编程三大特性之多态)可以用多态方便地增加新的“喂食类型”，比如“小花猪”喜欢吃“米饭”，只需创造米饭与小花猪并继承然在主函数调用```feed```方法即可，十分方便。
+
+```java
+//Poly01.java
+package com.hspedu.poly_;
+
+public class Poly01 {
+    public static void main(String[] args) {
+
+		//相同的，略
+        
+        //添加 给小猪为米饭
+        Pig pig = new Pig("小花猪");
+        Rice rice = new Rice("米饭");
+        System.out.println("===================");
+        tom.feed(pig, rice);//直接调用 feed 方法即可
+    }
+}
+
+//Pig.java
+package com.hspedu.poly_;
+
+public class Pig extends Animal {
+    public Pig(String name) {
+        super(name);
+    }
+}
+
+
+//Rice.java
+package com.hspedu.poly_;
+
+public class Rice extends Food {
+    public Rice(String name) {
+        super(name);
+    }
+}
+```
+
+
+
+
 
 - 多态的前提是：两个对象（类）存在继承关系
 
