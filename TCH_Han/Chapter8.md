@@ -1346,6 +1346,11 @@ class Sub extends Base {//子类
 
 ### 7.2  如何重写```equals```方法
 
+```java
+```
+
+
+
 
 
 ### 7.3 ```hashCode```方法
