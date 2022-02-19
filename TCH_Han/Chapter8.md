@@ -1251,6 +1251,21 @@ class BB extends AA {}//子类
 ### 6. 课堂练习(1)：
 
 ```java
+public class PolyExercise01 {
+    public void main (String[] args) {
+        double d = 13.4;								//ok
+        long l = (long)d;								//ok
+        
+        int in = 5;									    //ok
+        boolean b = (boolean)in;						 //ok boolean不参与转换（第三章）
+        Object obj = "Hello";							 //ok 向上转型
+        String objStr = (String)obj;					 //ok 向下转型
+        
+        Object objPri = new Integer(5);					 //ok 向上转型
+        String str = (String)objPri;					 //false指向Integer的父类引用转成 String
+        Integer str1 = (Integer)objPri;					 //ok 向下转型必须是父类的引用必须指向的是当前目标类型的对象
+    }
+}
 ```
 
 
