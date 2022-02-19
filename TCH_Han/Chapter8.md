@@ -1119,7 +1119,7 @@ public class Rice extends Food {
 >
 >- 在编译```javac```时，可以调用哪些成员（属性和方法）是由编译类型决定的，```animal```调用```catchMouse()```是错误的。而在运行过程中，如果子类重写了父类方法比如```eat()```，那么具体的实现由子类决定。
 >- 即编译时由编译类型来处理，运行时由运行类型来处理。
->
+>- 但是正如博客中所说“要用子类实例对象，先是生成子类实例赋值给父类引用，在将父类引用向下强转给子类引用，这不是多此一举吗？”，[Java向下转型的意义](https://blog.csdn.net/xyh269/article/details/52231944)
 >
 
 ```java
@@ -1189,29 +1189,31 @@ public class Dog extends Animal {//Dog 是 Animal 的子类
 }
 ```
 
-- 属性没有重写的说法，属性的值看编译类型
+- 属性没有重写的说法，**属性的值**看**编译类型**
 
 ```java
-package com.hspedu.poly_.detail_; 
+package com.hspedu.poly_.detail_;
 
-public class PolyDetail02 { 
-    public static void main(String[] args) { 
-        //属性没有重写之说！属性的值看编译类型 
-        Base base = new Sub();//向上转型 
-        System.out.println(base.count);// ？ 看编译类型 10 
-        Sub sub = new Sub(); 
-        System.out.println(sub.count);//? 20 
-    } 
+public class PolyDetail02 {
+    public static void main(String[] args) {
+        //属性没有重写之说！属性的值看编译类型
+        Base base = new Sub();//向上转型
+        System.out.println("Base类的count" + base.count);// ？ 看编译类型 10
+        Sub sub = new Sub();
+        System.out.println("Sub类的count" + sub.count);//?  20
+    }
 }
 
-class Base { //父类 
-    int count = 10;//属性 
+class Base { //父类
+    int count = 10;//属性
 }
 
-class Sub extends Base {//子类 
-    int count = 20;//属性 
+class Sub extends Base {//子类
+    int count = 20;//属性
 }
 ```
+
+<img src="../img/TCH_Han/ch8_8.png" style="zoom:99%;" />
 
 - ```instancedOf```比较操作符
 
