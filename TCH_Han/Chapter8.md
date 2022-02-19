@@ -1119,6 +1119,9 @@ public class Rice extends Food {
 >
 >- 在编译```javac```时，可以调用哪些成员（属性和方法）是由编译类型决定的，```animal```调用```catchMouse()```是错误的。而在运行过程中，如果子类重写了父类方法比如```eat()```，那么具体的实现由子类决定。
 >- 即编译时由编译类型来处理，运行时由运行类型来处理。
+>  - **一个方法能不能调用或属性的值**，由**编译类型**确定
+>  - **调用哪个方法**（父类？子类？）由**运行类型**确定
+>
 >- 但是正如博客中所说“要用子类实例对象，先是生成子类实例赋值给父类引用，在将父类引用向下强转给子类引用，这不是多此一举吗？”，[Java向下转型的意义](https://blog.csdn.net/xyh269/article/details/52231944)
 >
 
@@ -1248,7 +1251,7 @@ class BB extends AA {}//子类
 
 
 
-### 6. 课堂练习(1)：
+### 6. 5 课堂练习(1)：判断代码是否正确
 
 ```java
 public class PolyExercise01 {
@@ -1262,7 +1265,7 @@ public class PolyExercise01 {
         String objStr = (String)obj;					 //ok 向下转型
         
         Object objPri = new Integer(5);					 //ok 向上转型
-        String str = (String)objPri;					 //false指向Integer的父类引用转成 String
+        String str = (String)objPri;					 //false指向Integer的父类引用转成 String ClassCastException
         Integer str1 = (Integer)objPri;					 //ok 向下转型必须是父类的引用必须指向的是当前目标类型的对象
     }
 }
@@ -1270,13 +1273,52 @@ public class PolyExercise01 {
 
 
 
+### 6.6 课堂练习(2)：看代码说出结果
+
+```java
+//PolyExercise02.java
+package com.hspedu.poly_;
+
+public class PolyExercise02 {
+    public static void main(String[] args) {
+        Sub s = new Sub();
+        System.out.println(s.count);
+        s.display();
+        Base b = s;											//本质是向上转型
+        System.out.println(b == s);							 //判断是否是同一个地址
+        System.out.println(b.count);/
+        b.display();
+    }
+}
+
+//Base.java
+class Base {//父类
+    int count = 10;
+    public void display() {
+        System.out.println(this.count);
+    }
+}
+
+//Sub.java
+class Sub extends Base {//子类
+    int count = 20;
+    public void display() {//重写了父类方法
+        System.out.println(this.count);
+    }
+}
+```
+
+- 最后一个：[方法的调用是看运行类型](#6.4 多态的注意事项和细节讨论)
+
+<img src="../img/TCH_Han/ch8_10.png" style="zoom:99%;" />
 
 
-### 6.  ```Java```的动态绑定机制
+
+### 6. 7 ```Java```的动态绑定机制
 
 
 
-### 6. 多态的应用
+### 6. 8 多态的应用
 
 ****
 
