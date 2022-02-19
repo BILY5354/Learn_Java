@@ -960,12 +960,15 @@ class A extends B {
 
 2. 对象的多态（**核心，难点**）
 
-> 韩老师的几句话：
+> 韩老师的几句话（**记住**）：
 >
-> 1. 一个对象的编译类型和运行类型可以不一致。
+> 1. 一个对象的编译类型和运行类型可以不一致（也可以一致）。
+>    - 可以让父类的引用指向子类的对象：```Animal animal = new Dog();```，其中**```animal```的编译类型是```Animal```运行类型是```Dog```**
 > 2. 编译类型在定义对象时，就确定，不可改变。
+>    - 比如上面提到的```animal```，编译类型就是```Animal```，**且不可改变**
 > 3. 运行类型是可以变化的。
-> 4. 编译类型看定义时```=```的左边，运行类型看```=```的右边
+>    - ```animal = new Cat();```，```animal```运行类型变成了```Cat```，但编译类型仍然不变
+> 4. 编译类型看定义时```=```的**左边**，运行类型看```=```的**右边**。
 
 ```java
 //PolyObject.java
@@ -973,12 +976,11 @@ package com.hspedu.poly_.objectpoly_;
 
 public class PolyObject { 
     public static void main(String[] args) { 
-        //体验对象多态特点，animal 编译类型就是 Animal , 运行类型 Dog 
+       
         Animal animal = new Dog(); 
         //因为运行时 , 执行到改行时，animal 运行类型是 Dog,所以 cry 就是 Dog 的 cry 
         animal.cry(); //小狗汪汪叫 
-        //animal 编译类型 Animal,运行类型就是 Cat 
-        animal = new Cat(); 
+        animal = new Cat(); //animal 编译类型 Animal,运行类型就是 Cat 
         animal.cry(); //小猫喵喵叫 
     } 
 }
