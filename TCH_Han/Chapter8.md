@@ -1759,7 +1759,7 @@ public class Manager extends Employee{
    - 如果判断**基本类型**，判断的是**值**是否相等
    - 如果判断**引用类型**，判断的是**地址**是否相等（即判断不试试同一个对象）
 2. ```equals```是```object```类中的方法，**只能**判断**引用类型**
-3. 默认判断的是地址是否相等，子类中往往重写改方法，用于判断内容是否相等，比如```Integer```,```String```
+   - 默认判断的是地址是否相等，子类中往往重写改方法，用于判断内容是否相等，比如```Integer```,```String```
 
 
 
@@ -1791,7 +1791,7 @@ public boolean equals(Object anObject) {
 
 //Object.java
  public boolean equals(Object obj) {
-        return (this == obj);
+        return (this == obj);//默认方法
  }
 
 //Integer.java
@@ -1810,13 +1810,18 @@ public boolean equals(Object obj) {
 ```java
 Integer integer1 = new Integer(1000);
 Integer integer2 = new Integer(1000);
-System.out.println(integer1 == integer2);//false
-System.out.println(integer1.equals(integer2));//true
+System.out.println(integer1 == integer2);							//false
+System.out.println(integer1.equals(integer2));						//true
 
 String str1 = new String("hspedu");
 String str2 = new String("hspedu");
-System.out.println(str1 == str2);//false
-System.out.println(str1.equals(str2));//true
+System.out.println(str1 == str2);								  //false
+System.out.println(str1.equals(str2));							  //true
+
+Object object = new Object();
+Object object2 = new Object();
+System.out.println(object == object2);							 //false
+System.out.println(object.equals(object2));						 //false 因为equals默认是判断地址方法
 ```
 
 
