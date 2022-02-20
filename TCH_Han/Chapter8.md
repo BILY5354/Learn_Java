@@ -1848,7 +1848,7 @@ System.out.println("例二：" + (str2 == str3));	//false
 
 
 
-### 7.2  如何重写```equals```方法
+### 7.2  课堂练习(1)：如何重写```equals```方法
 
 ```java
 package com.hspedu.object_;
@@ -1883,6 +1883,63 @@ class Person{ //extends Object
 
     //构造器， get set 方法略
 }
+```
+
+
+
+### 7.3  课堂练习(2)：看输出
+
+```java
+package com.hspedu.object_;
+
+public class EqualsExercise02 {
+    public static void main(String[] args) {
+
+        Person_ p1 = new Person_();
+        p1.name = "hspedu";
+
+        Person_ p2 = new Person_();
+        p2.name = "hspedu";
+
+        System.out.println(p1==p2); 
+        System.out.println(p1.name .equals( p2.name));
+        System.out.println(p1.equals(p2));
+
+        String s1 = new String("asdf");
+
+        String s2 = new String("asdf");
+        System.out.println(s1.equals(s2));									//因为 String 已重写了 equals
+        System.out.println(s1==s2); 
+
+    }
+}
+
+class Person_{//类
+    public String name;
+}
+```
+
+<img src="../img/TCH_Han/ch8_18.png" style="zoom:99%;" />
+
+  
+
+### 7.4   课堂练习(3)：看输出
+
+```java
+int it = 65; 
+float fl = 65.0f; 
+System.out.println(“65 和 65.0f 是否相等？” + (it == fl));//T
+char ch1 = ‘A’; 
+char ch2 = 12; 
+System.out.println(“65 和‘A’是否相等？” + (it == ch1));//T 
+System.out.println(“12 和 ch2 是否相等？” + (12 == ch2));//T 
+
+String str1 = new String("hello"); 
+String str2 = new String("hello"); 
+System.out.println("str1 和 str2 是否相等？"+ (str1 == str2)); //F 
+
+System.out.println(“str1 是否 equals str2？”+(str1.equals(str2)));//T 
+System.out.println(“hello” == new java.sql.Date()); //编译错误
 ```
 
 
