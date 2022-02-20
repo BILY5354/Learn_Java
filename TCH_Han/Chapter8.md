@@ -1314,12 +1314,99 @@ class Sub extends Base {//子类
 
 
 
-### 6. 7 ```Java```的动态绑定机制
+### 6. 7 ```Java```的动态绑定机制 （重点难点）
+
+**```Java```的动态绑定机制**
+
+- 当调用对象方法的时候，该方法会和该对象的内存地址/运行类型绑定
+- 当调用对象**属性**时，**没有动态绑定**机制，哪里声明，哪里使用
+
+
+
+看出结果
 
 ```java
+public class myHomework {
+	public static void main(String[] args) {
+		A a = new B();									//向上转型 
+		System.out.println(a.sum());
+		System.out.println(a.sum1());
+	}
+}
+
+
+class A {
+	public int i = 10;
+	public int sum () {
+		return getI() + 10;
+	}
+	public int sum1 () {
+		return i + 10;
+	}
+	public int getI () {
+		return i;
+	}
+}
+
+class B extends A {
+	public int i = 20;
+	public int sum () {
+		return i + 20;
+	}
+	public int getI () {
+		return i;
+	}
+	public int sum1 () {
+		return i + 10;
+	}
+}
 ```
 
+<img src="../img/TCH_Han/ch8_11.png" style="zoom:99%;" />
 
+
+
+现在呢？
+
+```java
+public class myHomework {
+	public static void main(String[] args) {
+		A a = new B();									//向上转型
+		System.out.println(a.sum());
+		System.out.println(a.sum1());
+	}
+}
+
+
+class A {
+	public int i = 10;
+	public int sum () {
+		return getI() + 10;
+	}
+	public int sum1 () {
+		return i + 10;
+	}
+	public int getI () {
+		return i;
+	}
+}
+
+class B extends A {
+	public int i = 20;
+	public int getI () {
+		return i;
+	}
+}
+```
+
+<img src="../img/TCH_Han/ch8_12.png" style="zoom:99%;" />
+
+>[与前面提到的一样](#6.4 多态的注意事项和细节讨论)，即编译时由编译类型来处理，运行时由运行类型来处理，调用方法时，按照从子类(运行类型)开始查找方法。
+>
+>- **一个方法能不能调用或属性的值**，由**编译类型**确定
+>  - 所以```a.sum1()```，子类没有就到父类查找，然执行父类的的方法与调用父类的属性
+>- **调用哪个方法**（父类？子类？）由**运行类型**确定，
+>  - 所以```a.sum()```，子类没有就到父类查找，然执行子类```getI()```方法因为a的运行类型是```B```（子类）并使用子类的属性```i = 20```，因为属性没有动态绑定（在哪声明，在哪使用）
 
 
 
