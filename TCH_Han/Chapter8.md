@@ -1790,7 +1790,9 @@ public boolean equals(Object anObject) {
     }
 
 //Object.java
-
+ public boolean equals(Object obj) {
+        return (this == obj);
+ }
 ```
 
 
