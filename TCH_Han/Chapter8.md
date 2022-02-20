@@ -1104,7 +1104,7 @@ public class Rice extends Food {
 
 多态的**前提**是：两个对象（类）存在继承关系
 
-#### 多态的向上转型
+#### 6.4.1 多态的向上转型
 
 1. 本质：父类的引用指向了子类的对象。
 2. 语法：```父类类型 引用名 = new 子类类型();```，例```Animal animal = new Cat();```。
@@ -1113,7 +1113,7 @@ public class Rice extends Food {
    - **不能调用子类中特有**成员，因为在编译阶段，能调用哪些成员,是由**编译类型**来决定的（*成员包括属性和方法*） 
    - 最终运行效果看子类的具体实现，即调用方法时，按照从子类(运行类型)开始查找方法,[规则与前面所讲调用规则一致](#4.1 ```super```关键字基本介绍)
 
-#### 多态的向下转型
+#### 6.4.2 多态的向下转型
 
 - ```Animal animal = new Cat();```我现在就是想用```Cat```的方法，怎么办？就可以使用向下转型
 
@@ -1124,7 +1124,7 @@ public class Rice extends Food {
    - ```Dog dog = (Dog) animal``` ✘
 4. 当向下转型后，可以调用子类类型中所有的成员。
 
-#### 我对上下转型的理解
+#### 6.4.3 我对上下转型的理解
 
 >我（**片面**）的理解是
 >
@@ -1203,7 +1203,7 @@ public class Dog extends Animal {//Dog 是 Animal 的子类
 }
 ```
 
-#### 属性没有重写的说法
+#### 6.4.4 属性没有重写的说法
 
 - **属性的值**看**编译类型**
 
@@ -1231,7 +1231,7 @@ class Sub extends Base {//子类
 
 <img src="../img/TCH_Han/ch8_8.png" style="zoom:99%;" />
 
-####  ```instancedOf```比较操作符，
+####  6.4.5 ```instancedOf```比较操作符，
 
 - 比较操作符，用于判断**对象**的**运行类型**是否为 XX 类型或 XX 类型的子类型
 
@@ -1553,10 +1553,62 @@ public class Teacher extends Person{
 
 **现在问题来了，如何调用老师或学生的特有方法呢？**
 
+只记录了增加的部分
+
+>这里就需要用到
+>
+>
+
 ```java
+//PloyArray.java
+package com.java.learn_han.chapter8.polyarr_;
+
+public class PloyArray {
+    public static void main(String[] args) {
+       
+        //循环遍历多态数组，调用say
+        for (int i = 0; i < persons.length; i++) {
+            // persons[i] 编译类型是 Person， 运行类型根据实际情况JVM判断
+            System.out.println(persons[i].say());
+            if (persons[i] instanceof Student) {//判断person[i] 的运行类型是不是Student
+                Student student = (Student) persons[i];//向下转型
+                student.study();
+                
+                //也可以一步解决 看 Teacher 写法
+              
+            }
+            if (persons[i] instanceof Teacher) {//判断person[i] 的运行类型是不是Student
+                ((Teacher)persons[i]).teach();//一步解决
+            }
+        }
+    }
+}
+
+//Student.java
+package com.java.learn_han.chapter8.polyarr_;
+
+public class Student extends Person {
+	//略...
+    
+    public void study() {
+        System.out.println("学生：" + getName() + "正在上课学习");
+    }
+}
+
+//Teacher.java
+package com.java.learn_han.chapter8.polyarr_;
+
+public class Teacher extends Person {
+    //略...
+
+    //特有方法
+    public void teach() {
+        System.out.println("老师：" + getName() + "正在上课");
+    }
+}
 ```
 
-
+<img src="../img/TCH_Han/ch8_15.png" style="zoom:99%;" />
 
 
 
