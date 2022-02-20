@@ -1744,9 +1744,9 @@ public class Manager extends Employee{
 
 ****
 
-  
+​    
 
-  
+​    
 
 ## 7
 
@@ -1763,7 +1763,7 @@ public class Manager extends Employee{
 
 
 
-**分析```Object```方法**
+- **分析```Object```方法**
 
 ```java
 //Stirng.java
@@ -1793,6 +1793,30 @@ public boolean equals(Object anObject) {
  public boolean equals(Object obj) {
         return (this == obj);
  }
+
+//Integer.java
+public boolean equals(Object obj) {
+        if (obj instanceof Integer) {
+            return value == ((Integer)obj).intValue();
+        }
+        return false;
+}
+```
+
+
+
+- 判断结果
+
+```java
+Integer integer1 = new Integer(1000);
+Integer integer2 = new Integer(1000);
+System.out.println(integer1 == integer2);//false
+System.out.println(integer1.equals(integer2));//true
+
+String str1 = new String("hspedu");
+String str2 = new String("hspedu");
+System.out.println(str1 == str2);//false
+System.out.println(str1.equals(str2));//true
 ```
 
 
