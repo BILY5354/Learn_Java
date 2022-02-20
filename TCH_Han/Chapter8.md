@@ -1430,6 +1430,131 @@ class B extends A {
 
 ### 6. 8 多态的应用
 
+<img src="../img/TCH_Han/ch8_13.png" style="zoom:67%;" />
+
+
+
+```java
+//PloyArray.java
+package com.java.learn_han.chapter8.polyarr_;
+
+public class PloyArray {
+    public static void main(String[] args) {
+        Person[] persons = new Person[5];
+        persons[0] = new Person("jack", 20);
+        persons[1] = new Student("LiHua", 18, 100);
+        persons[2] = new Student("ZhangShan", 14, 60);
+        persons[3] = new Teacher("Li", 56, 10000);
+        persons[4] = new Teacher("Hai", 28, 2000);
+
+        //循环遍历多态数组，调用say
+        for (int i = 0; i < persons.length; i++) {
+            // persons[i] 编译类型是 Person， 运行类型根据实际情况JVM判断
+            System.out.println(persons[i].say());
+        }
+    }
+}
+
+//Person.java
+package com.java.learn_han.chapter8.polyarr_;
+
+public class Person {
+
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String say() {
+        return name + "\t" + age + "\t";
+    }
+}
+
+//Student.java
+package com.java.learn_han.chapter8.polyarr_;
+
+public class Student extends Person{
+
+    private double score;
+
+    public Student(String name, int age, double score) {
+        super(name, age);
+        this.score = score;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    @Override
+    public String say() {//重写
+        return "学生：" +  super.say() + "score = " + score;
+    }
+}
+
+//Teacher.java
+package com.java.learn_han.chapter8.polyarr_;
+
+public class Teacher extends Person{
+
+    private double salary;
+
+    public Teacher(String name, int age, double salary) {
+        super(name, age);
+        this.salary = salary;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    @Override
+    public String say() {
+        return "老师：" + super.say() + "salary = " + salary;
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch8_14.png" style="zoom:99%;" />
+
+
+
+**现在问题来了，如何调用老师或学生的特有方法呢？**
+
+```java
+```
+
+
+
+
+
 ****
 
 
