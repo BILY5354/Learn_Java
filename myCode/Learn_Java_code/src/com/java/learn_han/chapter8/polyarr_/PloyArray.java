@@ -19,7 +19,7 @@ public class PloyArray {
             }
             else if (persons[i] instanceof Teacher) {//判断person[i] 的运行类型是不是Student
                 ((Teacher)persons[i]).teach();
-            } 
+            }
         }
 
     }

@@ -1582,7 +1582,7 @@ public class PloyArray {
             } else if(persons[i] instanceof Person){ 
                 
             } else {
-                System.out.println("你的类型有误, 请自己检查..."); 
+                System.out.println("类型有误, 请自己检查..."); 
             }
         }
     }
@@ -1616,19 +1616,131 @@ public class Teacher extends Person {
 
 
 
-#### 6.8.2 多态参数
+#### 6.8.2 多态参数（值得再做）
 
 - [案例1在前面已有体现](#6.1  面向对象编程三大特性之多态)
 - 案例2（下）
 
-```java
-```
-
-
-
 <img src="../img/TCH_Han/ch8_16.png" style="zoom:80%;" />
 
+```java
+//PloyParameter.java
+package com.java.learn_han.chapter8.polyparameter;
 
+public class PloyParameter {
+    public static void main(String[] args) {
+
+        Worker tom = new Worker("tom", 2500);
+        Manager milan = new Manager("milan", 5000, 100000);
+        PloyParameter ployParameter = new PloyParameter();
+        ployParameter.showEmpAnnual(tom);
+        ployParameter.showEmpAnnual(milan);
+        ployParameter.testWork(tom);
+        ployParameter.testWork(milan);
+    }
+
+    //实现获取对热河员工对象的年工资，并在main方法中调用该方法
+    public void showEmpAnnual(Employee e) {
+        System.out.println(e.getAnnual());
+    }
+    //添加一个方法，如果普通员工调用work，经理调用manage
+    public void testWork(Employee e) {
+        if (e instanceof Worker) {
+            ((Worker) e).work();//向下转型操作
+        } else if (e instanceof Manager) {
+            ((Manager) e).manage();
+        } else {
+            System.out.println("类型有误, 请自己检查...");
+        }
+    }
+}
+
+//Employee.java
+package com.java.learn_han.chapter8.polyparameter;
+
+public class Employee {
+
+    private String name;
+    private double salary;
+
+    public Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    //得到年工资的方法
+    public double getAnnual() {
+        return 12 * salary;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+}
+
+//Worker.java
+package com.java.learn_han.chapter8.polyparameter;
+
+public class Worker extends Employee {
+
+    public Worker(String name, double salary) {
+        super(name, salary);
+    }
+
+    public void work() {
+        System.out.println("普通员工" + getName() + "is working.");
+    }
+
+    @Override
+    public double getAnnual() {//因为普通员工无其它收入
+        return super.getAnnual();
+    }
+}
+
+//Manager.java
+package com.java.learn_han.chapter8.polyparameter;
+
+public class Manager extends Employee{
+
+    private double bonus;
+
+    public Manager(String name, double salary, double bonus) {
+        super(name, salary);
+        this.bonus = bonus;
+    }
+
+    public double getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(double bonus) {
+        this.bonus = bonus;
+    }
+
+    public void manage() {
+        System.out.println("经理" + getName() + "is managing.");
+    }
+
+    @Override
+    public double getAnnual() {
+        return super.getAnnual() + bonus;
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch8_17.png" style="zoom:99%;" />
 
 ****
 
