@@ -1763,6 +1763,40 @@ public class Manager extends Employee{
 
 
 
+**分析```Object```方法**
+
+```java
+//Stirng.java
+public boolean equals(Object anObject) {
+        if (this == anObject) {//如果是同一个对象
+            return true;//返回true
+        }
+        if (anObject instanceof String) {//判断类型
+            String anotherString = (String)anObject;//向下转型
+            int n = value.length;
+            if (n == anotherString.value.length) {//如果长度相同
+                char v1[] = value;
+                char v2[] = anotherString.value;
+                int i = 0;
+                while (n-- != 0) {//然后一个一个的比较字符
+                    if (v1[i] != v2[i])
+                        return false;
+                    i++;
+                }
+                return true;//如果两个字符串的所有字符都相等，则返回true
+            }
+        }
+        return false;//如果比较的不是字符串，则直接返回false
+    }
+
+//Object.java
+
+```
+
+
+
+
+
 ### 7.2  如何重写```equals```方法
 
 ```java
