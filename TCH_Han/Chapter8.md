@@ -1435,6 +1435,8 @@ class B extends A {
 
 ### 6. 8 多态的应用
 
+#### 6.8.1 多态数组
+
 <img src="../img/TCH_Han/ch8_13.png" style="zoom:67%;" />
 
 
@@ -1555,9 +1557,7 @@ public class Teacher extends Person{
 
 只记录了增加的部分
 
->这里就需要用到
->
->
+>这里就需要用到[之前提到的向下转型](#6.4.2 多态的向下转型)，并解答了有啥用。
 
 ```java
 //PloyArray.java
@@ -1577,8 +1577,12 @@ public class PloyArray {
                 //也可以一步解决 看 Teacher 写法
               
             }
-            if (persons[i] instanceof Teacher) {//判断person[i] 的运行类型是不是Student
+            else if (persons[i] instanceof Teacher) {//判断person[i] 的运行类型是不是Student
                 ((Teacher)persons[i]).teach();//一步解决
+            } else if(persons[i] instanceof Person){ 
+                
+            } else {
+                System.out.println("你的类型有误, 请自己检查..."); 
             }
         }
     }
@@ -1609,6 +1613,20 @@ public class Teacher extends Person {
 ```
 
 <img src="../img/TCH_Han/ch8_15.png" style="zoom:99%;" />
+
+
+
+#### 6.8.2 多态参数
+
+- [案例1在前面已有体现](#6.1  面向对象编程三大特性之多态)
+- 案例2（下）
+
+```java
+```
+
+
+
+<img src="../img/TCH_Han/ch8_16.png" style="zoom:80%;" />
 
 
 
