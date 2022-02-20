@@ -1939,18 +1939,72 @@ String str2 = new String("hello");
 System.out.println("str1 和 str2 是否相等？"+ (str1 == str2)); //F 
 
 System.out.println(“str1 是否 equals str2？”+(str1.equals(str2)));//T 
-System.out.println(“hello” == new java.sql.Date()); //编译错误
+System.out.println(“hello” == new java.sql.Date()); //编译错误， 不是同一个类型 不能比较
 ```
 
+  
 
-
-
+  
 
 ### 7.3 ```hashCode```方法
 
+>韩老师的 6 个小结: 
+>
+>1. 提高具有哈希结构的容器的效率！ 
+>
+>2. 两个引用，如果指向的是**同一个**对象，则哈希值肯定是**一样**的。
+>
+>3. 两个引用，如果指向的是不同对象，则哈希值是不一样的 。*不太严谨*
+>
+>4. 哈希值主要**根据地址号**来的， **不**能完全将哈希值**等价于地址**。 
+>
+>5. 案例演示```HashCode_.java```: ```obj.hashCode()``` 测试：```A obj1 = new A(); A obj2 = new A(); A obj3 = obj1```。 
+>
+>6. 后面在集合，中 ```hashCode``` 如果需要的话，也会重写, 在讲解集合时，老韩在说如何重写 ```hashCode()```。
 
+```java
+package com.hspedu.object_;
+
+public class HashCode_ {
+    public static void main(String[] args) {
+
+        AA aa = new AA();
+        AA aa2 = new AA();
+        AA aa3 = aa;
+        System.out.println("aa.hashCode()=" + aa.hashCode());
+        System.out.println("aa2.hashCode()=" + aa2.hashCode());
+        System.out.println("aa3.hashCode()=" + aa3.hashCode());//与aa一样的
+
+    }
+}
+class AA {}
+```
+
+<img src="../img/TCH_Han/ch8_19.png" style="zoom:99%;" />
+
+  
 
 ### 7.4 ```toString```方法
+
+基本介绍 
+
+- 默认返回：全类名（包名+类名）+@+哈希值的十六进制，【查看 ```Object``` 的 ```toString``` 方法】 子类往往重写 ```toString``` 方法，用于返回对象的属性信息 
+
+- 重写 ```toString``` 方法，打印对象或拼接对象时，都会自动调用该对象的 ```toString``` 形式
+- 当直接输出一个对象时，``` toString```  方法会被默认的调用, 比如 ``` System.out.println(monster);```  就会默认调用 ``` monster.toString()``` 
+
+```java
+ /*
+ 	Object的toString() 源码
+    (1)getClass().getName() 类的全类名(包名+类名 )
+    (2)Integer.toHexString(hashCode()) 将对象的hashCode值转成16进制字符串
+    public String toString() {
+    	return getClass().getName() + "@" + Integer.toHexString(hashCode());
+    }
+*/
+```
+
+
 
 
 
