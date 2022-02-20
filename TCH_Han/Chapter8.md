@@ -2055,7 +2055,7 @@ class Monster {
 
 ### 7.5 ```finalize```方法
 
-
+<img src="../img/TCH_Han/ch8_20.png" style="zoom:80%;" />
 
 
 
