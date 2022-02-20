@@ -1826,11 +1826,63 @@ System.out.println(object.equals(object2));						 //false 因为equals默认是�
 
 
 
+#### 7.1.1 值得注意的细节
+
+```java
+String str = "wo";
+String str1 = "wo";
+System.out.println("例一：" + (str == str1)); //true
+
+String str2 = new String("wo");
+String str3 = new String("wo");
+System.out.println("例二：" + (str2 == str3));	//false
+```
+
+为什么，会出现这样的情况呢？[这就涉及到字符常量池的概念](https://blog.csdn.net/u013293125/article/details/95922847)，以下是博主的原回答。
+
+>- 通过直接赋值而不是new的方式给String赋值，如果字符串常量池中有该对象，则不会再创建，此时通过```==```判断，返回的是```true```。如：```String str=“wo”;  String str1=“wo”;  str == str1```为```true```。
+>- 在JDK1.6及以前版本，字符串常量池在方法区中；在JDK1.7及以后，字符串常量池在堆中。
+>- 对象的引用保存在栈中
+
+在韩老师[7.2  如何重写```equals```方法](#7.2  如何重写```equals```方法)中，重写比较方法时比较字符串的代码用了```equals```，其实用```==```也是可以的。
+
 
 
 ### 7.2  如何重写```equals```方法
 
 ```java
+package com.hspedu.object_;
+
+public class EqualsExercise01 {
+    public static void main(String[] args) {
+        Person person1 = new Person("jack", 10, '男');
+        Person person2 = new Person("jack", 20, '男');
+
+        System.out.println(person1.equals(person2));//假
+    }
+}
+
+class Person{ //extends Object
+    private String name;
+    private int age;
+    private char gender;
+
+    public boolean equals(Object obj) { //重写Object 的 equals方法
+        //判断如果比较的两个对象是同一个对象，则直接返回true
+        if(this == obj) {
+            return true;
+        }
+        if(obj instanceof  Person) {//是Person，我们才比较
+
+            //进行 向下转型, 因为我需要得到obj的 各个属性
+            Person p = (Person)obj;
+            return this.name.equals(p.name) && this.age == p.age && this.gender == p.gender;
+        }
+        return false;//如果不是Person ，则直接返回false
+    }
+
+    //构造器， get set 方法略
+}
 ```
 
 
