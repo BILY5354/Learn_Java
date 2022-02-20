@@ -14,5 +14,10 @@ public class PloyArray {
             // persons[i] 编译类型是 Person， 运行类型根据实际情况JVM判断
             System.out.println(persons[i].say());
         }
+
+        System.out.println(persons[0] instanceof  Student);
+        System.out.println(persons[0] instanceof  Person);
+        System.out.println(persons[1] instanceof  Student);
+        System.out.println(persons[1] instanceof  Person);
     }
 }
