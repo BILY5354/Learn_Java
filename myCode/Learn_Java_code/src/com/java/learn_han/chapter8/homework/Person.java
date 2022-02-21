@@ -12,9 +12,17 @@ public class Person {
         this.job = job;
     }
 
-    public Person[] compareAge(Person[] people) {
-        int i = people.length;
-        Person[] p = new Person[i];
+    public void compareAge(Person[] people) {
+        Person p = null;//临时变量，用于交换
+        for (int i = 1; i < people.length; i++) {
+            for (int j = 0; j < people.length - 1; j++) {
+                if (people[j].age < people[j + 1].age) {
+                    p = people[j];
+                    people[j] = people[j + 1];
+                    people[j + 1] = p;
+                }
+            }
+        }
     }
 
     public String getName() {
@@ -39,5 +47,14 @@ public class Person {
 
     public void setJob(String job) {
         this.job = job;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", job='" + job + '\'' +
+                '}';
     }
 }

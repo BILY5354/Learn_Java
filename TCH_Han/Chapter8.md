@@ -10,6 +10,7 @@
 -  [属性没有重写的说法](#6.4.4 属性没有重写的说法)
 -  [动态绑定机制](#6. 7 ```Java```的动态绑定机制 （重点难点）)
 -  [```==```与```equals()```的区别](#7.1.1 值得注意的细节)
+-  [当一个对象对象```toString```重写后，直接输出该对象即是```toString```内容](#7.4 ```toString```方法)
 
   
 
@@ -2085,7 +2086,89 @@ class Monster {
   #### 定义一个对象数组
 
 ```java
+//Homework1.java
+package com.java.learn_han.chapter8.homework;
 
+public class Homework1 {
+    public static void main(String[] args) {
+        Person[] peoples = new Person[3];
+        peoples[0] = new Person("jack", 10, "学生");
+        peoples[1] = new Person("milan", 30, "老师");
+        peoples[2] = new Person("tom", 60, "退休");
+
+        for (int i = 0; i < peoples.length; i++) {
+            System.out.println(peoples[i]);//默认对象的.toString(),相当于peoples[i].toString()
+        }
+
+        System.out.println("排序后，从大到小");
+        peoples[0].compareAge(peoples);
+        for (int i = 0; i < peoples.length; i++) {
+            System.out.println(peoples[i]);//默认对象的.toString(),相当于peoples[i].toString()
+        }
+    }
+}
+
+//Person.java
+package com.java.learn_han.chapter8.homework;
+
+public class Person {
+
+    private String name;
+    private int age;
+    private String job;
+
+    public Person(String name, int age, String job) {
+        this.name = name;
+        this.age = age;
+        this.job = job;
+    }
+
+    public void compareAge(Person[] people) {
+        Person p = null;//临时变量，用于交换
+        for (int i = 1; i < people.length; i++) {
+            for (int j = 0; j < people.length - 1; j++) {
+                if (people[j].age < people[j + 1].age) {
+                    p = people[j];
+                    people[j] = people[j + 1];
+                    people[j + 1] = p;
+                }
+            }
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    @Override
+    public String toString() {//好用
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", job='" + job + '\'' +
+                '}';
+    }
+}
 ```
 
 
