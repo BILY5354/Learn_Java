@@ -197,9 +197,9 @@ class Stu {
    - 普通方法中隐含```this```参数
 2. 类方法可以通过类名调用，也可以通过对象名调用。
 3. **普通方法**和对象有关，需要通过对象名调用，比如```对象名.方法名(参数)```，**不能通过类名调用**。
-4. 类方法中不允许使用和对象有关的关键字，比如```this```和```super```。```普通方法(成员方法)```可以。
+4. **类方法**中不允许使用和对象有关的关键字，**比如```this```和```super```**。```普通方法(成员方法)```可以。
 5. ```类方法(静态方法)```中，**只能**访问**静态成员**，也可以访问**静态方法**。
-6. 普通成员方案，即可以访问非静态成员，也可以访问静态成员。
+6. 普通成员方案，**即**可以访问非静态成员，**也**可以访问静态成员。
 
 **小结**：静态方法，只能访问静态的成员，非静态的方法，可以访问静态成员和非静态成员（必须遵循访问权限）。
 
@@ -209,8 +209,7 @@ package com.hspedu.static_;
 public class StaticMethodDetail { 
     public static void main(String[] args) {
         D.hi();//ok 
-        //非静态方法，不能通过类名调用 
-        //D.say();, 错误，需要先创建对象，再调用 
+        //D.say();, 错误，非静态方法，不能通过类名调用 需要先创建对象，再调用 
         new D().say();//可以
         } 
 }
@@ -221,9 +220,9 @@ class D {
     public void say() {//非静态方法,普通方法 
     }
     public static void hi() {//静态方法,类方法 
-        //类方法中不允许使用和对象有关的关键字， 
+        n1 = 0;//错误，类方法中不允许使用和对象有关的关键字， 
         //比如 this 和 super。普通方法(成员方法)可以。 
-        //System.out.println(this.n1); 
+        //System.out.println(this.n1); 错误的
     }
     
     //类方法(静态方法)中 只能访问 静态变量 或静态方法 
@@ -250,6 +249,40 @@ class D {
 ```
 
 
+
+### 1.2.7  课堂练习(1)：判断```total```值
+
+[不用```this```如何给```total```赋值呢？](#1.2.3 类变量使用注意事项与细节讨论)。
+
+```java
+class TestPerson {
+    public static void main(String[] args) {
+
+        Person.setTotalPerson(3);
+        new Person();
+        Person.m();
+    }
+}
+
+class Person { //StaticExercise03.java 2min 看
+    private int id;
+    private static int total = 0;
+    public static void setTotalPerson(int total){
+        
+        // this.total = total;//错误，因为在static方法中，不可以使用this 关键字
+        Person.total = total;//想要给total赋值就使用 类.静态属性
+    }
+    public Person() {//构造器
+        total++;
+        id = total;
+    }
+    public static void m() {//编写一个方法，输出total的值
+        System.out.println("total的值=" + total);
+    }
+}
+```
+
+答案是4
 
 # 2
 
