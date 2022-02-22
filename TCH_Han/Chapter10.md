@@ -56,8 +56,49 @@ static 访问修饰符 数据类型 变量名;
 
 ### 1.2.3 类变量使用注意事项与细节讨论
 
-```    java
+1. 什么时候需要用类变量：
+
+   - 当需要让某个类的所有对象都共享一个变量是，就可以考虑使用类变量（静态变量）
+
+2. 类变量与实例变量（普通属性）区别：
+
+   - **类变量**是该类的所有对象**共享**的，而**实例变量**是每个对象**独享**的
+
+3. 加上```static```称为类变量或静态变量，否则称为实例变量/普通变量/非静态变量
+
+4. 类变量的方法方式有：（前提是满足访问修饰符的访问权限和范围）
+
+   ```java
+   类名.类变量名	//推荐 注意！实例变量此种访问方式错误
+   对象名.类变量名
+   ```
+
+5. 类变量是在类加载是就初始化了，也就是即使没有创建对象，只要类加载了，就可以使用类变量
+6. 类变量的生命周期是随类的加载开始，随着类消亡而销毁（看例子）
+
+```java
+package com.hspedu.static_; 
+
+public class StaticDetail { 
+    public static void main(String[] args) { 
+        B b = new B(); 
+        //System.out.println(B.n1); 
+        System.out.println(B.n2); //静态变量是类加载的时候，就创建了,所以我们没有创建对象实例 
+        System.out.println(C.address);  //也可通过类名.类变量名来访问
+    } 
+}
+
+class B { 
+    public int n1 = 100; 
+    public static int n2 = 200; 
+}
+
+class C { 
+    public static String address = "北京"; 
+}
 ```
+
+
 
 
 
@@ -80,6 +121,64 @@ class B {
     }
 }
 ```
+
+
+
+类方法使用案例
+
+```java
+package com.hspedu.static_; 
+
+public class StaticMethod {
+    public static void main(String[] args) { 
+        
+        //创建 2 个学生对象，叫学费 
+        Stu tom = new Stu("tom"); 
+        //tom.payFee(100); 
+        Stu.payFee(100);//对不对?对 
+        
+        Stu mary = new Stu("mary"); 
+        //mary.payFee(200); 
+        Stu.payFee(200);//对 
+        
+        Stu.showFee();//300  输出当前收到的总学费 
+        
+        //如果希望不创建实例，也可以调用某个方法(即当做工具来使用) //这时，把方法做成静态方法时非常合适 
+        System.out.println("9 开平方的结果是=" + Math.sqrt(9)); 
+        System.out.println(MyTools.calSum(10, 30)); 
+    } 
+}
+
+//开发自己的工具类时，可以将方法做成静态的，方便调用 
+class MyTools { 
+    //求出两个数的和 
+    public static double calSum(double n1, double n2) {
+        return n1 + n2; 
+    }
+    //可以写出很多这样的工具方法... 
+}
+
+class Stu { 
+    private String name;//普通成员 
+    //定义一个静态变量，来累积学生的学费 
+    private static double fee = 0; 
+    
+    public Stu(String name) { 
+        this.name = name; 
+    }
+    //说明 
+    //1. 当方法使用了 static 修饰后，该方法就是静态方法 
+    //2. 静态方法就可以访问静态属性/变量 
+    public static void payFee(double fee) { 
+        Stu.fee += fee;//累积到 
+    }
+    public static void showFee() { 
+        System.out.println("总学费有:" + Stu.fee); 
+    } 
+}
+```
+
+
 
 
 
