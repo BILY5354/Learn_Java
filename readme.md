@@ -3,8 +3,8 @@
 **环境基于```JDK14```开发**，*如果有时候报错可能是因为版本不同导致的*，列：
 
 ```java
-var p = new Person();//JDK8时会报错
-Person p = new Person();//JDK8正确
+var p = new Person();		//JDK8时会报错
+Person p = new Person();	//JDK8正确
 ```
 
 **学习中参考的资料有**，笔记主要以以下教程记录，*（如有侵权，联系速删）*
