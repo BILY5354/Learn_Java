@@ -1,7 +1,9 @@
 # [面向对象编程（高级部分）](./TCH_Han/Chapter10.md)  
 # 值得注意的概念
-- 
-- 
+- 类方法又称为静态方法
+- 类被加载的三种情况
+- 普通代码块就是构造器的补充，如果构造器无调用，普通代码块也不会被调用
+- [创建对象时类中的调用顺序](#3.2.3 创建一个对象时，在一个类调用顺序是（**重点难点**）) *看第三点写出结果*
 - 
 -  
 1. [类变量和类方法](#1)
@@ -199,11 +201,21 @@ class Stu {
    
 2. 类方法可通过类名调用，也可以通过对象名调用。
 
-   ```
-   
+   ```java
+   class Person {
+       public static say() {
+           System.out.prtinln("hello");
+       }
+   }
    ```
 
-   
+   ```java
+   //方法1 静态方法可以
+   Perosn.say();
+   //方法2
+   Person ming = new Person();
+   ming.say();
+   ```
 
 3. **普通方法**和对象有关，需要通过对象名调用，比如```对象名.方法名(参数)```，**不能通过类名调用**。
 
@@ -361,26 +373,17 @@ public class Main01 {
 
 ## 2.3 案例演示
 
+如果想在```IDEA```中传入参数怎么弄？如图：
 
-
-
+<img src="../img/TCH_Han/ch10_4.png" style="zoom:87%;" />
 
 # 3
 
 ## 3.1 代码块基本介绍
 
-- 代码块又称为初始化块，属于类中的成员（类中的一部分），类似于方法，将逻辑语句封装在方法体中，通过```{}```包围起来
+- 代码块又称为**初始化块**，属于类中的成员（类中的一部分），类似于方法，将逻辑语句封装在方法体中，通过```{}```包围起来
 
 - 但与方法不同，没有方法名，没有返回，没有参数，只有方法体，而且不用通过对象或类显示调用，而是加载类时，或创建对象时**隐式调用**
-
-
-
-## 3.2 代码块基本语法
-
-1. 修饰符 可选，要写也只能写```static```。
-2. 代码块分为两类，使用```static```修饰的叫静态代码块，没有```static```修饰时，交普通代码块/非静态代码块。
-3. 逻辑语句可以为任何逻辑语句（输入、输出、方法调用、循环、判断等）。
-4. ```;```可以写上，也可以省略。
 
 ```java
 [修饰符] {
@@ -388,33 +391,196 @@ public class Main01 {
 };
 ```
 
+### 3.1.1 代码块基本语法
 
+1. 修饰符 可选，要写也只能写```static```。
+2. 代码块分为两类，使用```static```修饰的叫静态代码块，没有```static```修饰时，交普通代码块/非静态代码块。
+3. 逻辑语句可以为任何逻辑语句（输入、输出、方法调用、循环、判断等）。
+4. ```;```可以写上，也可以省略。
 
+### 3.1.2 演示（普通代码块）
 
+**代码块调用的顺序优先于构造器**，
 
-## 3.3 代码块快速入门
+```java
+package com.java.learn_han.chapter10.codeblock_;
 
-### 好处
+public class CodeBlock_ {
+    public static void main(String[] args) {
+
+        Movie movie = new Movie("你好，李焕英");
+        System.out.println("===============");
+        Movie movie2 = new Movie("唐探3", 100, "陈思诚");
+    }
+}
+
+class Movie {
+    private String name;
+    private double price;
+    private String director;
+
+    public Movie(String name) {
+        System.out.println("Movie(String name) 被调用...");
+        this.name = name;
+    }
+
+    public Movie(String name, double price) {
+
+        this.name = name;
+        this.price = price;
+    }
+
+    public Movie(String name, double price, String director) {
+
+        System.out.println("Movie(String name, double price, String director) 被调用...");
+        this.name = name;
+        this.price = price;
+        this.director = director;
+    }
+
+    {
+        System.out.println("电影屏幕打开...");
+        System.out.println("广告开始...");
+        System.out.println("电影正是开始...");
+    };
+}
+```
+
+<img src="../img/TCH_Han/ch10_5.png" style="zoom:87%;" />
 
 1. 相当于另外一种形式的构造器（对构造器的补充机制），可以做初始化的操作。
 2. 场景：如果多个构造器中都有重复的语句，可以抽取到初始化块中，提高代码的重用性。
 
-```java
-```
 
 
-
-## 3.4 代码块使用注意事项与细节讨论
+## 3.2 代码块使用注意事项与细节讨论
 
 1. ```static```代码块也称静态代码块，作用就是对类进行初始化，而且随**类的加载**而执行，并且**只会执行一次**。如果是普通代码块，没创建一个对象，就执行。
-2. 类什么时候被加载（**重点**）
-   - 创建对象实例时```new```
-   - 创建子类对象实例，父类也会被加载
-   - 使用类的静态成员时（静态属性、静态方法）
-   - 案例
-3. 普通的代码块，在创建对象实例时，会被隐式的调用。被创建一次，就会调用一次。如果只是使用类的静态成员时，普通代码块并不会执行。
 
-> 小结：
+### 3.2.1 类被加载的三种情况（**重点**）
+
+- 创建对象实例时```new```
+
+```java
+package com.java.learn_han.chapter10.codeblock_;
+
+public class CodeBlockDetail01 {
+    public static void main(String[] args) {
+        AA aa = new AA();
+    }
+}
+
+class  AA {
+
+    static {//静态代码块
+        System.out.println("AA的静态代码块被执行");
+    };
+}
+
+```
+
+<img src="../img/TCH_Han/ch10_6.png" style="zoom:87%;" />
+
+- 创建子类对象实例，父类也会被加载
+
+```java
+package com.java.learn_han.chapter10.codeblock_;
+
+public class CodeBlockDetail01 {
+    public static void main(String[] args) {
+        AA aa = new AA();
+    }
+}
+
+class BB {
+    static {//静态代码块
+        System.out.println("BB的静态代码块被执行");
+    };
+}
+
+class  AA extends BB {
+    static {//静态代码块
+        System.out.println("AA的静态代码块被执行");
+    };
+}
+
+```
+
+<img src="../img/TCH_Han/ch10_7.png" style="zoom:87%;" />
+
+- 使用类的静态成员时（静态属性、静态方法）
+
+```java
+package com.java.learn_han.chapter10.codeblock_;
+
+public class CodeBlockDetail01 {
+    public static void main(String[] args) {
+        System.out.println(Cat.n1);
+    }
+}
+class Cat {
+    public static int n1 = 999;
+     static {//静态代码块
+         System.out.println("Cat的静态代码块被执行");
+     };
+ }
+```
+
+<img src="../img/TCH_Han/ch10_8.png" style="zoom:87%;" />
+
+### 3.2.2 ```static```静态代码块
+
+- 普通的代码块，在创建对象实例时，会被隐式的调用。被创建一次，就会调用一次。
+
+```java
+package com.java.learn_han.chapter10.codeblock_;
+
+public class CodeBlockDetail01 {
+    public static void main(String[] args) {
+        DD d1 = new DD();
+        DD d = new DD();
+    }
+}
+
+class DD {
+    static {//静态代码块
+        System.out.println("BB的静态代码块被执行");
+    }
+    {//静态代码块
+        System.out.println("BB的普通代码块被执行");
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch10_9.png" style="zoom:87%;" />
+
+- 如果只是使用/调用类的静态成员时，普通代码块并不会执行。**普通代码块就是构造器的补充，如果构造器无调用，普通代码块也不会被调用**。
+
+```java
+package com.java.learn_han.chapter10.codeblock_;
+
+public class CodeBlockDetail01 {
+    public static void main(String[] args) {
+        System.out.println(DD.i);
+    }
+}
+
+class DD {
+    public static int i = 999;
+
+    static {//静态代码块
+        System.out.println("BB的静态代码块被执行");
+    }
+
+    {//静态代码块
+        System.out.println("BB的普通代码块被执行");
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch10_10.png" style="zoom:87%;" />
+
+> **小结：**
 >
 > 1. ```static```代码块是类加载时，执行，只会执行一次
 > 2. 普通代码块是在创建对象时掉调用的，创建一次，调用一次
@@ -422,22 +588,86 @@ public class Main01 {
 
 
 
+### 3.2.3 代码块调用顺序(1)**重点难点**
+
+### 创建一个对象时，在一个类调用顺序是（**重点难点**）
+
+1. 调用静态代码块和静态属性初始化
+   - 注意：静态代码块和静态属性初始化调用的优先级一样，如果有多个静态代码块和多个静态变量初始化，则按其定义的顺序调用 
+   
+   ```java
+   package com.java.learn_han.chapter10.codeblock_;
+   
+   public class CodeBlockDetail02 {
+       public static void main(String[] args) {
+           A a = new A();
+       }
+   }
+   
+   class A {
+       private static  int n1 = getN1();//因为这个在前面
+   
+       static {
+           System.out.println("A静态代码块01");
+       }
+   
+       public static int getN1() {
+           System.out.println("getN1被调用");
+           return 100;
+       }
+   }
+   ```
+   
+   <img src="../img/TCH_Han/ch10_11.png" style="zoom:87%;" />
+   
+2. 调用普通代码块和普通属性的初始化
+   - 注意：普通代码块和普通属性初始化调用优先级一样，如果有多个普通代码块和多个普通属性初始化，则按定义顺序调用
+   
+3. 调用构造方法
+
 ```java
+package com.hspedu.codeblock_;
+
+public class CodeBlockDetail02 {
+    public static void main(String[] args) {
+        A a = new A();// (1) A 静态代码块01 (2) getN1被调用...(3)A 普通代码块01(4)getN2被调用...(5)A() 构造器被调用
+    }
+}
+
+class A {
+    { //普通代码块
+        System.out.println("A 普通代码块01");
+    }
+    private int n2 = getN2();//普通属性的初始化
+
+
+    static { //静态代码块
+        System.out.println("A 静态代码块01");
+    }
+
+    //静态属性的初始化
+    private static  int n1 = getN1();
+
+    public static int getN1() {
+        System.out.println("getN1被调用...");
+        return 100;
+    }
+    public int getN2() { //普通方法/非静态方法
+        System.out.println("getN2被调用...");
+        return 200;
+    }
+
+    //无参构造器
+    public A() {
+        System.out.println("A() 构造器被调用");
+    }
+
+}
 ```
 
+<img src="../img/TCH_Han/ch10_12.png" style="zoom:87%;" />
 
 
-4. 创建一个对象时，在一个类调用顺序是（**重点难点**）
-   1. 调用静态代码块和静态属性初始化
-      - 注意：静态代码块和静态属性初始化调用的优先级一样，如果有多个静态代码块和多个静态变量初始化，则按其定义的顺序调用 案例
-   2. 调用普通代码块和普通属性的初始化
-      - 注意：普通代码块和普通属性初始化调用优先级一样，如果有多个普通代码块和多个普通属性初始化，则按定义顺序调用
-   3. 调用构造方法
-
-
-
-```java
-```
 
 
 
@@ -456,18 +686,52 @@ public class Main01 {
 
 
 
-6. 创建一个子类对象时（继承关系），其静态代码块，静态属性初始化，普通代码块，普通属性初始化，构造方法的调用顺序如下
+### 3.2.4 代码块调用顺序(2)
 
-   1. 父类的静态代码块和静态属性（优先级一样，按定义顺序执行）
-   2. 子类的静态代码块和静态属性（优先级一样，按定义顺序执行）
-   3. 父类的普通代码块和普通属性初始化（优先级一样，按定义顺序执行）
-   4. 父类的构造方法
-   5. 子类的普通代码块和普通属性初始化（优先级一样，按定义顺序执行）
-   6. 子类的构造方法
+创建一个子类对象时（继承关系），其静态代码块，静态属性初始化，普通代码块，普通属性初始化，构造方法的调用顺序：
 
-   演示
+演示：
 
+```java
+package com.hspedu.codeblock_;
 
+public class CodeBlockDetail03 {
+    public static void main(String[] args) {
+        new BBB();
+    }
+}
+
+class AAA { //父类Object
+    {
+        System.out.println("AAA的普通代码块");
+    }
+    public AAA() {
+        System.out.println("AAA() 构造器被调用....");
+    }
+}
+
+class BBB extends AAA  {
+    {
+        System.out.println("BBB的普通代码块...");
+    }
+    public BBB() {
+        System.out.println("BBB() 构造器被调用....");
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch10_13.png" style="zoom:87%;" />
+
+### 3.2.5  代码块调用顺序(3)
+
+创建一个子类（继承）,其静态代码块、静态属性初始化、普通代码块、普通属性初始化、构造方法的调用顺训如下：
+
+1. 父类的静态代码块和静态属性（优先级一样，按定义顺序执行）
+2. 子类的静态代码块和静态属性（优先级一样，按定义顺序执行）
+3. 父类的普通代码块和普通属性初始化（优先级一样，按定义顺序执行）
+4. 父类的构造方法
+5. 子类的普通代码块和普通属性初始化（优先级一样，按定义顺序执行）
+6. 子类的构造方法
 
 7. 静态代码块只能直接调用静态成员（静态属性和静态方法），普通代码块可以调用任意成员。（学习比较麻烦工作轻松）
 

@@ -13,8 +13,6 @@ public class Display {
     }
 
     public void userTip() {
-
-        private int i;
         System.out.print("请出入你的选择:");
     }
 
