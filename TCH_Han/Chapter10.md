@@ -724,6 +724,72 @@ class BBB extends AAA  {
 
 ### 3.2.5  代码块调用顺序(3)
 
+```java
+package com.java.learn_han.chapter10.codeblock_;
+
+public class CodeBlockDetail04 {
+    public static void main(String[] args) {
+        new B02();
+    }
+}
+
+class A02 { //父类
+    private static int n1 = getVal01();
+    static {
+        System.out.println("A02的一个静态代码块..");
+    }
+    {
+        System.out.println("A02的第一个普通代码块..");
+    }
+    public int n3 = getVal02();
+    public static int getVal01() {
+        System.out.println("getVal01");
+        return 10;
+    }
+
+    public int getVal02() {
+        System.out.println("getVal02");
+        return 10;
+    }
+
+    public A02() {//构造器
+        System.out.println("A02的构造器");//(7)
+    }
+
+}
+
+class B02 extends A02 { //
+
+    private static int n3 = getVal03();
+
+    static {
+        System.out.println("B02的一个静态代码块..");
+    }
+    public int n5 = getVal04();
+    {
+        System.out.println("B02的第一个普通代码块..");//(9)
+    }
+
+    public static int getVal03() {
+        System.out.println("getVal03");
+        return 10;
+    }
+
+    public int getVal04() {
+        System.out.println("getVal04");
+        return 10;
+    }
+
+    public B02() {//构造器
+        System.out.println("B02的构造器");
+        // TODO Auto-generated constructor stub
+    }
+}
+
+```
+
+<img src="../img/TCH_Han/ch10_14.png" style="zoom:87%;" />
+
 创建一个子类（继承）,其静态代码块、静态属性初始化、普通代码块、普通属性初始化、构造方法的调用顺训如下：
 
 1. 父类的静态代码块和静态属性（优先级一样，按定义顺序执行）
@@ -733,13 +799,13 @@ class BBB extends AAA  {
 5. 子类的普通代码块和普通属性初始化（优先级一样，按定义顺序执行）
 6. 子类的构造方法
 
-7. 静态代码块只能直接调用静态成员（静态属性和静态方法），普通代码块可以调用任意成员。（学习比较麻烦工作轻松）
+>我（**片面**）的理解是：
+>
+>静态与类加载想关，所以先执行（父类执行完子类），之后的代码块或属性在本类（父类执行完子类）顺序执行。
 
 
 
-
-
-
+- **静态代码块只能直接调用静态成员（静态属性和静态方法），普通代码块可以调用任意成员。（学习比较麻烦工作轻松）**
 
 # 4
 
