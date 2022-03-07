@@ -1371,8 +1371,6 @@ public interface AInterface {
 
 ## 7.3 注意事项和细节
 
-
-
 1. 接口不能被实例化
 
 2. 接口中的所有方法时```public```方法，接口中抽象方法，可以不用```abstract```修饰
@@ -1383,23 +1381,58 @@ public interface AInterface {
 
 5. 一个类同时可以实现多个接口
 
-6. 接口的属性只能是```final```的，而且是```public static final```修饰符，比如：```int a = 1;```实际上是```public static final int a = 1;```**必须初始化**。
+6. 接口的属性只能是```final```，而且是```public static final```修饰符，比如：```int a = 1;```实际上是```public static final int a = 1;```**必须初始化**。
+
+   ```java
+   //证明为public static final， main方法中
+   System.out.println(IB.n1);//证明为 static
+   IB.n1 = 30;//错误 证明为final
+   //public 证明不是默认 在其它包不可调用
+   ```
 
 7. 接口中属性的访问形式：```接口名.属性名```
 
 8. 接口不能继承其它的类，但是可以继承多个别的接口
 
-   ```interface A extends B, C { } ```
+   ```interface A extends B, C { }//错误 ```
 
-9. 接口的修饰符只能是```public```和默认，这点和类的修饰符是一样的
-
-
-
-## 7.？ 实现接口 VS 继承类
+9. 接口的修饰符只能是```public```和默认，这点与类的修饰符是相同
 
 
 
-## 7. 接口的多态特性
+## 7.4 课堂练习(1)：判断对错
+
+```java
+package com.hspedu.interface_;
+
+public class InterfaceExercise01 {
+ public static void main(String[] args) {
+     B b = new B(); ok
+     System.out.println(b.a);   
+     System.out.println(A.a);   
+     System.out.println(B.a);  
+ }
+}
+
+interface A {
+ int a = 23;  //等价 public static final int a = 23;
+}
+
+class B implements A { 
+}
+```
+
+
+
+都正确且为23
+
+## 7.5 实现接口 VS 继承类
+
+
+
+
+
+## 7. 5 接口的多态特性
 
 
 
