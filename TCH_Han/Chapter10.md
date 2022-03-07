@@ -1428,11 +1428,120 @@ class B implements A {
 
 ## 7.5 实现接口 VS 继承类
 
+**当子类继承了父类，就自动拥有父类的功能，如果子类需要扩展功能，可以通过实现接口**，
+
+<img src="../img/TCH_Han/ch10_23.png" style="zoom:87%;" />
+
+## 7. 6 接口的多态特性
+
+### 7.6.1 多态参数
+
+1. 接口引用可以指向实现了接口类的对象（前面提到的电脑类
+
+```java
+package com.java.learn_han.chapter10.interface_;
+
+public class Computer {
+
+    public void work (UsbInterface usbInterface) {//只要实现了该接口就可以传入
+        usbInterface.start();
+        usbInterface.stop();
+    }
+}
+```
+
+2. 接口类型的变量可以指向实现该接口的对象实例
+
+```java
+//main 中
+IF if01 = new Monster();//正确
+if01 = new Car();//正确
+
+interface IF{}
+class Monster implements IF {}
+class Car implements IF {}
+```
 
 
 
+### 7.6.2 多态数组
 
-## 7. 5 接口的多态特性
+```java
+package com.java.learn_han.chapter10.interface_;
+
+public class InterfacePolyArr {
+    public static void main(String[] args) {
+
+        Usb[] usbs = new Usb[2];
+        usbs[0] = new Phone1();
+        usbs[1] = new Camera_();
+
+        for (int i = 0; i < usbs.length; i++) {
+            usbs[i].work();//运行时的多态
+
+            if (usbs[i] instanceof Phone1) {
+                ((Phone1) usbs[i]).call();//向下转型
+            }
+        }
+    }
+}
+
+interface Usb {
+    void work();
+}
+
+class Phone1 implements Usb {
+
+    public void call() {
+        System.out.println("calling");
+    }
+
+    @Override
+    public void work() {
+        System.out.println("手机工作中");
+    }
+}
+
+class Camera_ implements Usb {
+
+    @Override
+    public void work() {
+        System.out.println("相机工作中");
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch10_24.png" style="zoom:87%;" />
+
+### 7.6.3 接口存在多态传递现象
+
+```java
+package com.hspedu.interface_;
+
+/**
+ * 演示多态传递现象
+ */
+public class InterfacePolyPass {
+    public static void main(String[] args) {
+        //接口类型的变量可以指向，实现了该接口的类的对象实例
+        IG ig = new Teacher();
+        //如果IG 继承了 IH 接口，而Teacher 类实现了 IG接口
+        //那么，实际上就相当于 Teacher 类也实现了 IH接口.
+        //这就是所谓的 接口多态传递现象.
+        IH ih = new Teacher();//传递了
+    }
+}
+
+interface IH {
+    void hi();
+}
+interface IG extends IH{ }
+class Teacher implements IG {
+    @Override
+    public void hi() {
+    }
+}
+```
 
 
 
@@ -1440,41 +1549,41 @@ class B implements A {
 
 ## 8.1 内部类基本介绍
 
-1. 定义类在局部位置（方法中/代码块）
-   - 局部内部类
-   - 匿名内部类
-2. 定义在成员位置
-   - 成员内部类
-   - 静态内部类
+### 8.1.1 内部类介绍
+
+```java
+class Outer {//外部类
+    class Inner {//内部类
+    }
+}
+class Other {//外部其它类    
+}
+```
 
 
 
-一个类的内部又完整的嵌套了另一个类结构。被嵌套的类称为内部类，嵌套其它的类称为外部类。是我妈类的第五大成员，内部类的最大的特点就是可以直接访问私有属性
+一个类的内部又完整的嵌套了另一个类结构。被嵌套的类称为内部类，嵌套其它的类称为外部类。内部类的最大的特点就是可以直接访问私有属性，并且可以提现类与类之间的包含关系。
+
+**类的5大成员分别是：**属性、方法、构造器、代码块、内部类。
+
+### 8.1.2 内部类分类
+
+1. 定义在外部类局部位置（方法中/代码块）
+   - 局部内部类（有类名）
+   - 匿名内部类（没有类名，**重难点！**）
+2. 定义在外部类的成员位置
+   - 成员内部类（没用```static```修饰）
+   - 静态内部类（使用```static```修饰）
 
 
 
-## 8.2 内部类基本语法
-
-
-
-##　8.3 内部类的分类
-
-- 定义在外部类局部位置上（比如方法内）：
-  1. 局部内部类（有类名）
-  2. 匿名内部类（**无类名**）
-
-- 定义在外部类的成员位置上：
-  1. 成员内部类（没用```static```修饰）
-  2. 静态内部类（使用```static```修饰）
-
-
-
-## 8.4 局部内部类的使用
+## 8.2 局部内部类的使用
 
 说明：局部内部类时定义在外部类的局部位置，比如方法中，并且有类名字。
 
 1. 可以直接访问外部类的所有成员，包含私有的
-2. 不能添加访问修饰符，因为他的地位就是一个局部变量。局部变量是不能使用修饰符的。但是可以使用```final```修饰，因为局部变量也可以使用```final```
+2. 不能添加访问修饰符，因为其地位就是一个局部变量。局部变量是不能使用修饰符。
+   - 但是可以使用```final```修饰，因为局部变量也可以使用```final```
 3. 作用域：仅仅在定义它的方法或代码块中
 4. 局部内部类----访问---->外部类的成员 （访问方式：直接访问）
 5. 外部类----访问---->局部内部类的成员（访问方式：创建对象，再访问**一定要在作用域内**）
@@ -1482,9 +1591,85 @@ class B implements A {
 >1. 局部内部类定义在方法中/代码块
 >2. 作用域在方法题或者代码块中
 >3. 本质仍然是一个类
+>
+>- 下代码debug时是跳到 ``` Inner02 inner02 = new Inner02();```执行```f1```函数的内容的，因为内部类也是类，不创建对象怎么使用其方法呢。
+>  - 所以```m1```->```Inner02 inner02 = new Inner02();```->```inner02.f1();```->```f1()```
 
-6. 外部其它类----不能访问---->局部内部类，因为局部内部类地位是一个局部变量
-7. 如果外部类和局部内部类的成会员重名时，默认遵循就近原则，如果想访问外部类的成员，则可以使用``外部类名.this.成员````
+```java
+package com.hspedu.innerclass;
+
+public class LocalInnerClass {//
+    public static void main(String[] args) {  
+        Outer02 outer02 = new Outer02();
+        outer02.m1();
+    }
+}
+
+
+class Outer02 {//外部类
+    private int n1 = 100;
+    private void m2() {
+        System.out.println("Outer02 m2()");
+    }
+    public void m1() {//局部内部类是定义在外部类的局部位置,通常在方法中
+        //2.不能添加访问修饰符,但是可以使用final 修饰
+        //3.作用域 : 仅仅在定义它的方法或代码块中
+        final class Inner02 {//局部内部类(本质仍然是一个类)
+            //1.可以直接访问外部类的所有成员，包含私有的
+            public void f1() {
+                //4. 局部内部类可以直接访问外部类的成员，比如下面 外部类n1 和 m2()
+                System.out.println("n1=" + n1);           
+                m2();
+            }
+        }
+        //5. 外部类在方法中，可以创建Inner02对象，然后调用方法即可
+        Inner02 inner02 = new Inner02();
+        inner02.f1();
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch10_25.png" style="zoom:87%;" />
+
+6. 外部其它类----不能访问---->局部内部类，因为局部内部类地位是一个局部变量。
+7. 如果外部类和局部内部类的成会员重名时，默认遵循就近原则，如果想访问外部类的成员，则可以使用```外部类名.this.成员```。
+
+```java
+package com.java.learn_han.chapter10.interface_;
+
+public class LocalInnerClass {//代码没有说明第六点
+    public static void main(String[] args) {
+        Outer02 outer02 = new Outer02();
+        System.out.println("Outer02.this hashcode=" + outer02);
+        outer02.m1();
+    }
+}
+
+class Outer02 {//外部类
+    private int n1 = 100;
+    private void m2() {
+        System.out.println("Outer02 m2()");
+    }
+    public void m1() {
+
+        final class Inner02 {
+            private int n1 = 800;
+            public void f1() {
+
+                System.out.println("内部类的 n1=" + n1);//7. 如果外部类和局部内部类的成员重名时，默认遵循就近原则，
+                //Outer02.this 本质就是外部类的对象, 即哪个对象调用了m1, Outer02.this就是哪个对象
+                System.out.print("外部类的 n1=" + Outer02.this.n1);// 如果想访问外部类的成员，使用 外部类名.this.成员）去访问
+                System.out.println("  Outer02.this hashcode=" + Outer02.this);
+                m2();
+            }
+        }
+        Inner02 inner02 = new Inner02();
+        inner02.f1();
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch10_26.png" style="zoom:87%;" />
 
 
 
