@@ -1,5 +1,6 @@
 package com.java.learn_han.chapter10.codeblock_;
 
+/*
 public class Exercise01 {
 }
 class Person {
@@ -15,4 +16,4 @@ class Test {
         System.out.println("total = "+ Person.total);
         System.out.println("total = "+ Person.total);
     }
-}
+}*/

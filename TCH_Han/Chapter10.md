@@ -4,7 +4,7 @@
 - 类被加载的三种情况
 - 普通代码块就是构造器的补充，如果构造器无调用，普通代码块也不会被调用
 - [创建对象时类中的调用顺序](#3.2.3 创建一个对象时，在一个类调用顺序是（**重点难点**）) *看第三点写出结果*
-- 
+- **类加载时与静态相关的会先执行**
 -  
 1. [类变量和类方法](#1)
 2. [理解```main```方法语法](#2)
@@ -808,6 +808,74 @@ class B02 extends A02 { //
 
 - **静态代码块只能直接调用静态成员（静态属性和静态方法），普通代码块可以调用任意成员。（学习比较麻烦工作轻松）**
 
+
+
+##　3.3 课堂练习(1)：看图写结果
+
+```java
+package com.java.learn_han.chapter10.codeblock_;
+
+public class Exercise01 {
+}
+class Person {
+    public static int total;
+    static {
+            total = 100;
+        System.out.println("in static block!");
+    }
+}
+
+class Test {
+    public static void main(String[] args) {
+        System.out.println("total = "+ Person.total);
+        System.out.println("total = "+ Person.total);
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch10_19.png" style="zoom:87%;" />
+
+## 3.4 课堂练习(2)：看图写结果
+
+```java
+package com.java.learn_han.chapter10.codeblock_;
+
+public class Exercise02 {
+}
+
+class Sample
+{
+    Sample(String s)
+    {
+        System.out.println(s);
+    }
+    Sample()
+    {
+        System.out.println("Sample默认构造函数被调用");
+    }
+}
+class Test{
+    Sample sam1=new Sample("sam1成员初始化");//
+    static Sample sam=new Sample("静态成员sam初始化 ");//
+    static{
+        System.out.println("static块执行");//
+        if(sam==null)System.out.println("sam is null");
+    }
+    Test()//构造器
+    {
+        System.out.println("Test默认构造函数被调用");//
+    }
+    //主方法
+    public static void  main(String  str[])
+    {
+        Test a=new Test();//无参构造器
+    }
+
+}
+```
+
+<img src="../img/TCH_Han/ch10_20.png" style="zoom:87%;" />
+
 # 4
 
 ## 4.1 单例设计模式
@@ -830,7 +898,7 @@ class B02 extends A02 { //
 
 ## 4.2 单例模式简介
 
-1. 饿汉式
+### 4.2.1 饿汉式
 
 ```java
 package com.hspedu.single_;
@@ -881,7 +949,7 @@ class GirlFriend {
 
 **饿汉式的缺点是有时并没有使用到该实例，却也会创造出该对象即“女朋友”**，可能造成创建了对象却没有使用，浪费资源。（看被注释```public static int n1 = 100;```这一行）
 
-2. 懒汉式
+### 4.2.2 懒汉式
 
 ```java
 package com.hspedu.single_;
@@ -953,16 +1021,24 @@ class Cat {
 
 ## 5.1 ```final```关键字基本介绍
 
-- ```final```可以修饰类、属性、方法和局部变量
+**```final```可以修饰类、属性、方法和局部变量**
 
 出现一下情况就会使用到```final```：
 
-1. 当不希望类**被继承**时，可以用```final```修饰
-2. 当不希望父类的某个方法**被子类覆盖/重写**时，可以用```final```关键字修饰 案例
-3. 当不希望类的某个属性的值被修改时
-4. 当不希望某个局部变量被修改，可以用```final```修饰
+1. 当**不希望类被继承**时
+2. 当**不希望父类的某个方法被子类覆盖/重写**时
+3. 当**不希望类的某个属性的值被修改**时
+4. 当**不希望某个局部变量被修改**时
 
 ````java
+final class A {//1. 类
+    
+    public final couble TAX_RATE = 0.08;//3. 属性
+    
+    public final void hi() {//2. 方法
+     	final double NUM = 0.01;//4. 局变
+    }
+} 
 ````
 
 
@@ -977,40 +1053,74 @@ class Cat {
 
    - 定义时：```public final```
    - 在构造器中
-   - 在代码块中
-
-3. 如果```final```修饰的属性是静态的，则初始化的位置只能是
-
-   - 定义时
-   - 在静态代码块 不能在构造器中赋值
-
-4. ```final```类不能继承，但是可以实例化对象
-
-5. 如果类不是```final```类，但是含有```final```方法，则改方法虽然不能重写，但是可以被继承。
-
-6. 一般来说，如果一个类已经是```final```类，就没有必要将方法修饰成```final```方法
-
-7. ```final```不能修饰构造方法
-
-8. ```final```和```static```往往搭配使用效率更高，不会导致类加载，递增编译器做了优化处理
+   - 在代码块中。
 
    ```java
-   class Demo {
-       public static final int i =16;
-       static {
-           System.out.println("CDUY");
+   class AA {
+       public final double TAX_RATE = 0.08;//1.定义时赋值
+       public final double TAX_RATE2 ;
+       public final double TAX_RATE3 ;
+   
+       public AA() {//构造器中赋值
+           TAX_RATE2 = 1.1;
+       }
+       {//在代码块赋值
+           TAX_RATE3 = 8.8;
        }
    }
    ```
 
-9. 包装类等```Interger、Double、Float、Boolean```等都是```final```，```String```也是```final```类
+3. 如果```final```修饰的属性是静态的，则初始化的位置只能是：
 
+   - 定义时
+   - 在静态代码块 
+   - **不能在构造器中赋值**，因为类加载完后才有可能执行构造器。
 
+   ```java
+   class BB {
+       public static final double TAX_RATE = 99.9;
+       public static final double TAX_RATE2 ;
+   
+       static {
+           TAX_RATE2 = 3.3;
+       }
+   }
+   ```
 
-```java
-```
+4. ```final```类不能继承，但是可以实例化对象。
 
+5. 如果类不是```final```类，但是含有```final```方法，则改方法虽然不能重写，但是可以被继承。
 
+   ```java
+   class DD {
+       public final void cal() {
+           System.out.println("cal()方法");
+       }
+   }
+   class EE extends DD { }
+   
+   //在main方法中
+   new EE().cal();
+   ```
+
+6. 如一个类已是```final```类，就无必要将方法修饰成```final```方法。
+
+7. ```final```不能修饰构造方法（即构造器）
+
+8. ```final```和```static```往往搭配使用效率更高，不会导致类加载，递增编译器做了优化处理，[不会类加载这点可对比下懒汉式](#4.2.2 懒汉式)
+
+   ```java
+   class Demo {
+       public static final int i = 10000;
+       static {
+           System.out.println("Demo 类加载");//单独使用 i 不会类加载 本行无输出
+       }
+   }
+   
+   //main 打印 BBB.num 输出 -> 10000 
+   ```
+
+9. 包装类等```Interger、Double、Float、Boolean```等都是```final```，```String```也是```final```类，**这些类都不能被继承**
 
 
 
