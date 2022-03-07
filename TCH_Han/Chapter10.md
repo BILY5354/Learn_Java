@@ -5,6 +5,7 @@
 - 普通代码块就是构造器的补充，如果构造器无调用，普通代码块也不会被调用
 - [创建对象时类中的调用顺序](#3.2.3 创建一个对象时，在一个类调用顺序是（**重点难点**）) *看第三点写出结果*
 - **类加载时与静态相关的会先执行**
+-  当一个类中存在抽象方法时，需要将该类声明为abstract类
 -  
 1. [类变量和类方法](#1)
 2. [理解```main```方法语法](#2)
@@ -1124,35 +1125,69 @@ final class A {//1. 类
 
 
 
-## 5. ```final```应用实例
+## 5. 3 ```final```课堂练习(1)：写圆面积计算
+
+```java
+package com.java.learn_han.chapter10.final_;
+
+public class FinalExercise01 {
+    public static void main(String[] args) {
+        System.out.println(new Circle(5.0).calArea());
+    }
+}
+
+class Circle {
+    private double radius;
+    private final double PI1 = 3.14;
+    private final double PI2;
+    private final double PI3;
+
+    {
+        PI3 = 3.14;
+    }
+
+    public Circle(double radius) {
+        this.radius = radius;
+        PI2 = 31.4;
+    }
+
+    public double calArea() {
+        return radius * radius * PI1;
+    }
+}
+```
+
+
 
 # 6
 
 ## 6.1 抽象类快速入门
 
- ### 6.1.1 先看一个案例
+当父类的一些方法不能确定时，可以用```abstract```关键字来修饰该方法，这个方法就是抽象方法。**当一个类中存在抽象方法时，需要将该类声明为abstract类**。
 
+```java
+package com.hspedu.abstract_;
 
-
-### 6.1.2 入门
-
-当父类的一些方法不能确定时，可以用```abstract```关键字来修饰该方法，这个方法就是抽象方法，用```abstract```来修饰该类就是抽象类。
-
-例子
-
-
+abstract class Animal {
+    private String name;
+    public Animal(String name) {
+        this.name = name;
+    }
+    public abstract void eat()  ;//将该方法设计为抽象类(没有实现)
+}
+```
 
 
 
 ## 6.2 抽象类介绍
 
-1. 用```abstract```关键字来修饰一个类时，这个嘞就叫抽象类
+1. 用```abstract```关键字来修饰一个类时，这个类就叫抽象类
 
    ```java
-   abstract class Animal {
+   abstract class Animal {//抽象类
        String name;
        int age;
-       abstract public void cry();
+       abstract public void cry();//抽象方法
    }
    ```
 
@@ -1164,27 +1199,46 @@ final class A {//1. 类
 
 ## 6.3 抽象类使用事项和细节讨论
 
-1. 抽象类不能被实例化
-
-2. 抽象类不一定包含```abstract```方法，也就是说，抽象类可以没有```abstract```方法
-
-3. 一旦类包含了```abstract```方法，则这个类必须声明为```abstract```
-
-4. ```abstract```只能修饰类和方法，不能修饰属性和其它的
+1. 抽象类不能被实例化。
 
    ```java
+   //在 main 中
+   new A();//错误
+   
+   abstract class A {}
+   ```
+
+2. 抽象类不一定包含```abstract```方法，可以有具体的实现方法。
+
+3. 一旦类包含了```abstract```方法，则这个类必须声明为```abstract```。
+
+4. ```abstract```只能修饰类和方法，不能修饰属性和其它的。
+
+   ```java
+   class C {
+       public abstract int n1 = 1;//错误
+   }
    ```
 
 5. 抽象类可以有任意成员**抽象类本质还是类**，比如：非抽象方法、构造器、静态属性
 
-6. 抽象方法不能有主题，即不能实现
-
-7. 如果一个类继承了抽象类，则它必须实现抽象类的所有抽象方法，除非它自己也声明为```abstract```类
+6. 抽象方法不能有主体，即不能实现
 
    ```java
+   class A {
+       abstract public hi() {};//错误不能有 {}
+   }
    ```
 
-8. 抽象方法不能使用```private```、```final```、```abstract```、```static```来修饰，因为这些关键字都是和重写相违背的
+7. 如果一个类继承了抽象类，则它必须实现抽象类的所有抽象方法，除非它自己也声明为```abstract```类。
+
+   - 所谓实现就是有```{}```即方法体
+
+8. 抽象方法不能使用```private```、```final```、```static```来修饰，因为这些关键字都是和重写相违背的
+
+   - 如果为私有就没办法重写了
+   - ```final```本意就是不希望子类重写
+   - ```static```与重写相违背
 
 
 
@@ -1200,31 +1254,136 @@ final class A {//1. 类
 
 ## 7.1 接口快速入门
 
+<img src="../img/TCH_Han/ch10_21.png" style="zoom:87%;" />
 
+```java
+
+package com.java.learn_han.chapter10.interface_;
+
+public class Interface01 {
+    public static void main(String[] args) {
+        Camera camera = new Camera();
+        Phone phone = new Phone();
+
+        Computer computer = new Computer();
+        computer.work(camera);//把相机接入电脑
+        System.out.println("===========");
+        computer.work(phone);//把手机接入电脑
+    }
+}
+
+//
+package com.java.learn_han.chapter10.interface_;
+
+public interface UsbInterface {
+
+    //规定接口的相关方法
+    public void start();
+    public void stop();
+}
+
+//
+package com.java.learn_han.chapter10.interface_;
+
+public class Phone implements UsbInterface {
+    @Override
+    public void start() {
+        System.out.println("手机开始工作");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("手机开始工作");
+    }
+}
+
+//
+package com.java.learn_han.chapter10.interface_;
+
+public class Camera implements UsbInterface {
+    @Override
+    public void start() {
+        System.out.println("相机开始工作");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("相机开始工作");
+    }
+}
+
+//
+package com.java.learn_han.chapter10.interface_;
+
+public class Computer {
+
+    public void work (UsbInterface usbInterface) {
+        usbInterface.start();
+        usbInterface.stop();
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch10_22.png" style="zoom:87%;" />
 
 ## 7.2 接口基本介绍
 
-### 7.2.1  讨论
+JDK8后接口可以有静态方法、默认方法，也就是接口中可以有方法的具体实现。
+
+```java
+interface 接口名 {
+	//属性
+	//方法 1. 抽象方法 2. 默认实现方法 3. 静态方法
+}
+
+class 类名 implements 接口 {
+	//自己的属性
+    //自己的方法
+    //必须实现的接口的抽象方法
+}
+```
+
+例子：
+
+```java
+package com.hspedu.interface_;
+
+public interface AInterface {
+    //写属性
+    public int n1 = 10;
+    //写方法
+    //在接口中，抽象方法，可以省略abstract关键字
+    public void hi();
+
+    //在jdk8后，可以有默认实现方法,需要使用default关键字修饰
+    default public void ok() {
+        System.out.println("ok ...");
+    }
+    //在jdk8后, 可以有静态方法
+    public static void cry() {
+        System.out.println("cry ....");
+    }
+}
+
+```
 
 
 
-### 7.2.2 注意事项和细节
+## 7.3 注意事项和细节
+
+
 
 1. 接口不能被实例化
 
-2. 接口中的所有方法时```public```方法，接口中抽象方法，可以不用```abstract```西施
+2. 接口中的所有方法时```public```方法，接口中抽象方法，可以不用```abstract```修饰
 
 3. 一个普通类实现接口，就必须将该接口的所有方法都实现
 
 4. 抽象类实现接口，可以不用实现接口的方法
 
-   ```java
-   
-   ```
-
 5. 一个类同时可以实现多个接口
 
-6. 接口的属性只能是```final```的，而且是```public static final```修饰符，比如：```int a = 1;```实际上是```public static final int a = 1;````**必须初始化**。
+6. 接口的属性只能是```final```的，而且是```public static final```修饰符，比如：```int a = 1;```实际上是```public static final int a = 1;```**必须初始化**。
 
 7. 接口中属性的访问形式：```接口名.属性名```
 
