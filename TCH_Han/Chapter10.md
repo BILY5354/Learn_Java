@@ -105,8 +105,9 @@ class C {
 
 
 
-
 ### 1.2.4 类方法基本介绍
+
+如果希望不创建实例也可以调用某个方法（即当做工具类使用），这时把方法做成静态方法便非常合适。
 
 - 类方法也叫静态方法
 
@@ -811,16 +812,123 @@ class B02 extends A02 { //
 
 ## 4.1 单例设计模式
 
+单例（单个的实例）
 
+1. 所谓类的单例设计模式，就是采取一定的方法保证在整个软件系统中，对某个类只能存在一个对象实例，并且该类只提供一个取得其对象实例的方法。
 
-```
-```
+2. 单例模式有两种方式：
+
+   - 饿汉式
+
+   <img src="../img/TCH_Han/ch10_15.png" style="zoom:87%;" />
+
+   ​	
+
+   - 懒汉式
 
 
 
 ## 4.2 单例模式简介
 
+1. 饿汉式
 
+```java
+package com.hspedu.single_;
+
+public class SingleTon01 {
+    public static void main(String[] args) {
+        //通过方法可以获取对象
+        GirlFriend instance = GirlFriend.getInstance();
+        System.out.println(instance);
+
+        GirlFriend instance2 = GirlFriend.getInstance();
+        System.out.println(instance2);
+
+        System.out.println(instance == instance2);//T 证明是同一个对象
+        
+        
+    }
+}
+
+//只能有一个女朋友
+class GirlFriend {
+
+    private String name; 
+    
+    //public static int n1 = 100; 如果在删除掉现在 main 的代码只添加 System.out.println(GirlFriend.n1); 也会创造出 改对象
+    
+    private static GirlFriend gf = new GirlFriend("小红红");	//2. 当类加载时 “女朋友”便创建好了
+    
+    private GirlFriend(String name) {						//1. 构造器私有化目的是 防止在类外部直接创建
+        System.out.println("構造器被調用.");
+        this.name = name;
+    }
+
+    public static GirlFriend getInstance() {				//3. 加 static 是为了没有创建对象时便可调用改方法
+        return gf;
+    }
+
+    @Override
+    public String toString() {
+        return "GirlFriend{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch10_17.png" style="zoom:87%;" />
+
+**饿汉式的缺点是有时并没有使用到该实例，却也会创造出该对象即“女朋友”**，可能造成创建了对象却没有使用，浪费资源。（看被注释```public static int n1 = 100;```这一行）
+
+2. 懒汉式
+
+```java
+package com.hspedu.single_;
+
+public class SingleTon02 {
+    public static void main(String[] args) {
+      
+        //System.out.println(Cat.n1);
+        Cat instance = Cat.getInstance();
+        System.out.println(instance);
+        //再次調用getInstance
+        Cat instance2 = Cat.getInstance();
+        System.out.println(instance2);
+
+        System.out.println(instance == instance2);//T
+    }
+}
+
+//希望在程序運行過程中，只能創建一個Cat對象
+//使用單例模式
+class Cat {
+    private String name;
+    public static  int n1 = 999;
+    private static Cat cat ; //2. （全局变量默認是null
+
+    private Cat(String name) { //1. 
+        System.out.println("構造器調用...");
+        this.name = name;
+    }
+    public static Cat getInstance() {//3. 
+
+        if(cat == null) {//如果還沒有創建cat對象
+            cat = new Cat("小可愛");
+        }
+        return cat;
+    }
+
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch10_18.png" style="zoom:87%;" />
 
 ## 4.3 单例模式应用实例
 
@@ -829,13 +937,17 @@ class B02 extends A02 { //
 1. 构造器私有化 防止直接```new```
 2. 类的内部创建对象
 3. 向外暴露一个静态的公共方法 ```getInstance```
-4. 代码实现那
+4. 代码实现
 
 
 
 ## 4.4 饿汉式 vs 懒汉式
 
+<img src="../img/TCH_Han/ch10_16.png" style="zoom:87%;" />
 
+1. 单例模式的两种实现方式
+2. 饿汉式的问题：在类加载时就创建，可能存在资源浪费问题
+3. 懒汉式的问题：线程安全问题
 
 # 5
 
