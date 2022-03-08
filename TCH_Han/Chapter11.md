@@ -259,9 +259,100 @@ enum Week   {
 
 <img src="../img/TCH_Han/ch11_5.png" style="zoom:87%;" />
 
+
+
+## 2.3```Override```
+
+<img src="../img/TCH_Han/ch11_6.png" style="zoom:87%;" />
+
+<img src="../img/TCH_Han/ch11_7.png" style="zoom:87%;" />
+
+```java
+package com.hspedu.annotation_;
+
+public class Override_ {
+    public static void main(String[] args) {
+
+    }
+}
+class Father{//父类
+
+    public void fly(){
+        int i = 0;
+        System.out.println("Father fly...");
+    }
+}
+
+class Son extends Father {//子类
+    //老韩解读
+    //1. @Override 注解放在fly方法上，表示子类的fly方法时重写了父类的fly
+    //2. 这里如果没有写 @Override 还是重写了父类fly
+    //3. 如果你写了@Override注解，编译器就会去检查该方法是否真的重写了父类的
+    //   方法，如果的确重写了，则编译通过，如果没有构成重写，则编译错误
+    //4. 看看 @Override的定义
+    //   解读： 如果发现 @interface 表示一个 注解类
+    /*
+        @Target(ElementType.METHOD)
+        @Retention(RetentionPolicy.SOURCE)
+        public @interface Override {
+        }
+     */
+    @Override   //说明
+    public void fly() {
+        System.out.println("Son fly....");
+    }
+    
+}
 ```
+
+
+
+
+## 2.4```Deprecated```
+
+```@Deprecated```: 用于表示某个程序元素(类, 方法等)已过时 
+
+<img src="../img/TCH_Han/ch11_8.png" style="zoom:87%;" />
+
+```java
+package com.hspedu.annotation_;
+
+public class Deprecated_ {
+    public static void main(String[] args) {
+        A a = new A();
+        a.hi();
+        System.out.println(a.n1);
+    }
+}
+
+//老韩解读
+//1. @Deprecated 修饰某个元素, 表示该元素已经过时
+//2. 即不在推荐使用，但是仍然可以使用
+//3. 查看 @Deprecated 注解类的源码
+//4. 可以修饰方法，类，字段, 包, 参数  等等
+//5. @Deprecated 可以做版本升级过渡使用
+/*
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(value={CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, PARAMETER, TYPE})
+public @interface Deprecated {
+}
+ */
+@Deprecated
+class A {
+    @Deprecated
+    public int n1 = 10;
+    @Deprecated
+    public void hi(){
+
+    }
+}
 ```
+
+
+
 # 3
+
 ```
 ```
 # 4
