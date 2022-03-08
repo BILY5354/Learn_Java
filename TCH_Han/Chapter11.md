@@ -261,7 +261,7 @@ enum Week   {
 
 
 
-## 2.3```Override```
+## 2.3```@Override```
 
 <img src="../img/TCH_Han/ch11_6.png" style="zoom:87%;" />
 
@@ -308,7 +308,7 @@ class Son extends Father {//子类
 
 
 
-## 2.4```Deprecated```
+## 2.4```@Deprecated```
 
 ```@Deprecated```: 用于表示某个程序元素(类, 方法等)已过时 
 
@@ -351,10 +351,137 @@ class A {
 
 
 
+## 2.5```@SuppressWarnings```
+
+```@SuppressWarnings```: 抑制编译器警告 
+
+<img src="../img/TCH_Han/ch11_9.png" style="zoom:87%;" />
+
+```java
+package com.hspedu.annotation_;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+@SuppressWarnings({"rawtypes", "unchecked", "unused"})
+public class SuppressWarnings_ {
+
+    //老韩解读
+    //1. 当我们不希望看到这些警告的时候，可以使用 SuppressWarnings注解来抑制警告信息
+    //2. 在{""} 中，可以写入你希望抑制(不显示)警告信息
+    //3. 可以指定的警告类型有
+    //          all，抑制所有警告
+    //          boxing，抑制与封装/拆装作业相关的警告
+    //        //cast，抑制与强制转型作业相关的警告
+    //        //dep-ann，抑制与淘汰注释相关的警告
+    //        //deprecation，抑制与淘汰的相关警告
+    //        //fallthrough，抑制与switch陈述式中遗漏break相关的警告
+    //        //finally，抑制与未传回finally区块相关的警告
+    //        //hiding，抑制与隐藏变数的区域变数相关的警告
+    //        //incomplete-switch，抑制与switch陈述式(enum case)中遗漏项目相关的警告
+    //        //javadoc，抑制与javadoc相关的警告
+    //        //nls，抑制与非nls字串文字相关的警告
+    //        //null，抑制与空值分析相关的警告
+    //        //rawtypes，抑制与使用raw类型相关的警告
+    //        //resource，抑制与使用Closeable类型的资源相关的警告
+    //        //restriction，抑制与使用不建议或禁止参照相关的警告
+    //        //serial，抑制与可序列化的类别遗漏serialVersionUID栏位相关的警告
+    //        //static-access，抑制与静态存取不正确相关的警告
+    //        //static-method，抑制与可能宣告为static的方法相关的警告
+    //        //super，抑制与置换方法相关但不含super呼叫的警告
+    //        //synthetic-access，抑制与内部类别的存取未最佳化相关的警告
+    //        //sync-override，抑制因为置换同步方法而遗漏同步化的警告
+    //        //unchecked，抑制与未检查的作业相关的警告
+    //        //unqualified-field-access，抑制与栏位存取不合格相关的警告
+    //        //unused，抑制与未用的程式码及停用的程式码相关的警告
+    //4. 关于SuppressWarnings 作用范围是和你放置的位置相关
+    //   比如 @SuppressWarnings放置在 main方法，那么抑制警告的范围就是 main
+    //   通常我们可以放置具体的语句, 方法, 类.
+    //5.  看看 @SuppressWarnings 源码
+    //(1) 放置的位置就是 TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE
+    //(2) 该注解类有数组 String[] values() 设置一个数组比如 {"rawtypes", "unchecked", "unused"}
+    /*
+        @Target({TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE})
+            @Retention(RetentionPolicy.SOURCE)
+            public @interface SuppressWarnings {
+
+                String[] value();
+        }
+     */
+    public static void main(String[] args) {
+        List list = new ArrayList();
+        list.add("jack");
+        list.add("tom");
+        list.add("mary");
+        int i;
+        System.out.println(list.get(1));
+
+    }
+
+    public void f1() {
+//        @SuppressWarnings({"rawtypes"})
+        List list = new ArrayList();
+
+
+        list.add("jack");
+        list.add("tom");
+        list.add("mary");
+//        @SuppressWarnings({"unused"})
+        int i;
+        System.out.println(list.get(1));
+    }
+}
+```
+
+
+
 # 3
 
-```
-```
+## 3.1 四种元注解
+
+<img src="../img/TCH_Han/ch11_10.png" style="zoom:87%;" />
+
+
+
+## 3.2```@Retention```
+
+说明
+
+只能用于修饰一个 ```Annotation``` 定义, 用于指定该 ```Annotation ```可以保留多长时间, ```@Rentention``` 包含一个 ```RetentionPolicy ```类型的成员变量, 使用 ```@Rentention``` 时必须为该 ```value ```成员变量指定值: 
+
+```@Retention``` 的三种值：
+
+1. ```RetentionPolicy.SOURCE```: 编译器使用后，直接丢弃这种策略的注释 
+2. ```RetentionPolicy.CLASS```: 编译器将把注解记录在 ```class``` 文件中. 当运行 ```Java``` 程序时, ```JVM``` 不会保留注解。 这是默认值
+3. ```RetentionPolicy.RUNTIME```:编译器将把注解记录在 ```class``` 文件中. 当运行 ```Java``` 程序时, ```JVM``` 会保留注解. 程序可以通过反射获取该注解
+
+<img src="../img/TCH_Han/ch11_11.png" style="zoom:87%;" />
+
+
+
+
+
+## 3.3```@Target``` 
+
+<img src="../img/TCH_Han/ch11_12.png" style="zoom:87%;" />
+
+<img src="../img/TCH_Han/ch11_13.png" style="zoom:87%;" />
+
+
+
+## 3.4```@Documented ```
+
+<img src="../img/TCH_Han/ch11_14.png" style="zoom:87%;" />
+
+<img src="../img/TCH_Han/ch11_15.png" style="zoom:87%;" />
+
+
+
+## 3.5```@Inherited```
+
+<img src="../img/TCH_Han/ch11_16.png" style="zoom:87%;" />
+
 # 4
 ```
 ```
