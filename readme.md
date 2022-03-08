@@ -153,7 +153,6 @@ grep -nri 命名 TCH_Han | cat --number
 - [抽象类最佳实践](./TCH_Han/Chapter10.md#7)  
 - [接口](./TCH_Han/Chapter10.md#8)
 - [内部类](./TCH_Han/Chapter10.md#9)    
-- [作业](./TCH_Han/Chapter10.md#作业)  
 
 #### [第11章 枚举和注解(P425 - P443)](./TCH_Han/Chapter11.md)  
 - [](./TCH_Han/Chapter11.md#1)
