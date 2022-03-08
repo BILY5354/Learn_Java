@@ -1681,7 +1681,7 @@ class Outer02 {//外部类
 3. 改类没有名字
 4. 同时还是一个对象
 
-说明：匿名内部类是定义在外部类的局部位置，比如方法中，**没有类名**
+说明：匿名内部类是定义在外部类的局部位置，比如方法中，**没有类名**，（**接口是不能```new```的！**）
 
 ```java
 new 类或接口(参数列表) {
@@ -1691,7 +1691,274 @@ new 类或接口(参数列表) {
 
 
 
-## 8.6 匿名内部类的最佳实践
+### 8.5.2  基于接口的匿名内部类
+
+1. 需求： 想使用IA接口,并创建对象
+
+2. 传统方式，是写一个类，实现该接口，并创建对象
+
+   - ```java
+     class Outer04 {//外部类
+         private int n1 = 10;
+         public void method() {
+              IA tiger = new Tiger();
+     		tiger.cry();//传统写法
+         }
+     }
+     
+     interface IA {//接口
+         public void cry();
+     }
+     
+     //有类 tiger 实现 IA
+     //类 Dog 同
+     ```
+
+3. 现在需求是 Tiger/Dog 类只是使用一次，后面再不使用
+
+4.  可以使用匿名内部类来简化开发
+
+   - ```java
+     class Outer04 {//外部类
+         private int n1 = 10;
+         public void method() {
+              IA tiger = new IA() {
+              	 @Override
+                  public void cry() {
+                      System.out.println("老虎叫");
+                  }
+              };
+             tiger.cry();
+         }
+     }
+     ```
+
+5.  tiger的编译类型 ? IA
+
+6.  tiger的运行类型 ? **就是匿名内部类**  Outer04$1
+
+   - ```java
+     class Outer04$1 implements IA {
+         @Override
+         public void cry() {
+             System.out.println("老虎叫唤...");
+         }
+     }
+     ```
+
+   - 如何知道该匿名内部类的名字为 Outer04$1 ，其中Outer04是外部类名称
+
+     ```java
+     System.out.println("tiger的运行类型=" + tiger.getClass());
+     ```
+
+7. ```jdk```底层在创建匿名内部类 Outer04$1,立即马上就创建了 Outer04$1实例，并且把地址返回给 tiger
+
+8. 匿名内部类使用一次，就不能再使用
+
+   ```java
+   tiger.cry();//tiger是对象可以多次使用的
+   tiger.cry();
+   
+   //Outer04$1只能使用一次
+   ```
+
+
+
+### 8.5.3 基于类的匿名内部类
+
+```java
+class Outer04 { //外部类
+    private int n1 = 10;//属性
+    public void method() {//方法
+        
+    	Father father = new Father("jack") {};//如果不加上 {} 只是一个对象而已
+    }
+}
+
+class Father {//类
+    public Father(String name) {//构造器
+        System.out.println("接收到name=" + name);
+    }
+    public void test() {//方法
+    }
+}
+```
+
+1. father编译类型 Father
+
+2. father运行类型 Outer04$2
+
+3. 底层会创建匿名内部类
+
+   ```java
+   System.out.println("father对象的运行类型=" + father.getClass());//Outer04$2  
+   
+   class Outer04$2 extends Father{//相当于重写了一个 father 所以运行类型是Outer04$2  
+   }
+   ```
+
+   ```java
+   //如果这样 可用 father.test();检查
+    Father father = new Father("jack"){
+        @Override
+        public void test() {
+            System.out.println("匿名内部类重写了test方法");
+        }
+    };
+   
+   //底层就相当于
+   class Outer04$2 extends Father{
+       @Override
+       public void test() {
+           System.out.println("匿名内部类重写了test方法");
+       }
+   }
+   ```
+
+4. 同时也直接返回了 匿名内部类 Outer04$2的对象
+
+5.  注意```jack```参数列表会传递给 构造器
+
+6. 但是，如果时抽象类，则必须实现方法
+
+   - ```java
+     class Outer04 { 
+         private int n1 = 10;
+         public void method() {
+             //基于抽象类的匿名内部类
+             Animal animal = new Animal(){
+                 @Override
+                 void eat() {//必须实现
+                     System.out.println("小狗吃骨头...");
+                 }
+             };
+             animal.eat();
+         }
+     }
+     
+     abstract class Animal { //抽象类
+         abstract void eat();
+     }
+     ```
+
+
+
+### 8.5.4 匿名内部类的细节
+
+<img src="../img/TCH_Han/ch10_27.png" style="zoom:87%;" />
+
+- ```java
+  class Outer05 {
+      private int n1 = 99;
+      public void f1() {
+          Person p = new Person(){//4. 不能添加访问修饰符,因为它的地位就是一个局部变量
+          @Override
+          public void hi() {
+              System.out.println(“匿名内部类重写了hi方法”);
+          }
+      };
+      //方式1
+      p.hi();//动态绑定, 运行类型是 Outer05$1
+          
+      //方式2   创建都省了，直接调用
+      new Person(){
+          private int n1 = 88;
+          @Override
+          public void hi() {
+              System.out.println(“匿名内部类重写了hi方法”);
+          }
+      }.hi();
+  }
+  
+  class Person {//类
+      public void hi() {
+          System.out.println("Person hi()");
+      }
+  }
+  ```
+
+  <img src="../img/TCH_Han/ch10_28.png" style="zoom:87%;" />
+
+  <img src="../img/TCH_Han/ch10_29.png" style="zoom:87%;" />
+
+  ```java
+  class Outer05 {
+      private int n1 = 99;
+      public void f1() {
+          Person p = new Person(){//4. 不能添加访问修饰符,因为它的地位就是一个局部变量
+               private int n1 = 88;
+  			System.out.println("inner n1" + n1 + "outer n1" + Outer05.this.n1);//88 99
+      };
+  }
+  ```
+
+  
+
+### 8.5.5 匿名内部类最佳实践
+
+- 当做实参直接传递
+
+  ```java
+  package com.hspedu.innerclass;
+  
+  import com.hspedu.abstract_.AA;
+  
+  public class InnerClassExercise01 {
+      public static void main(String[] args) {
+  
+          //当做实参直接传递，简洁高效
+          f1(new IL() {
+              @Override
+              public void show() {
+                  System.out.println("这是一副名画~~...");
+              }
+          }); 
+      }
+      //静态方法,形参是接口类型
+      public static void f1(IL il) {
+          il.show();
+      }
+  }
+  //接口
+  interface IL {
+      void show();
+  }
+  ```
+
+  传统写法->硬编码，因为要写一个类，如果多次用才推荐
+
+  ```java
+  package com.hspedu.innerclass;
+  
+  import com.hspedu.abstract_.AA;
+  
+  public class InnerClassExercise01 {
+      public static void main(String[] args) {
+          //传统方法
+          f1(new Picture());
+      }
+  
+      //静态方法,形参是接口类型
+      public static void f1(IL il) {
+          il.show();
+      }
+  }
+  //接口
+  interface IL {
+      void show();
+  }
+  //类->实现IL => 编程领域 (硬编码)
+  class Picture implements IL {
+  
+      @Override
+      public void show() {
+          System.out.println("这是一副名画XX...");
+      }
+  }
+  ```
+
+  
 
 
 
