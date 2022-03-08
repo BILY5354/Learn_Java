@@ -2005,6 +2005,10 @@ class Father {//类
 
 <img src="../img/TCH_Han/ch10_31.png" style="zoom:87%;" />
 
+<img src="../img/TCH_Han/ch10_32.png" style="zoom:87%;" />
+
+<img src="../img/TCH_Han/ch10_33.png" style="zoom:87%;" />
+
 ```java
 package com.hspedu.innerclass;
 
@@ -2013,12 +2017,13 @@ public class MemberInnerClass01 {
         Outer08 outer08 = new Outer08();
         outer08.t1();
 
-        //外部其他类，使用成员内部类的三种方式
+        //外部其他类，使用成员内部类的两种方式
         //老韩解读
         // 第一种方式
         // outer08.new Inner08(); 相当于把 new Inner08()当做是outer08成员
         // 这就是一个语法，不要特别的纠结.
         Outer08.Inner08 inner08 = outer08.new Inner08();
+        //也可以合在一起写 Outer08 outer08 = new outer08.new Inner08();
         inner08.say();
         // 第二方式 在外部类中，编写一个方法，可以返回 Inner08对象
         Outer08.Inner08 inner08Instance = outer08.getInner08Instance();
@@ -2068,7 +2073,7 @@ class Outer08 { //外部类
 
 
 
-## 8.9 静态内部类的使用
+## 8.9 静态内部类的使用 
 
 说明静态内部类时定义在外部类的成员位置，并且有```static```修饰
 
