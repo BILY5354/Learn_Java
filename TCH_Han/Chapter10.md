@@ -2147,7 +2147,28 @@ class Outer10 { //外部类
 
 
 
-## 8.10 课堂练习(2)：匿名内部类
+## 8.10 课堂练习(1)：内部类
+
+```java
+public class Test {//外部类 
+    public Test() {//构造器 
+        Inner s1 = new Inner(); 
+        s1.a = 10; Inner s2 = new Inner(); 
+        System.out.println(s2.a); 
+    }
+    class Inner { //内部类，成员内部类 
+        public int a = 5; 
+    }
+    
+    public static void main(String[] args) { 
+        Test t = new Test(); 
+        Inner r = t.new Inner(); 
+        System.out.println(r.a); 
+    } 
+}
+```
+
+<img src="../img/TCH_Han/ch10_34.png" style="zoom:87%;" />
 
 # 作业
 

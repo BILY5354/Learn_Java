@@ -148,7 +148,7 @@ grep -nri 命名 TCH_Han | cat --number
 - [理解```main```方法语法](./TCH_Han/Chapter10.md#2)
 - [代码块](./TCH_Han/Chapter10.md#3)
 - [单例设计模式](./TCH_Han/Chapter10.md#4)  
-- [][][```final```关键字](./TCH_Han/Chapter10.md#5)  
+- [```final```关键字](./TCH_Han/Chapter10.md#5)  
 - [抽象类](./TCH_Han/Chapter10.md#6)  
 - [抽象类最佳实践](./TCH_Han/Chapter10.md#7)  
 - [接口](./TCH_Han/Chapter10.md#8)
