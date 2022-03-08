@@ -6,7 +6,7 @@
 - [创建对象时类中的调用顺序](#3.2.3 创建一个对象时，在一个类调用顺序是（**重点难点**）) *看第三点写出结果*
 - **类加载时与静态相关的会先执行**
 -  当一个类中存在抽象方法时，需要将该类声明为abstract类
--  
+-  [做下练习熟悉下匿名内部类](#8.5.5 匿名内部类最佳实践)
 1. [类变量和类方法](#1)
 2. [理解```main```方法语法](#2)
 3. [代码块](#3)
@@ -2083,12 +2083,69 @@ class Outer08 { //外部类
 4. 静态内部类----访问-----> 外部类（）
 5. 外部类----访问---->静态内部类
 6. 外部其它类----访问----->静态内部类
-7. 如果外部类和静态内部类的成员重名时，静态内部类访问的时，默认遵循就
-7. 近原则，如果想访问外部类的成员，则可以使用
+7. 如果外部类和静态内部类的成员重名时，静态内部类访问的时，默认遵循就近原则，如果想访问外部类的成员，则可以使用
+
+```java
+package com.hspedu.innerclass;
+
+public class StaticInnerClass01 {
+    public static void main(String[] args) {
+        Outer10 outer10 = new Outer10();
+        outer10.m1();
+
+        //外部其他类 使用静态内部类
+        //方式1
+        //因为静态内部类，是可以通过类名直接访问(前提是满足访问权限)
+        Outer10.Inner10 inner10 = new Outer10.Inner10();
+        inner10.say();
+        //方式2
+        //编写一个方法，可以返回静态内部类的对象实例.
+        Outer10.Inner10 inner101 = outer10.getInner10();
+        System.out.println("============");
+        inner101.say();
+
+        Outer10.Inner10 inner10_ = Outer10.getInner10_();
+        System.out.println("************");
+        inner10_.say();
+    }
+}
+
+class Outer10 { //外部类
+    private int n1 = 10;
+    private static String name = "张三";
+    private static void cry() {}
+    //Inner10就是静态内部类
+    //1. 放在外部类的成员位置
+    //2. 使用static 修饰
+    //3. 可以直接访问外部类的所有静态成员，包含私有的，但不能直接访问非静态成员
+    //4. 可以添加任意访问修饰符(public、protected 、默认、private),因为它的地位就是一个成员
+    //5. 作用域 ：同其他的成员，为整个类体
+    static class Inner10 {
+        private static String name = "韩顺平教育";
+        public void say() {
+            //如果外部类和静态内部类的成员重名时，静态内部类访问的时，
+            //默认遵循就近原则，如果想访问外部类的成员，则可以使用 （外部类名.成员）
+            System.out.println(name + " 外部类name= " + Outer10.name);
+            cry();
+        }
+    }
+
+    public void m1() { //外部类---访问------>静态内部类 访问方式：创建对象，再访问
+        Inner10 inner10 = new Inner10();
+        inner10.say();
+    }
+
+    public Inner10 getInner10() {
+        return new Inner10();
+    }
+
+    public static Inner10 getInner10_() {
+        return new Inner10();
+    }
+}
+```
 
 
-
-## 8.10 课堂练习(2)：匿名内部类
 
 # 作业
 
