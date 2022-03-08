@@ -25,52 +25,239 @@
 
 <img src="../img/TCH_Han/ch11_1.png" style="zoom:87%;" />
 
-### 1.1.3 自定义实现枚举小结
+## 1.2  自定义实现枚举小结
 
 1. 构造器私有化
 2. 本类内部创建一组对象
 3. 对外暴露对象（通过为对象添加 public final static 修饰符）
 4. 可以提供```get```方法，但是不提供```set```
 
-### 1.1.4枚举快速入门
+```java
+package com.java.learn_han.chapter11.enum_;
+
+public class Enumeration02 {
+    public static void main(String[] args) {
+        System.out.println(Season.SPRING);
+    }
+}
+
+//演示自定义美剧
+class Season {
+    private String name;
+    private String desc;
+
+    //定义了四个对象, 固定.
+    public static final Season SPRING = new Season("春天", "温暖");
+    public static final Season WINTER = new Season("冬天", "寒冷");
+    public static final Season AUTUMN = new Season("秋天", "凉爽");
+    public static final Season SUMMER = new Season("夏天", "炎热");
+
+    //1. 将构造器私有化,目的防止 直接 new
+    //2. 去掉setXxx方法, 防止属性被修改
+    //3. 在Season 内部，直接创建固定的对象
+    //4. 优化，可以加入 final 修饰符
+    private Season(String name, String desc) {
+        this.name = name;
+        this.desc = desc;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    @Override
+    public String toString() {
+        return "Season{" +
+                "name='" + name + '\'' +
+                ", desc='" + desc + '\'' +
+                '}';
+    }
+}
+```
 
 
 
-## 1.2枚举注意事项
+## 1.3 使用```enum```关键字实现枚举
 
-1. 当我们使用 enum 关键字开发一个枚举类时，默认会继承 Enum 类, 而且是一个 final 类[如何证明],老师使用 javap 工 具来演示 
-2. 传统的 public static final Season2 SPRING = new Season2("春天", "温暖"); 简化成 SPRING("春天", "温暖")， 这里必 须知道，它调用的是哪个构造器. 
+```java
+package com.hspedu.enum_;
+
+public class Enumeration03 {
+    public static void main(String[] args) {
+        System.out.println(Season2.AUTUMN);
+        System.out.println(Season2.SUMMER);
+    }
+}
+//演示使用enum关键字来实现枚举类
+enum  Season2 {//类
+
+    //如果使用了enum 来实现枚举类
+    //1. 使用关键字 enum 替代 class
+    //2. public static final Season SPRING = new Season("春天", "温暖") 直接使用
+    //   SPRING("春天", "温暖") 解读 常量名(实参列表)
+    //3. 如果有多个常量(对象)， 使用 ,号间隔即可
+    //4. 如果使用enum 来实现枚举，要求将定义常量对象，写在前面
+    //5. 如果我们使用的是无参构造器，创建常量对象，则可以省略 () 则下面What() 等价于 What
+    SPRING("春天", "温暖"), WINTER("冬天", "寒冷"), AUTUMN("秋天", "凉爽"),
+    SUMMER("夏天", "炎热")/*, What()*/;
+
+    private String name;
+    private String desc;//描述
+
+    private Season2() {//无参构造器
+
+    }
+
+    private Season2(String name, String desc) {
+        this.name = name;
+        this.desc = desc;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    @Override
+    public String toString() {
+        return "Season{" +
+                "name='" + name + '\'' +
+                ", desc='" + desc + '\'' +
+                '}';
+    }
+}
+```
+
+
+
+## 1.4枚举注意事项
+
+1. 当我们使用 ```enum```关键字开发一个枚举类时，默认会继承 ```Enum```类, 而且是一个 ```final``` 类[如何证明],老师使用 ```javap``` 工 具来演示 
+   - <img src="../img/TCH_Han/ch11_2.png" style="zoom:87%;" />
+2. 传统的 ```public static final Season2 SPRING = new Season2("春天", "温暖");``` 简化成 ```SPRING("春天", "温暖")，```这里必 须知道，它调用的是哪个构造器. 
 3. 如果使用无参构造器 创建 枚举对象，则实参列表和小括号都可以省略 
 4. 当有多个枚举对象时，使用,间隔，最后有一个分号结尾 
 5. 枚举对象必须放在枚举类的行首.
 
 
 
-## 1.3课堂练习(1):
+## 1.3课堂练习(1)：看代码判断结果
+
+```java
+enum Gender {
+    BOY,GIRL;//调用 Gender 的无参构造器
+}
+```
+
+上面的语法是正确的，但是，如果添加了构造器，便会覆盖无参构造，此时不显示定义无参数构造的话便是错误的。
 
 
 
 ## 1.4枚举常用方法说明及应用实例
 
-1. toString:Enum 类已经重写过了，返回的是当前对象 名,子类可以重写该方法，用于返回对象的属性信息 
-2.  name：返回当前对象名（常量名），子类中不能重写 
-3. ordinal：返回当前对象的位置号，默认从 0 开始 
-4.  values：返回当前枚举类中所有的常量 
-5. valueOf：将字符串转换成枚举对象，要求字符串必须 为已有的常量名，否则报异常
-6. compareTo：比较两个枚举常量，比较的就是编号！ 
-7. 代码 
+<img src="../img/TCH_Han/ch11_3.png" style="zoom:87%;" />
 
-```    
+1. ```toString:Enum``` 类已经重写过了，返回的是当前对象 名,子类可以重写该方法，用于返回对象的属性信息 
+
+2. ```name```：返回当前对象名（常量名），子类中不能重写 
+
+3. ```ordinal```：返回当前对象的位置号，默认从 0 开始 
+
+4. ```values```：返回当前枚举类中所有的常量 
+
+   - ```java
+     Season2[] values = Season2.values();
+     System.out.println("===遍历取出枚举对象(增强for)====");
+     for (Season2 season: values) {//增强for循环
+         System.out.println(season);
+     }
+     ```
+
+5. ```valueOf```：将字符串转换成枚举对象，要求字符串必须 为已有的常量名，否则报异常
+
+6. ```compareTo```：比较两个枚举常量，**比较的是编号**。
+
+   - ```java
+     //1. 就是把 Season2.AUTUMN 枚举对象的编号 和 Season2.SUMMER枚举对象的编号比较
+     //2. 看看结果
+     /*
+     public final int compareTo(E o) {
+     
+         return self.ordinal - other.ordinal;
+     }
+     Season2.AUTUMN的编号[2] - Season2.SUMMER的编号[3]
+      */
+     System.out.println(Season2.AUTUMN.compareTo(Season2.SUMMER));
+     ```
+
+
+
+## 1.5 课堂练习(2)：实现星期并输出
+
+```java
+package com.hspedu.enum_;
+
+public class EnumExercise02 {
+    public static void main(String[] args) {
+        //获取到所有的枚举对象， 即数组
+        Week[] weeks = Week.values();
+        //遍历，使用增强for
+        System.out.println("===所有星期的信息如下===");
+        for (Week week : weeks) {
+            System.out.println(week);
+        }
+    }
+}
+
+/*
+声明Week枚举类，其中包含星期一至星期日的定义；
+MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
+使用values 返回所有的枚举数组, 并遍历 , 输出左图效果
+
+ */
+enum Week   {
+    //定义Week的枚举对象
+    MONDAY("星期一"), TUESDAY("星期二"), WEDNESDAY("星期三"), THURSDAY("星期四"),
+    FRIDAY("星期五"), SATURDAY("星期六"), SUNDAY("星期日");
+    private String name;
+
+    private Week(String name) {//构造器
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+}
 ```
 
 
-## 1.5```enum```实现接口
 
-1. 使用 enum 关键字后，就不能再继承其它类了，因为 enum 会隐式继承 Enum，而 Java 是单继承机制。 
+
+## 1.6```enum```实现接口
+
+1. 使用 ```enum``` 关键字后，就不能再继承其它类了，因为 ```enum``` 会隐式继承 ```Enum```，而 ```Java``` 是单继承机制。 
 2. 枚举类和普通类一样，可以实现接口，如下形式。 ```enum 类名 implements 接口 1，接口 2{} ```
-3. 代码 
 
 # 2
+
+## 2.1注解的理解
+
+<img src="../img/TCH_Han/ch11_4.png" style="zoom:87%;" />
+
+
+
+ ## 2.2注解的介绍
+
+<img src="../img/TCH_Han/ch11_5.png" style="zoom:87%;" />
 
 ```
 ```
