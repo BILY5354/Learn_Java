@@ -168,7 +168,13 @@ grep -nri 命名 TCH_Han | cat --number
 - [](./TCH_Han/Chapter12.md#4)  
 - [作业](./TCH_Han/Chapter12.md#作业)  
 
-#### 第13章 常用类(P460 - P498)
+#### [第13章 常用类(P460 - P498)](./TCH_Han/Chapter13.md)  
+- [](./TCH_Han/Chapter13.md#1)
+- [](./TCH_Han/Chapter13.md#2)
+- [](./TCH_Han/Chapter13.md#3)
+- [](./TCH_Han/Chapter13.md#4)  
+- [作业](./TCH_Han/Chapter13.md#作业)  
+
 #### 第14章 集合(P499 - P553)
 #### 第15章 泛型(P554 - P568)
 #### 第16章 坦克大战1(P569 - P579)
