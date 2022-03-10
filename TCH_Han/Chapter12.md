@@ -1,6 +1,6 @@
 # [异常](./TCH_Han/Chapter12.md)  
 # 值得注意的概念
-- 
+- 分别捕获异常时，要求子类异常写在前面，父类异常写在后面。
 - 
 - 
 -  
@@ -142,27 +142,17 @@ public class Exception01 {
 
 <img src="../img/TCH_Han/ch12_3.png" style="zoom:87%;" />
 
-### 1.4.3案例
 
 
+## 1.5异常处理
 
-
-
-## 1.5课堂练习
-
-
-
-
-
-## 1.6异常处理
-
-### 1.6.1异常处理基本介绍
+### 1.5.1异常处理基本介绍
 
 **异常处理就是当异常发生时，对异常处理的方式。**
 
 
 
-### 1.6.2异常处理方式
+### 1.5.2异常处理方式
 
 1. ```try-catch-finally```,快捷键 ctrl + alt + t -> 选中 try-catch
    - 程序员在代码中捕获发生的异常，自行处理。
@@ -171,7 +161,9 @@ public class Exception01 {
 
 
 
-### 1.6.3示意图
+### 1.5.3示意图
+
+**如果程序员没有显示处理异常，默认使用```throws```**。
 
 <img src="../img/TCH_Han/ch12_4.png" style="zoom:87%;" />
 
@@ -187,13 +179,88 @@ public class Exception01 {
 
 ### 2.1.1```try-catch```快速入门
 
+```java
+
+```
+
 
 
 ### 2.1.2```try-catch```使用的注意事项
 
+```java
+package com.hspedu.try_;
+
+public class TryCatchDetail {
+    public static void main(String[] args) {
+
+        //ctrl + atl + t
+        //老韩解读
+        //1. 如果异常发生了，则异常发生后面的代码不会执行，直接进入到catch块
+        //2. 如果异常没有发生，则顺序执行try的代码块，不会进入到catch
+        //3. 如果希望不管是否发生异常，都执行某段代码(比如关闭连接，释放资源等)则使用如下代码- finally
+        try {
+            String str = "韩顺平";
+            int a = Integer.parseInt(str);
+            System.out.println("数字：" + a);
+        } catch (NumberFormatException e) {
+            System.out.println("异常信息=" + e.getMessage());
+        } finally {
+            System.out.println("finally代码块被执行...");
+        }
+
+        System.out.println("程序继续...");
+    }
+}
+```
+
 <img src="../img/TCH_Han/ch12_7.png" style="zoom:87%;" />
 
+
+
+**分别捕获异常时，要求子类异常写在前面，父类异常写在后面。**
+
+```java
+package com.hspedu.try_;
+
+public class TryCatchDetail02 {
+    public static void main(String[] args) {
+
+        //老韩解读
+        //1.如果try代码块有可能有多个异常
+        //2.可以使用多个catch 分别捕获不同的异常，相应处理
+        //3.要求子类异常写在前面，父类异常写在后面
+        try {
+            Person person = new Person();
+            //person = null;
+            System.out.println(person.getName());//NullPointerException
+            int n1 = 10;
+            int n2 = 0;
+            int res = n1 / n2;//ArithmeticException
+        } catch (NullPointerException e) {
+            System.out.println("空指针异常=" + e.getMessage());
+        } catch (ArithmeticException e) {
+            System.out.println("算术异常=" + e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+        }
+    }
+}
+
+class Person {
+    private String name = "jack";
+
+    public String getName() {
+        return name;
+    }
+}
+```
+
 <img src="../img/TCH_Han/ch12_8.png" style="zoom:87%;" />
+
+
+
+
 
 <img src="../img/TCH_Han/ch12_9.png" style="zoom:87%;" />
 
