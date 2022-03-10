@@ -403,15 +403,52 @@ public class Exception01 {
 
 ## 3.2快速入门
 
+```java
+package com.hspedu.throws_;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+public class Throws01 {
+    public static void main(String[] args) {
+
+    }
+
+    public void f2() throws FileNotFoundException,NullPointerException,ArithmeticException {
+        //创建了一个文件流对象
+        //老韩解读:
+        //1. 这里的异常是一个FileNotFoundException 编译异常
+        //2. 使用前面讲过的 try-catch-finally
+        //3. 使用throws ,抛出异常, 让调用f2方法的调用者(方法)处理
+        //4. throws后面的异常类型可以是方法中产生的异常类型，也可以是它的父类
+        //5. throws 关键字后也可以是 异常列表, 即可以抛出多个异常
+        FileInputStream fis = new FileInputStream("d://aa.txt");
+
+    }
+}
+```
+
 
 
 ## 3.3注意事项与细节
 
+默认是throws处理的是运行时异常。
+
 <img src="../img/TCH_Han/ch12_11.png" style="zoom:87%;" />
 
+3. 子类抛出异常不是父类异常的子类便会报错，就像父类是public但子类是private这样，缩小范围是错误的。
+
+<img src="../img/TCH_Han/ch12_18.png" style="zoom:87%;" />
 
 
 
+5. **在编译异常中**，如果子类抛出了异常，父类调用这个方法时必须有所处理，不然报错。
+
+<img src="../img/TCH_Han/ch12_19.png" style="zoom:87%;" />
+
+所以运行异常在编译前是没有错误显示的：
+
+<img src="../img/TCH_Han/ch12_20.png" style="zoom:87%;" />
 
 ## 3.4自定义异常
 
