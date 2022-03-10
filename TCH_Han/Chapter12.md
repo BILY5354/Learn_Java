@@ -42,9 +42,13 @@ public class Exception01 {
 
 <img src="../img/TCH_Han/ch12_2.png" style="zoom:87%;" />
 
+
+
+### 1.1.3异常体系图（**重点**）
+
 <img src="../img/TCH_Han/ch12_1.png" style="zoom:87%;" />
 
-
+<img src="../img/TCH_Han/ch12_14.png" style="zoom:87%;" />
 
 
 
@@ -60,10 +64,69 @@ public class Exception01 {
 ## 1.3常见的运行异常
 
 1. ```NullPointerException``` 空指针异常 
+
+   - ```java
+     package com.hspedu.exception_;
+     
+     public class NullPointerException_ {
+         public static void main(String[] args) {
+     
+             String name = null;
+             System.out.println(name.length());
+         }
+     }
+     ```
+
 2. ```ArithmeticException```数学运算异常 
+
+   - 一开始除0的例子
+
 3. ```ArrayIndexOutOfBoundsException ```数组下标越界异常 
-4.  ```ClassCastException``` 类型转换异常 
+
+   - ```java
+     package com.hspedu.exception_;
+     
+     public class ArrayIndexOutOfBoundsException_ {
+         public static void main(String[] args) {
+             int[] arr = {1,2,4};
+             for (int i = 0; i <= arr.length; i++) {//越界了，没有3
+                 System.out.println(arr[i]);
+             }
+         }
+     }
+     ```
+
+4. ```ClassCastException``` 类型转换异常 
+
+   - ```java
+     package com.hspedu.exception_;
+     
+     public class ClassCastException_ {
+         public static void main(String[] args) {
+             A b = new B(); //向上转型
+             B b2 = (B)b;//向下转型，这里是OK
+             C c2 = (C)b;//这里抛出ClassCastException 因为 C 与 B 没有任何关系
+         }
+     }
+     class A {}
+     class B extends A {}
+     class C extends A {}
+     ```
+
 5. ```NumberFormatException``` 数字格式不正确异常[]
+
+   - ```java
+     package com.hspedu.exception_;
+     
+     public class NumberFormatException_ {
+         public static void main(String[] args) {
+             String name = "韩顺平教育";
+             //将String 转成 int
+             int num = Integer.parseInt(name);//抛出NumberFormatException
+             System.out.println(num);//1234
+         }
+     }
+     ```
 
 
 

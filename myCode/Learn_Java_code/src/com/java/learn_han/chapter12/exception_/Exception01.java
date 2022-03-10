@@ -8,6 +8,7 @@ public class Exception01 {
 
     public static void main(String[] args) {
 
+        Throwable
         try {
             int res = 10/0;
         } catch (Exception e) {
