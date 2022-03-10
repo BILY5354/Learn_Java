@@ -13,6 +13,33 @@
 
 ## 1.1异常介绍
 
+### 1.1.1快速入门
+
+```java
+package com.hspedu.exception_;
+
+public class Exception01 {
+    public static void main(String[] args)  {
+        int num1 = 10;
+        int num2 = 0;//Scanner();
+        try {
+            int res = num1 / num2;
+        } catch (Exception e) {
+            //e.printStackTrace();
+            System.out.println("出现异常的原因=" + e.getMessage());//输出异常信息
+        }
+
+        System.out.println("程序继续运行....");
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch12_13.png" style="zoom:87%;" />
+
+
+
+### 1.1.2基本介绍
+
 <img src="../img/TCH_Han/ch12_2.png" style="zoom:87%;" />
 
 <img src="../img/TCH_Han/ch12_1.png" style="zoom:87%;" />
@@ -76,7 +103,7 @@
 
 ### 1.6.2异常处理方式
 
-1. ```try-catch-finally```
+1. ```try-catch-finally```,快捷键 ctrl + alt + t -> 选中 try-catch
    - 程序员在代码中捕获发生的异常，自行处理。
 2. ```throws```
    - 将发生的异常抛出，交给调用者（方法处理），最顶级的处理这就是```JVM```。
