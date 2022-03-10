@@ -1,5 +1,6 @@
 # [异常](./TCH_Han/Chapter12.md)  
 # 值得注意的概念
+- 快捷键 ctrl + alt + t  快速构建捕获代码
 - 分别捕获异常时，要求子类异常写在前面，父类异常写在后面。
 - 
 - 
@@ -187,6 +188,8 @@ public class Exception01 {
 
 ### 2.1.2```try-catch```使用的注意事项
 
+<img src="../img/TCH_Han/ch12_7.png" style="zoom:87%;" />
+
 ```java
 package com.hspedu.try_;
 
@@ -213,9 +216,9 @@ public class TryCatchDetail {
 }
 ```
 
-<img src="../img/TCH_Han/ch12_7.png" style="zoom:87%;" />
 
 
+<img src="../img/TCH_Han/ch12_8.png" style="zoom:87%;" />
 
 **分别捕获异常时，要求子类异常写在前面，父类异常写在后面。**
 
@@ -256,9 +259,11 @@ class Person {
 }
 ```
 
-<img src="../img/TCH_Han/ch12_8.png" style="zoom:87%;" />
 
 
+<img src="../img/TCH_Han/ch12_9.png" style="zoom:87%;" />
+
+想想结果是什么？
 
 ```java
 package com.hspedu.try_;
@@ -280,14 +285,79 @@ public class TryCatchDetail03 {
         }
         System.out.println("程序继续执行..");
     }
+} 
+```
+
+<img src="../img/TCH_Han/ch12_15.png" style="zoom:87%;" />
+
+
+
+## 2.2课堂练习(1)：写出结果
+
+```java
+class Exception01 {
+    public static int method() {
+        try {
+            String[] names = new String[3];//String[]数组
+            if (names[1].equals("tom")) {//NullPointerException
+                System.out.println(names[1]);
+            } else {
+                names[3] = "hspedu";
+            }
+            return 1;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return 2;
+        } catch (NullPointerException e) {//捕获
+            return 3;
+        } finally { //必须执行
+            return 4; 
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(method()); 
+    }
 }
 ```
 
-<img src="../img/TCH_Han/ch12_9.png" style="zoom:87%;" />
+该题目一开始会只能到return 3这里，但是返回的确实4，因为有finally
 
 
 
-## 2.2课堂练习(1)：异常处理
+## 2.4课堂练习(2)：看出结果
+
+```java
+class ExceptionExe01 {
+    public static int method() {
+        int i = 1;//i = 1
+        try {
+            i++;// i=2
+            String[] names = new String[3];
+            if (names[1].equals("tom")) { //空指针
+                System.out.println(names[1]);
+            } else {
+                names[3] = "hspedu";
+            }
+            return 1;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return 2;
+        } catch (NullPointerException e) {
+            return ++i;  
+        } finally {
+            ++i; //i = 4
+            System.out.println("i=" + i);// i = 4
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(method());// 3
+    }
+}
+```
+
+在捕获异常中，有return，可是在finally中没有返回。此时3会被系统保存到一个temp变量，执行完finally后返回，**返回的值仍是3**。
+
+<img src="../img/TCH_Han/ch12_16.png" style="zoom:87%;" />
 
 
 
