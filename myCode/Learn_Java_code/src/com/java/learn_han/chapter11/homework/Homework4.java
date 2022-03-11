@@ -6,7 +6,7 @@ package com.java.learn_han.chapter11.homework;
  */
 public class Homework4 {
     public static void main(String[] args) {
-
+        String a;
     }
 }
 

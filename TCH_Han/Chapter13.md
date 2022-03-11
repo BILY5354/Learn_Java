@@ -266,7 +266,7 @@ System.out.println(i13 == i14);
 
 
 
-## 2.3课堂练习()
+## 2.3课堂练习
 
 ### 2.3.1练习1
 
@@ -281,7 +281,21 @@ public class StringExercise01 {
 }
 ```
 
+- equals在String中有重写方法，是一个一个字符来比较
+- ==是比地址，然而它们的地址是相同的，只要在常量池中存在abc，再创建一个字符时便会指向该地址,**不要与new弄混了**，如果是new“abc”，那么也是不同的。
 
+
+
+### 2.3.1练习2
+
+```java
+String a = "hsp";
+String b = new String("hsp");
+System.out.println(a.equals(b));
+System.out.println(a==b);
+System.out.println(a==b.intern());
+System.out.println(b==b.intern());
+```
 
 
 
