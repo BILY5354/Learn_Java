@@ -19,6 +19,14 @@
 
 <img src="../img/TCH_Han/ch13_1.png" style="zoom:87%;" />
 
+下面三张图是类的继承关系图。
+
+<img src="../img/TCH_Han/ch13_10.png" style="zoom:87%;" />
+
+<img src="../img/TCH_Han/ch13_11.png" style="zoom:87%;" />
+
+<img src="../img/TCH_Han/ch13_12.png" style="zoom:87%;" />
+
 
 
 ## 1.2包装类和基本数据的转换
@@ -28,27 +36,116 @@
 3. 自动装箱底层调用的是valueof方法，比如Integer.valueOf()
 4. 其它包装类的用法类似
 
-```    
+```    java
+package com.hspedu.wrapper;
+
+public class Integer01 {
+    public static void main(String[] args) {
+        //演示int <--> Integer 的装箱和拆箱
+        //jdk5前是手动装箱和拆箱
+        //手动装箱 int->Integer
+        int n1 = 100;
+        Integer integer = new Integer(n1);
+        Integer integer1 = Integer.valueOf(n1);
+
+        //手动拆箱
+        //Integer -> int
+        int i = integer.intValue();
+
+        //jdk5后，就可以自动装箱和自动拆箱
+        int n2 = 200;
+        //自动装箱 int->Integer
+        Integer integer2 = n2; //底层使用的是 Integer.valueOf(n2)
+        //自动拆箱 Integer->int
+        int n3 = integer2; //底层仍然使用的是 intValue()方法
+    }
+}
 ```
 
-
 ## 1.3课堂练习(1)：判断结果
+
+```java
+Object obj1 = true? new Integer(1) : new Double(2.0);
+System.out.println(obk1);
+```
+
+**这里输出是1.0,因为三元运算符要看成一个整体**，虽然是用Integer的语句，但是后面有Double，而Double的优先级要大于Integer，所以会自动转型。
 
 
 
 ## 1.4包装类型和String类型的相互转换
 
+```java
+package com.hspedu.wrapper;
+
+public class WrapperVSString {
+    public static void main(String[] args) {
+        //包装类(Integer)->String
+        Integer i = 100;//自动装箱
+        //方式1
+        String str1 = i + "";
+        //方式2
+        String str2 = i.toString();
+        //方式3
+        String str3 = String.valueOf(i);
+
+        //String -> 包装类(Integer)
+        String str4 = "12345";
+        Integer i2 = Integer.parseInt(str4);//使用到自动装箱
+        Integer i3 = new Integer(str4);//构造器
+
+        System.out.println("ok~~");
+
+    }
+}
+```
+
 
 
 ## 1.5Integer类型和Charater类的常用方法
+
+```java
+public class WrapperMethod { 
+    public static void main(String[] args) { 	
+        System.out.println(Integer.MIN_VALUE); //返回最小值                           
+        System.out.println(Integer.MAX_VALUE);//返回最大值 
+        System.out.println(Character.isDigit('a'));//判断是不是数字 
+        System.out.println(Character.isLetter('a'));//判断是不是字母 
+        System.out.println(Character.isUpperCase('a'));//判断是不是大写 
+        System.out.println(Character.isLowerCase('a'));//判断是不是小写 
+        System.out.println(Character.isWhitespace('a'));//判断是不是空格 
+        System.out.println(Character.toUpperCase('a'));//转成大写 
+        System.out.println(Character.toLowerCase('A'));//转成小写 
+    } 
+}
+```
 
 
 
 ## 1.6Integer类面试题
 
+```java
+public class WrapperExercise02 {
+    public static void main(String[] args) {
+        Integer i = new Integer(1);
+        Integer j = new Integer(1);
+        System.out.println(i == j);
+  
+        Integer m = 1; 
+        Integer n = 1;
+        System.out.println(m == n); 
+       
+        Integer x = 128;
+        Integer y = 128;
+        System.out.println(x == y);
 
+    }
+}
+```
 
-
+- 两个new对象 为false
+- 底层 Integer.valueOf(1); -> 阅读源码 发现在范围区间，为true
+- 不在范围区间，为false
 
 # 2
 
