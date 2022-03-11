@@ -485,19 +485,82 @@ public class SuppressWarnings_ {
 
 # 作业
 
-## 1
+## 2
 
 <img src="../img/TCH_Han/ch11_17.png" style="zoom:87%;" />
 
+```java
+package com.java.learn_han.chapter11.homework;
+
+public class Homework2 {
+    public static void main(String[] args) {
+        System.out.println(Frock.getNextNum());
+        System.out.println(Frock.getNextNum());
+
+        Frock frock1 = new Frock();
+        Frock frock2 = new Frock();
+        Frock frock3 = new Frock();
+        System.out.println(frock1.getSeriaNumber());
+        System.out.println(frock2.getSeriaNumber());
+        System.out.println(frock3.getSeriaNumber());
+    }
+}
+
+class Frock {
+    private static int currentNum = 100000;
+    private int seriaNumber;
+
+    public Frock() {
+        this.seriaNumber = getNextNum();
+    }
+
+    public static int getNextNum() {
+        currentNum += 100;
+        return currentNum;
+    }
+
+    public int getSeriaNumber() {
+        return seriaNumber;
+    }
+}
+```
 
 
-## 2
-
-<img src="../img/TCH_Han/ch11_18.png" style="zoom:87%;" />
 
 ## 3
 
-<img src="../img/TCH_Han/ch11_17.png" style="zoom:87%;" />
+<img src="../img/TCH_Han/ch11_18.png" style="zoom:87%;" />
+
+```java
+package com.java.learn_han.chapter11.homework;
+
+public class Homework3 {
+    public static void main(String[] args) {
+        Animal animal = new Cat() ;
+        animal.shout();
+        animal = new Dog();
+        animal.shout();
+    }
+}
+
+abstract class Animal {
+    public abstract void shout();
+}
+
+class Cat extends Animal {
+    public void shout() {
+        System.out.println("小猫喵喵叫");
+    }
+}
+
+class Dog extends Animal {
+    public void shout() {
+        System.out.println("小狗汪汪叫");
+    }
+}
+```
+
+
 
 ## 4
 
@@ -505,16 +568,20 @@ public class SuppressWarnings_ {
 
 ## 5
 
-<img src="../img/TCH_Han/ch11_20.png" style="zoom:87%;" />
+<img src="../img/TCH_Han/ch11_19.png" style="zoom:87%;" />
 
 ## 6
 
-<img src="../img/TCH_Han/ch11_21.png" style="zoom:87%;" />
+<img src="../img/TCH_Han/ch11_20.png" style="zoom:87%;" />
 
 ## 7
 
-<img src="../img/TCH_Han/ch11_22.png" style="zoom:87%;" />
+<img src="../img/TCH_Han/ch11_21.png" style="zoom:87%;" />
 
 ## 8
+
+<img src="../img/TCH_Han/ch11_22.png" style="zoom:87%;" />
+
+## 9
 
 <img src="../img/TCH_Han/ch11_23.png" style="zoom:87%;" />
