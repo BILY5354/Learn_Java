@@ -162,10 +162,9 @@ grep -nri 命名 TCH_Han | cat --number
 
 #### 第12章 异常(P444 - P459)](./TCH_Han/Chapter12.md)  
 
-- [](./TCH_Han/Chapter12.md#1)
-- [](./TCH_Han/Chapter12.md#2)
-- [](./TCH_Han/Chapter12.md#3)
-- [](./TCH_Han/Chapter12.md#4)  
+- [异常介绍](./TCH_Han/Chapter12.md#1)
+- [```try-catch```](./TCH_Han/Chapter12.md#2)
+- [```throws```](./TCH_Han/Chapter12.md#3)
 - [作业](./TCH_Han/Chapter12.md#作业)  
 
 #### [第13章 常用类(P460 - P498)](./TCH_Han/Chapter13.md)  
