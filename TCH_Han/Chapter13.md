@@ -3,7 +3,7 @@
 - 只要有基本数据类型，==判断的是值是否相同
 - 字符串本质是字符数组，并且为final，final的意思是该数组地址不可改而不是内容不可改
 - 调用一个方法会产生一个新栈
--  
+-  ```StringBuffer```用于存放数据的数组不是```final```所以是存放在堆中的，和```String```存放在栈中不同。
 1. [](#1)
 2. [](#2)
 3. [](#3)
@@ -33,7 +33,7 @@
 
 1. jdk5前的手动装箱和拆箱方式，装箱：基本类型->包装类型，反之，拆箱
 2. jdk5以后（含5）的自动装箱和拆箱方式
-3. 自动装箱底层调用的是valueof方法，比如Integer.valueOf()
+3. 自动装箱底层调用的是```valueof```方法，比如```Integer.valueOf()```
 4. 其它包装类的用法类似
 
 ```    java
@@ -102,7 +102,7 @@ public class WrapperVSString {
 
 
 
-## 1.5Integer类型和Charater类的常用方法
+## 1.5```Integer```类型和```Charater```类的常用方法
 
 ```java
 public class WrapperMethod { 
@@ -146,7 +146,7 @@ public class WrapperExercise02 {
 ```
 
 - 两个new对象 为false
-- 底层 Integer.valueOf(1); -> 阅读源码 发现在范围区间，为true
+- 底层 ```Integer.valueOf(1);``` -> 阅读源码 发现在范围区间，为true
 - 不在范围区间，为false
 
 
@@ -624,15 +624,201 @@ public class StringMethod02 {
 
 
 
-### 2.7.2```String ```vs ```StringBuffer```
+```java
+package com.hspedu.stringbuffer_;
+
+public class StringBuffer01 {
+    public static void main(String[] args) {
+        //1. StringBuffer 的直接父类 是 AbstractStringBuilder
+        //2. StringBuffer 实现了 Serializable, 即StringBuffer的对象可以串行化
+        //3. 在父类中  AbstractStringBuilder 有属性 char[] value,不是final
+        //   该 value 数组存放 字符串内容，引出存放在堆中的
+        //4. StringBuffer 是一个 final类，不能被继承
+        //5. 因为StringBuffer 字符内容是存在 char[] value, 所有在变化(增加/删除)
+        //   不用每次都更换地址(即不是每次创建新对象)， 所以效率高于 String
+
+        StringBuffer stringBuffer = new StringBuffer("hello");
+    }
+}
+```
+
+- String类的数据有一点点改动，就会在常量池中创建一个新的一点点改动的对象，并重新指向即改变value的地址（看图）。而StringBuffer则直接在原有基础上进行修改，而不需每次变地址。其修改地址往往是罗荣的时候。
+
+  ​	<img src="../img/TCH_Han/ch13_19.png" style="zoom:87%;" />
+
+- String保存的是字符串常量，里面的值不能修改，每次String类的更新实际上就是更改地址，效率极低。```private final char value[];``` 
+
+- StringBuffer保存的是字符串变量，里面的值可以更改，每次StringBuffer的更新实际上可以更新内容，不用每次更新地址，效率极高。
 
 
 
-### 2.7.3```StringBuffer```常见方法
+### 2.7.2StringBuffer的构造器
+
+```java
+package com.hspedu.stringbuffer_;
+
+public class StringBuffer02 {
+    public static void main(String[] args) {
+
+        //构造器的使用
+        //1. 创建一个 大小为 16的 char[] ,用于存放字符内容
+        StringBuffer stringBuffer = new StringBuffer();
+
+        //2 通过构造器指定 char[] 大小
+        StringBuffer stringBuffer1 = new StringBuffer(100);
+        //3. 通过 给一个String 创建 StringBuffer, char[] 大小就是 str.length() + 16
+
+        StringBuffer hello = new StringBuffer("hello");
+
+    }
+}
+```
+
+
+
+### 2.7.3```String ```与 ```StringBuffer```
+
+- 相互转换
+
+  - ·
+
+    ```java
+    package com.hspedu.stringbuffer_;
+    
+    public class StringAndStringBuffer {
+        public static void main(String[] args) {
+    
+            //看 String——>StringBuffer
+            String str = "hello tom";
+            //方式1 使用构造器
+            //注意： 返回的才是StringBuffer对象，对str 本身没有影响
+            StringBuffer stringBuffer = new StringBuffer(str);
+            //方式2 使用的是append方法
+            StringBuffer stringBuffer1 = new StringBuffer();
+            stringBuffer1 = stringBuffer1.append(str);
+    
+            //看看 StringBuffer ->String
+            StringBuffer stringBuffer3 = new StringBuffer("韩顺平教育");
+            //方式1 使用StringBuffer提供的 toString方法
+            String s = stringBuffer3.toString();
+            //方式2: 使用构造器来搞定
+            String s1 = new String(stringBuffer3);
+    
+        }
+    }
+    ```
+
+  
+
+### 2.7.4```StringBuffer```常见方法
+
+<img src="../img/TCH_Han/ch13_20.png" style="zoom:87%;" />
+
+```java
+package com.hspedu.stringbuffer_;
+
+public class StringBufferMethod {
+    public static void main(String[] args) {
+
+        StringBuffer s = new StringBuffer("hello");
+        //增
+        s.append(',');// "hello,"
+        s.append("张三丰");//"hello,张三丰"
+        s.append("赵敏").append(100).append(true).append(10.5);//"hello,张三丰赵敏100true10.5"
+        System.out.println(s);//"hello,张三丰赵敏100true10.5"
+
+
+        //删
+        /*
+         * 删除索引为>=start && <end 处的字符
+         * 解读: 删除 11~14的字符 [11, 14)
+         */
+        s.delete(11, 14);
+        System.out.println(s);//"hello,张三丰赵敏true10.5"
+        //改
+        //老韩解读，使用 周芷若 替换 索引9-11的字符 [9,11)
+        s.replace(9, 11, "周芷若");
+        System.out.println(s);//"hello,张三丰周芷若true10.5"
+        //查找指定的子串在字符串第一次出现的索引，如果找不到返回-1
+        int indexOf = s.indexOf("张三丰");
+        System.out.println(indexOf);//6
+        //插
+        //老韩解读，在索引为9的位置插入 "赵敏",原来索引为9的内容自动后移
+        s.insert(9, "赵敏");
+        System.out.println(s);//"hello,张三丰赵敏周芷若true10.5"
+        //长度
+        System.out.println(s.length());//22
+        System.out.println(s);
+
+    }
+}
+```
 
 
 
 ### 2.7.4课堂测试题
+
+```java
+package com.hspedu.stringbuffer_;
+
+public class StringBufferExercise01 {
+    public static void main(String[] args) {
+        String str = null;// ok
+        StringBuffer sb = new StringBuffer(); //ok
+        sb.append(str);//需要看源码 , 底层调用的是 AbstractStringBuilder 的 appendNull
+        System.out.println(sb.length());//4
+
+        System.out.println(sb);//null
+        //下面的构造器，会抛出NullpointerException
+        StringBuffer sb1 = new StringBuffer(str);//看底层源码 super(str.length() + 16);
+        System.out.println(sb1);
+
+    }
+}
+```
+
+
+
+### 2.7.5课堂测试题
+
+要求：输入商品名称和商品价格，要求打印效果示例, 使用前面学习的方法完成：
+
+商品名    商品价格
+手机 123,564.59  //比如 价格 3,456,789.88
+
+要求：价格的小数点前面每三位用逗号隔开, 再输出。
+
+```java
+package com.hspedu.stringbuffer_;
+
+import java.util.Scanner;
+
+public class StringBufferExercise02 {
+    public static void main(String[] args) {
+        /*
+        思路分析
+        1. 定义一个Scanner 对象，接收用户输入的 价格(String)
+        2. 希望使用到 StringBuffer的 insert ，需要将 String 转成 StringBuffer
+        3. 然后使用相关方法进行字符串的处理
+        代码实
+         */
+
+        //new Scanner(System.in)
+        String price = "8123564.59";
+        StringBuffer sb = new StringBuffer(price);
+        //先完成一个最简单的实现123,564.59
+        //找到小数点的索引，然后在该位置的前3位，插入,即可
+//        int i = sb.lastIndexOf(".");
+//        sb = sb.insert(i - 3, ",");
+
+        //上面的两步需要做一个循环处理,才是正确的
+        for (int i = sb.lastIndexOf(".") - 3; i > 0; i -= 3) {
+            sb = sb.insert(i, ",");
+        }
+        System.out.println(sb);//8,123,564.59
+    }
+}
+```
 
 
 
@@ -646,9 +832,46 @@ public class StringMethod02 {
 
 ### 2.8.2```StringBuilder```常用方法
 
+StringBuilder和StringBuffer君代表可变的字符序列，方法时一样的，所以使用和StringBuffer一样。
+
+```java
+package com.hspedu.stringbuilder_;
+
+public class StringBuilder01 {
+    public static void main(String[] args) {
+        //老韩解读
+        //1. StringBuilder 继承 AbstractStringBuilder 类
+        //2. 实现了 Serializable ,说明StringBuilder对象是可以串行化(对象可以网络传输,可以保存到文件)
+        //3. StringBuilder 是final类, 不能被继承
+        //4. StringBuilder 对象字符序列仍然是存放在其父类 AbstractStringBuilder的 char[] value;
+        //   因此，字符序列是堆中
+        //5. StringBuilder 的方法，没有做互斥的处理,即没有synchronized 关键字,因此在单线程的情况下使用
+        //   StringBuilder
+        StringBuilder stringBuilder = new StringBuilder();
+    }
+}
+```
 
 
-### 2.8.3```String``` vs ```StringBuffer ```vs ```StringBuilder```比较及效率测试
+
+### 2.8.3```String``` vs ```StringBuffer ```vs ```StringBuilder```比较及效率测试																																																																																																																																																														
+
+1. StringBuffer和StringBuilder非常相似，均可代表可变的字符序列，而且方法也一样
+
+2. String：不可变字符序列，效率低，但是复用率高
+
+3. StringBuffer：可变字符序列，效率较高（增删）、线程安全
+
+4. StringBuilder：可变字符序列、效率最高、线程不安全
+
+5. String使用说明：
+
+   ```java
+   String s = "a";//创建一个字符串
+   s += "b";//实际上原来的“a”字符串对象已经丢弃了，现在又产生一个字符串 s+b（也就是“ab”）。如果多次执行这些改变串内容的操作，会导致大量副本字符串对象存留在内存中，降低效率。如果这样的擦偶哦放到循环中，会极大影响程序的性能
+   ```
+
+**结论：如果对String作大量修改，不要使用String**
 
 
 
