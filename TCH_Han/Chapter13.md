@@ -377,13 +377,13 @@ String s1 = "hello";
 s1 = "haha";
 ```
 
-- 创建了两个对象，原有的“hello”并不会消失，但是s1与hello的连接会被替换成“haha“。
+- 创建了两个对象，原有的“hello”并不会消失，但是s1与hello的连接会被替换成```haha```。
 
 
 
 ## 2.5面试题
 
-### 2.5.1
+### 2.5.1面试题(1)
 
 ```java
 //以下语句会创建几个对象
@@ -394,7 +394,7 @@ String a = "hello" + "abc";
 
 
 
-### 2.5.2
+### 2.5.2面试题(2)
 
 ```java
 //以下语句会创建几个对象
@@ -435,13 +435,11 @@ sb.append(a);
 sb.append(b);
 ```
 
-**重要规则**，String c1 = "ab" + "cd"; **常量相加，看的是池。** ```String c1= a + b;```**变量相加，是在堆中。**
+**重要规则**，```String c1 = "ab" + "cd";``` **常量相加，看的是池。** ```String c1= a + b;```**变量相加，是在堆中。**
 
 
 
-
-
-### 2.5.4
+### 2.5.4面试题(3)
 
 ```java
 class Test1 {
@@ -470,13 +468,15 @@ class Test1 {
 
 
 
-## 2.6String类的常见方法
+## 2.6```String```类的常见方法
 
-### 2.6.1
+### 2.6.1```String```类的缺点
 
-<img src="../img/TCH_Han/ch13_5.png" style="zoom:87%;" />
+```String```类时保存字符串常量。每次更新都需要重新开辟空间，效率极低，因此Java设计者还提供了```StringBuilder```和```StringBuffer```来增强```String```功能并提高效率。
 
-### 2.6.2String常见方法一览
+
+
+### 2.6.2```String```常见方法一览
 
 <img src="../img/TCH_Han/ch13_6.png" style="zoom:87%;" />
 
@@ -614,21 +614,21 @@ public class StringMethod02 {
 
 
 
-## 2.7StringBuffer类
+## 2.7```StringBuffer```类
 
 ### 2.7.1简要介绍
 
-- java.lang.StringBuffer代表可变的字符序列，可以对字符串内容就行增删
-- 很多方法与String相同，但StringBuffer是可变长度的
-- StringBuffer是一个容器
+- ```java.lang.StringBuffer```代表可变的字符序列，可以对字符串内容就行增删
+- 很多方法与String相同，但```StringBuffer```是可变长度的
+- ```StringBuffer```是一个容器
 
 
 
-### 2.7.2String vs StringBuffer
+### 2.7.2```String ```vs ```StringBuffer```
 
 
 
-### 2.7.3StringBuffer常见方法
+### 2.7.3```StringBuffer```常见方法
 
 
 
@@ -636,27 +636,27 @@ public class StringMethod02 {
 
 
 
-## 2.8StringBuilder
+## 2.8```StringBuilder```
 
-### 2.8.1StringBuilder基本介绍
+### 2.8.1```StringBuilder```基本介绍
 
 <img src="../img/TCH_Han/ch13_8.png" style="zoom:87%;" />
 
 
 
-### 2.8.2StringBuilder常用方法
+### 2.8.2```StringBuilder```常用方法
 
 
 
-### 2.8.3String vs StringBuffer vs StringBuilder比较及效率测试
+### 2.8.3```String``` vs ```StringBuffer ```vs ```StringBuilder```比较及效率测试
 
 
 
-## 2.9String vs StringBuffer vs StringBuilder的选择
+## 2.9```String``` vs ``` StringBuffer``` vs  ```StringBuilder```的选择
 
 # 3
 
-## 3.1MATH类的介绍
+## 3.1```MATH```类的介绍
 
 Math 类包含用于执行基本数学运算的方法，如初等指数、对数、平方根和三角函数。 
 
@@ -664,13 +664,13 @@ Math 类包含用于执行基本数学运算的方法，如初等指数、对数
 
 
 
-## 3.3Math 类常见方法应用案例
+## 3.3```Math ```类常见方法应用案例
 
 ```
 ```
 # 4
 
-## 4.1Arrays 类常见方法应用案例 
+## 4.1```Arrays ```类常见方法应用案例 
 
 Arrays中包含一系列静态方法，用于管理或操作数组
 
