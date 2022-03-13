@@ -873,9 +873,16 @@ public class StringBuilder01 {
 
 **结论：如果对String作大量修改，不要使用String**
 
+StringBuilder > StringBuffer > String
 
 
-## 2.9```String``` vs ``` StringBuffer``` vs  ```StringBuilder```的选择
+
+## 2.9```String``` vs ``` StringBuffer``` vs  ```StringBuilder```的选择（必记）
+
+1. 如果字符串存在大量的修改操作，一般使用``` StringBuffer``` 或```StringBuilder```。
+2. 如果字符串存在大量的修改操作，并在单线程的情况，使用```StringBuilder```。
+3. 如果字符串存在大量的修改操作，并在多线程的情况，使用``` StringBuffer```。 
+4. 如果我们字符串很少修改，被多个对象引用，使用```Sting```，比如配置信息等。
 
 # 3
 
