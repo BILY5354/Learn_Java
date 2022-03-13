@@ -288,7 +288,7 @@ public class StringExercise01 {
 
 
 
-### 2.3.1练习2
+### 2.3.2练习2
 
 ```java
 String a = "hsp";
@@ -304,6 +304,66 @@ System.out.println(b==b.intern());
 
 <img src="../img/TCH_Han/ch13_13.png" style="zoom:87%;" />
 
+- T ```b.intern()```方法最终返回的是常量池的地址（对象）
+
+- F
+
+
+
+### 2.2.3练习(3)
+
+```java
+Person p1 = new Person();
+p1.name = "hspedu";
+Person p2 = new Person();
+p2.name = "hspedu";
+
+
+System.out.println(p1.name.equals(p2.name));
+System.out.println(p1.name == p2.name);  
+System.out.println(p1.name == "hspedu");   
+
+String s1 = new String("bcde");
+String s2 = new String("bcde");
+System.out.println(s1==s2); 
+
+class Person {
+    public String name;
+}
+```
+
+- T 这个是String，在字符串中有重写equals方法，所以判断的是内容
+- T p1.name或p2.name都是向位于常量池hspdedu的地址，因为String是引用变量，所以==比较的是地址，所以是相同的，
+  - 那么既然p1.name是一个地址，为什么使用输出语句时可以输出字符串呢？这是因为String的默认方法就是调用toString。
+  - 如果想查看p1与p2的地址可以打印其hascode，会发现是一样的。
+- T 看图
+- F
+
+<img src="../img/TCH_Han/ch13_14.png" style="zoom:87%;" />
+
+
+
+```java
+Person p1 = new Person();
+p1.name = "hspedu";
+Person p2 = new Person();
+p2.name = new String("hspedu");
+
+System.out.println(p1.name.hashCode());
+System.out.println(p2.name.hashCode());
+System.out.println(p1.name == p2.name);
+```
+
+那我现在再折腾一下，写出结果。
+
+- 既然有new那么他们肯定是不相同了（第三行的输出语句）
+- 可是，为什么p1和p2的hasCode任然是相同呢？
+  - 因为new后，p2.name的指向是堆的另外一个“东西”而不是常量池，所以p1.name == p2.name是不相同的，但堆里面的数据保存的仍然是hspedu位于常量池中的地址
+
+<img src="../img/TCH_Han/ch13_16.png" style="zoom:87%;" />
+
+<img src="../img/TCH_Han/ch13_17.png" style="zoom:87%;" />
+
 
 
 ## 2.4字符串的特性
@@ -311,11 +371,71 @@ System.out.println(b==b.intern());
 1. ```String```是一个```final```类，代表不可变的字符序列
 2. 字符串是不可变，一个字符串对象一旦被分配，其内容是不可变的
 
+```java
+//以下语句创建了几个对象
+String s1 = "hello";
+s1 = "haha";
+```
+
+- 创建了两个对象，原有的“hello”并不会消失，但是s1与hello的连接会被替换成“haha“。
+
 
 
 ## 2.5面试题
 
+### 2.5.1
 
+```java
+//以下语句会创建几个对象
+String a = "hello" + "abc";
+```
+
+- 一个，编译器会将语句优化为```String a = "helloabc"```。
+
+
+
+### 2.5.2
+
+```java
+//以下语句会创建几个对象
+String a = "hello";
+String b = "abc";
+//1. 先 创建一个 StringBuilder sb = StringBuilder()
+//2. 执行  sb.append("hello");
+//3. sb.append("abc");
+//4. String c= sb.toString()
+//最后其实是 c 指向堆中的对象(String) value[] -> 池中 "helloabc"
+String c = a + b;
+```
+
+- **注意第三句写法与```String a = "hello" + "abc";是不一样的。 ```**
+- 有三个对象，其中c的指向是堆，堆中是一个value数组指向位于常量池中的新常量“helloabc”。
+
+<img src="../img/TCH_Han/ch13_15.png" style="zoom:87%;" />
+
+```java
+String a = "hello";
+String b = "abc";
+String c = a + b;
+String d = "helloabc";
+System,.ouyt.println(c == d);
+```
+
+- 答案是F，**因为c与d是对象，既然是对象比较的是地址。**
+
+
+
+### 2.5.3韩老师小结
+
+底层是(下面代码)，并且append是在原来字符串的基础上追加的
+
+```java
+StringBuilder sb = new StringBuilder();
+sb.append(a);
+sb.append(b);
+```
+
+**重要规则**，String c1 = "ab" + "cd"; **常量相加，看的是池。** ```String c1= a + b;```**变量相加，是在堆中。**
 
 
 
