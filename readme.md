@@ -168,14 +168,27 @@ grep -nri 命名 TCH_Han | cat --number
 - [作业](./TCH_Han/Chapter12.md#作业)  
 
 #### [第13章 常用类(P460 - P498)](./TCH_Han/Chapter13.md)  
-- [](./TCH_Han/Chapter13.md#1)
-- [](./TCH_Han/Chapter13.md#2)
+- [包装类](./TCH_Han/Chapter13.md#1)
+- [```String,StringBuffer,StringBuilder```](./TCH_Han/Chapter13.md#2)
 - [](./TCH_Han/Chapter13.md#3)
 - [](./TCH_Han/Chapter13.md#4)  
 - [作业](./TCH_Han/Chapter13.md#作业)  
 
-#### 第14章 集合(P499 - P553)
-#### 第15章 泛型(P554 - P568)
+#### [第14章 集合(P499 - P553)](./TCH_Han/Chapter14.md)  
+- [](./TCH_Han/Chapter14.md#1)
+- [](./TCH_Han/Chapter14.md#2)
+- [](./TCH_Han/Chapter14.md#3)
+- [](./TCH_Han/Chapter14.md#4)  
+- [作业](./TCH_Han/Chapter14.md#作业) 
+
+#### [第15章 泛型(P554 - P568)](./TCH_Han/Chapter15.md)  
+
+- [](./TCH_Han/Chapter15.md#1)
+- [](./TCH_Han/Chapter15.md#2)
+- [](./TCH_Han/Chapter15.md#3)
+- [](./TCH_Han/Chapter15.md#4)  
+- [作业](./TCH_Han/Chapter15.md#作业) 
+
 #### 第16章 坦克大战1(P569 - P579)
 #### 第17章 多线程编程(P580 - P599)
 #### 第18章 坦克大战2(P600 - P610)
