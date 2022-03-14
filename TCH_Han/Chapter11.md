@@ -566,6 +566,64 @@ class Dog extends Animal {
 
 <img src="../img/TCH_Han/ch11_19.png" style="zoom:87%;" />
 
+- 传统写法
+
+  ```java
+  package com.java.learn_han.chapter11.homework;
+  
+  public class Homework4 {
+      public static void main(String[] args) {
+         
+          oldCellPhone oldCellPhone = new oldCellPhone();
+          System.out.println(oldCellPhone.work(12,6));
+      }
+  }
+  
+  interface pC {
+      double work(double n1, double n2);
+  }
+  
+  class oldCellPhone implements pC{
+  
+      @Override
+      public double work(double n1, double n2) {
+          return n1 + n2;
+      }
+  }
+  ```
+
+  
+
+- 匿名内部类
+
+  ```java
+  package com.java.learn_han.chapter11.homework;
+  
+  public class Homework4 {
+      public static void main(String[] args) {
+          new CellPhone(){}.testWork(new pC() {
+              @Override
+              public double work(double n1, double n2) {
+                  return n1+n2;
+              }
+          },10, 8);
+      }
+  }
+  
+  interface pC {
+      double work(double n1, double n2);
+  }
+  
+  class CellPhone {
+      public void testWork(pC pc, double n1, double n2) {
+         double result = pc.work(n1, n2);
+          System.out.println(result);
+      }
+  }
+  ```
+
+  
+
 ## 5
 
 <img src="../img/TCH_Han/ch11_19.png" style="zoom:87%;" />
