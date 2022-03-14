@@ -1,4 +1,5 @@
-# [枚举和注解](./TCH_Han/Chapter11.md)  
+枚举和注解](./TCH_Han/Chapter11.md)  
+
 # 值得注意的概念
 - 
 - 
@@ -626,20 +627,143 @@ class Dog extends Animal {
 
 ## 5
 
-<img src="../img/TCH_Han/ch11_19.png" style="zoom:87%;" />
+<img src="../img/TCH_Han/ch11_20.png" style="zoom:87%;" />
+
+```java
+package com.java.learn_han.chapter11.homework;
+
+public class Homework5 {
+    public static void main(String[] args) {
+        A a = new A();
+    }
+}
+
+class A {
+    private String name = "A's CDUY";
+    {
+        class B {
+            private final String name;
+
+            B(String name) {
+                this.name = name;
+            }
+            public void show() {
+                System.out.println("A name = " + A.this.name);
+                System.out.println("B name = " + name);
+            }
+        }
+        B b = new B("B's CDUY");
+        b.show();
+    }
+}
+```
+
+
 
 ## 6
 
-<img src="../img/TCH_Han/ch11_20.png" style="zoom:87%;" />
+<img src="../img/TCH_Han/ch11_21.png" style="zoom:87%;" />
+
+```java
+package com.java.learn_han.chapter11.homework;
+
+public class Homework6 {
+    public static void main(String[] args) {
+        Person tz = new Person("唐曾", new Horse());
+        tz.common();
+        tz.passRiver();
+        tz.passFireHill();
+        tz.common();
+    }
+}
+
+interface Vehicles {
+    void work();
+}
+
+class Horse implements Vehicles{
+
+    @Override
+    public void work() {
+        System.out.println("载具马，走路中");
+    }
+}
+
+class Boat implements Vehicles {
+
+    @Override
+    public void work() {
+        System.out.println("载具船，过河了");
+    }
+}
+
+class Plane implements Vehicles {
+
+    @Override
+    public void work() {
+        System.out.println("载具飞机，飞天了");
+    }
+}
+
+class VehiclesFactory {
+
+    private static Horse horse = new Horse();//饿汉式 使马儿始终是同一匹
+
+    private VehiclesFactory() {}
+
+    public static Horse getHorse() {//这里，我们将方法做成static 就可以直接调用了
+        return horse;
+    }
+    public static Boat getBoat() {
+        return new Boat();
+    }
+    public static Plane getPlane() {
+        return new Plane();
+    }
+}
+
+class Person {
+    private String name;
+    private Vehicles vehicles;
+
+    public Person(String name, Vehicles vehicles) {
+        this.name = name;
+        this.vehicles = vehicles;
+    }
+
+    public void common() {
+        if (!(vehicles instanceof  Horse)) {
+            vehicles = VehiclesFactory.getHorse();//向上转型 父类引用指向子类使可以调用子类的方法
+            //相当于 vehicles = house; 这里的 house 是 static 所以没有 new
+        }
+        vehicles.work();
+    }
+
+    public void passRiver() {
+        if (!(vehicles instanceof Boat)) {
+            vehicles = VehiclesFactory.getBoat();
+            //相当于 vehicles = new Boat();
+        }
+        vehicles.work();
+    }
+
+    public void passFireHill() {
+        if (!(vehicles instanceof Plane)) {
+            vehicles = VehiclesFactory.getPlane();
+        }
+        vehicles.work();
+    }
+}
+```
+
+
 
 ## 7
 
-<img src="../img/TCH_Han/ch11_21.png" style="zoom:87%;" />
+<img src="../img/TCH_Han/ch11_22.png" style="zoom:87%;" />
 
 ## 8
 
-<img src="../img/TCH_Han/ch11_22.png" style="zoom:87%;" />
-
-## 9
-
 <img src="../img/TCH_Han/ch11_23.png" style="zoom:87%;" />
+
+## 
