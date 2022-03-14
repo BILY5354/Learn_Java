@@ -13,15 +13,15 @@
 
 ## 1.1集合的基本简介
 
-数组的缺陷：
+### 1.1.1数组的缺陷：
 
 1. 长度开始时必须指定，而且一旦指定，不能更改。
 2. 保存的必须为同一类型的元素。
 3. 使用数组进行增加/删除元素比较麻烦
 
+<img src="../img/TCH_Han/ch14_8.png" style="zoom:87%;" />
 
-
-集合：
+### 1.1.2集合：
 
 1. 可以**动态保存**任意多个对象，使用比较方便
 2. 提供了一些列方便的操作对象的方法：add、remove、set、get
@@ -30,8 +30,22 @@
 ```    
 ```
 
-
 ## 1.2```Collection```接口实现类的特点
+
+**两图必记**
+
+1. 集合主要是两组(单列集合 , 双列集合)
+2. Collection 接口有两个重要的子接口 List Set , 他们的实现子类都是单列集合
+3. Map 接口的实现子类 是双列集合，存放的 K-V
+4. 把老师梳理的两张图记住
+
+- 单列集合
+
+<img src="../img/TCH_Han/ch14_9.png" style="zoom:87%;" />
+
+- 双列集合
+
+<img src="../img/TCH_Han/ch14_10.png" style="zoom:87%;" />
 
 ```java
 public interface Collection<E> extends Iterable<E>
