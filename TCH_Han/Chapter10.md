@@ -2012,6 +2012,8 @@ class Father {//类
 
 <img src="../img/TCH_Han/ch10_33.png" style="zoom:87%;" />
 
+# 这里的代码感觉有错，具体看11章练习题7
+
 ```java
 package com.hspedu.innerclass;
 
@@ -2021,17 +2023,15 @@ public class MemberInnerClass01 {
         outer08.t1();
 
         //外部其他类，使用成员内部类的两种方式
-        //老韩解读
         // 第一种方式
         // outer08.new Inner08(); 相当于把 new Inner08()当做是outer08成员
         // 这就是一个语法，不要特别的纠结.
         Outer08.Inner08 inner08 = outer08.new Inner08();
-        //也可以合在一起写 Outer08 outer08 = new outer08.new Inner08();
+        //Outer08 outer08 = new outer08.new Inner08();也可以合在一起写
         inner08.say();
         // 第二方式 在外部类中，编写一个方法，可以返回 Inner08对象
         Outer08.Inner08 inner08Instance = outer08.getInner08Instance();
         inner08Instance.say();
-
 
     }
 }
