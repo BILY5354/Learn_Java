@@ -220,13 +220,122 @@ for (元素类型 元素名 : 集合名或数组名) {
 }
 ```
 
+```java
+package com.hspedu.collection_;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class CollectionFor {
+    @SuppressWarnings({"all"})
+    public static void main(String[] args) {
+        Collection col = new ArrayList();
+
+        col.add(new Book("三国演义", "罗贯中", 10.1));
+        col.add(new Book("小李飞刀", "古龙", 5.1));
+        col.add(new Book("红楼梦", "曹雪芹", 34.6));
+
+        //老韩解读
+        //1. 使用增强for, 在Collection集合
+        //2. 增强for， 底层仍然是迭代器
+        //3. 增强for可以理解成就是简化版本的 迭代器遍历
+        //4. 快捷键方式 I
+//        for (Object book : col) {
+//            System.out.println("book=" + book);
+//        }
+        for (Object o : col) {
+            System.out.println("book=" + o);
+        }
+
+        //增强for，也可以直接在数组使用
+//        int[] nums = {1, 8, 10, 90};
+//        for (int i : nums) {
+//            System.out.println("i=" + i);
+//        }
+
+
+    }
+}
+```
+
 
 
 ### 1.2.3课堂练习
 
-<img src="../img/TCH_Han/ch14_1.png" style="zoom:87%;" />
+**要求**
+
+ * 创建  3个 Dog {name, age}  对象，放入到 ArrayList 中，赋给 List 引用
+ * 用迭代器和增强for循环两种方式来遍历
+ * 重写Dog 的toString方法， 输出name和age
+
+```java
+package com.hspedu.collection_;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 
+public class CollectionExercise {
+    @SuppressWarnings({"all"})
+    public static void main(String[] args) {
+        List list = new ArrayList();
+        list.add(new Dog("小黑", 3));
+        list.add(new Dog("大黄", 100));
+        list.add(new Dog("大壮", 8));
+
+
+        //先使用for增强
+        for (Object dog : list) {
+            System.out.println("dog=" + dog);
+        }
+
+        //使用迭代器
+        System.out.println("===使用迭代器来遍历===");
+        Iterator iterator = list.iterator();
+        while (iterator.hasNext()) {
+            Object dog =  iterator.next();
+            System.out.println("dog=" + dog);
+
+        }
+
+    }
+}
+
+class Dog {
+    private String name;
+    private int age;
+
+    public Dog(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Dog{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
+```
 
 
 
@@ -236,21 +345,127 @@ for (元素类型 元素名 : 集合名或数组名) {
 
 ### 2.1.1List 接口基本介绍
 
+```java
+package com.hspedu.list_;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class List_ {
+    @SuppressWarnings({"all"})
+    public static void main(String[] args) {
+        //1. List集合类中元素有序(即添加顺序和取出顺序一致)、且可重复 [案例]
+        List list = new ArrayList();
+        list.add("jack");
+        list.add("tom");
+        list.add("mary");
+        list.add("hsp");
+        list.add("tom");
+        System.out.println("list=" + list);
+        //2. List集合中的每个元素都有其对应的顺序索引，即支持索引
+        //   索引是从0开始的
+        System.out.println(list.get(3));//hsp
+        //3.
+    }
+}
 ```
-```
+
+
 
 
 ### 2.1.2List 接口的常用方法
 
 <img src="../img/TCH_Han/ch14_2.png" style="zoom:87%;" />
 
+```java
+package com.hspedu.list_;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ListMethod {
+    @SuppressWarnings({"all"})
+    public static void main(String[] args) {
+        List list = new ArrayList();
+        list.add("张三丰");
+        list.add("贾宝玉");
+//        void add(int index, Object ele):在index位置插入ele元素
+        //在index = 1的位置插入一个对象
+        list.add(1, "韩顺平");
+        System.out.println("list=" + list);
+//        boolean addAll(int index, Collection eles):从index位置开始将eles中的所有元素添加进来
+        List list2 = new ArrayList();
+        list2.add("jack");
+        list2.add("tom");
+        list.addAll(1, list2);
+        System.out.println("list=" + list);
+//        Object get(int index):获取指定index位置的元素
+        //说过
+//        int indexOf(Object obj):返回obj在集合中首次出现的位置
+        System.out.println(list.indexOf("tom"));//2
+//        int lastIndexOf(Object obj):返回obj在当前集合中末次出现的位置
+        list.add("韩顺平");
+        System.out.println("list=" + list);
+        System.out.println(list.lastIndexOf("韩顺平"));
+//        Object remove(int index):移除指定index位置的元素，并返回此元素
+        list.remove(0);
+        System.out.println("list=" + list);
+//        Object set(int index, Object ele):设置指定index位置的元素为ele , 相当于是替换.
+        list.set(1, "玛丽");
+        System.out.println("list=" + list);
+//        List subList(int fromIndex, int toIndex):返回从fromIndex到toIndex位置的子集合
+        // 注意返回的子集合 fromIndex <= subList < toIndex
+        List returnlist = list.subList(0, 2);
+        System.out.println("returnlist=" + returnlist);
+
+    }
+}
+```
+
 
 
 ### 2.1.3List 接口课堂练习 
 
-<img src="../img/TCH_Han/ch14_3.png" style="zoom:87%;" />
+- 添加10个以上的元素(比如String "hello" )，在2号位插入一个元素"韩顺平教育"，获得第5个元素，删除第6个元素，修改第7个元素，在使用迭代器遍历集合，要求:使用List的实现类ArrayList完成。
 
+```java
+package com.hspedu.list_;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class ListExercise {
+    @SuppressWarnings({"all"})
+    public static void main(String[] args) {
+     
+        List list = new ArrayList();
+        for (int i = 0; i < 12; i++) {
+            list.add("hello" + i);
+        }
+        System.out.println("list=" + list);
+
+        //在2号位插入一个元素"韩顺平教育"
+        list.add(1, "韩顺平教育");
+        System.out.println("list=" + list);
+        //获得第5个元素
+        System.out.println("第五个元素=" + list.get(4));
+        //删除第6个元素
+        list.remove(5);
+        System.out.println("list=" + list);
+        //修改第7个元素
+        list.set(6, "三国演义");
+        System.out.println("list=" + list);
+
+        //在使用迭代器遍历集合
+        Iterator iterator = list.iterator();
+        while (iterator.hasNext()) {
+            Object obj =  iterator.next();
+            System.out.println("obj=" + obj);
+        }
+    }
+}
+```
 
 
 
@@ -259,6 +474,87 @@ for (元素类型 元素名 : 集合名或数组名) {
 
 
 ### 2.1.5实现类的课堂练习 2
+
+```java
+package com.java.learn_han.chapter14.list_;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ListExercise02 {
+    public static void main(String[] args) {
+        List list = new ArrayList();
+        list.add(new Book("红楼梦", "曹雪芹", 1000));
+        list.add(new Book("西游记", "吴承恩", 100));
+        list.add(new Book("水浒传", "施耐庵", 10));
+
+        for (Object o : list) {
+            System.out.println(o);
+        }
+
+        for (int i = 1; i < list.size(); i++) {
+            for (int j = 0; j < list.size() - 1; j++) {
+                Book book1 = (Book) list.get(j);
+                Book book2 = (Book) list.get(j + 1);
+
+                if (book1.getPrice() > book2.getPrice()) {
+                    list.set(j, book2);
+                    list.set(j+1,book1);
+                }
+            }
+        }
+        System.out.println("======排序后======");
+        for (Object o : list) {
+            System.out.println(o);
+        }
+    }
+}
+
+class Book {
+    private String name;
+    private String author;
+    private double price;
+
+    public Book(String name, String author, double price) {
+        this.name = name;
+        this.author = author;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "name='" + name + '\'' +
+                "author" + author + '\n' +
+                ", price=" + price +
+                '}';
+    }
+}
+```
 
 
 
