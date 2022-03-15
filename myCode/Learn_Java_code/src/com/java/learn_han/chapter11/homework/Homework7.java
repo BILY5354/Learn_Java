@@ -19,6 +19,7 @@ public class Homework7 {
         Car.Air air3 = new Car(40).getAirInstance();
         air3.flow();
 
+
     }
 }
 
