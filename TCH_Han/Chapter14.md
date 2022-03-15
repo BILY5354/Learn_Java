@@ -944,11 +944,119 @@ public class SetMethod {
 
 ### 3.2.2HashSet 案例说明
 
+**看难题来了部分**
 
+```java
+package com.hspedu.set_;
+
+import java.util.HashSet;
+
+@SuppressWarnings({"all"})
+public class HashSet01 {
+    public static void main(String[] args) {
+        HashSet set = new HashSet();
+
+        //说明
+        //1. 在执行add方法后，会返回一个boolean值
+        //2. 如果添加成功，返回 true, 否则返回false
+        //3. 可以通过 remove 指定删除哪个对象
+        System.out.println(set.add("john"));//T
+        System.out.println(set.add("lucy"));//T
+        System.out.println(set.add("john"));//F
+        System.out.println(set.add("jack"));//T
+        System.out.println(set.add("Rose"));//T
+
+        set.remove("john");
+        System.out.println("set=" + set);//3个
+
+        // 难题来了
+        set  = new HashSet();
+        System.out.println("set=" + set);//0
+        //4 Hashset 不能添加相同的元素/数据?
+        set.add("lucy");//添加成功
+        set.add("lucy");//加入不了
+        set.add(new Dog("tom"));//OK
+        set.add(new Dog("tom"));//Ok
+        System.out.println("set=" + set);
+
+        //在加深一下. 非常经典的面试题.
+        //看源码，做分析， 先给小伙伴留一个坑，以后讲完源码，你就了然
+        //去看他的源码，即 add 到底发生了什么?=> 底层机制.
+        set.add(new String("hsp"));//ok
+        set.add(new String("hsp"));//加入不了.
+        System.out.println("set=" + set);
+    }
+}
+class Dog { //定义了Dog类
+    private String name;
+
+    public Dog(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Dog{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+}
+```
+
+#### 值得留意的疑问：为什么Dog可以加入但是String却加入不了
 
 
 
 ### 3.2.3HashSet 底层机制说明 
+
+<img src="../img/TCH_Han/ch14_15.png" style="zoom:87%;" />
+
+<img src="../img/TCH_Han/ch14_16.png" style="zoom:67%;" />
+
+- 即每个下标（索引）就是一个链表，其目的是为了高效
+
+```java
+package com.hspedu.set_;
+
+@SuppressWarnings({"all"})
+public class HashSetStructure {
+    public static void main(String[] args) {
+        //模拟一个HashSet的底层 (HashMap 的底层结构)
+
+        //1. 创建一个数组，数组的类型是 Node[]
+        //2. 有些人，直接把 Node[] 数组称为 表
+        Node[] table = new Node[16];
+
+        //3. 创建结点
+        Node john = new Node("john", null);
+
+        table[2] = john;
+        Node jack = new Node("jack", null);
+        john.next = jack;// 将jack 结点挂载到john
+        Node rose = new Node("Rose", null);
+        jack.next = rose;// 将rose 结点挂载到jack
+
+        Node lucy = new Node("lucy", null);
+        table[3] = lucy; // 把lucy 放到 table表的索引为3的位置.
+        System.out.println("table=" + table);
+
+
+    }
+}
+class Node { //结点, 存储数据, 可以指向下一个结点，从而形成链表
+    Object item; //存放数据
+    Node next; // 指向下一个结点
+
+    public Node(Object item, Node next) {
+        this.item = item;
+        this.next = next;
+    }
+}
+```
+
+
+
+<img src="../img/TCH_Han/ch14_17.png" style="zoom:67%;" />
 
 
 
