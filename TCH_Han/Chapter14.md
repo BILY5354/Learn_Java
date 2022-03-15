@@ -607,20 +607,232 @@ class Book {
 
 <img src="../img/TCH_Han/ch14_7.png" style="zoom:87%;" />
 
+```java
+package com.hspedu.list_;
+
+public class LinkedList01 {
+    public static void main(String[] args) {
+        //模拟一个简单的双向链表
+
+        Node jack = new Node("jack");
+        Node tom = new Node("tom");
+        Node hsp = new Node("老韩");
+
+        //连接三个结点，形成双向链表
+        //jack -> tom -> hsp
+        jack.next = tom;
+        tom.next = hsp;
+        //hsp -> tom -> jack
+        hsp.pre = tom;
+        tom.pre = jack;
+
+        Node first = jack;//让first引用指向jack,就是双向链表的头结点
+        Node last = hsp; //让last引用指向hsp,就是双向链表的尾结点
+
+
+        //演示，从头到尾进行遍历
+        System.out.println("===从头到尾进行遍历===");
+        while (true) {
+            if(first == null) {
+                break;
+            }
+            //输出first 信息
+            System.out.println(first);
+            first = first.next;
+        }
+
+        //演示，从尾到头的遍历
+        System.out.println("====从尾到头的遍历====");
+        while (true) {
+            if(last == null) {
+                break;
+            }
+            //输出last 信息
+            System.out.println(last);
+            last = last.pre;
+        }
+
+        //演示链表的添加对象/数据，是多么的方便
+        //要求，是在 tom --------- 老韩直接，插入一个对象 smith
+
+        //1. 先创建一个 Node 结点，name 就是 smith
+        Node smith = new Node("smith");
+        //下面就把 smith 加入到双向链表了
+        smith.next = hsp;
+        smith.pre = tom;
+        hsp.pre = smith;
+        tom.next = smith;
+
+        //让first 再次指向jack
+        first = jack;//让first引用指向jack,就是双向链表的头结点
+
+        System.out.println("===从头到尾进行遍历===");
+        while (true) {
+            if(first == null) {
+                break;
+            }
+            //输出first 信息
+            System.out.println(first);
+            first = first.next;
+        }
+
+        last = hsp; //让last 重新指向最后一个结点
+        //演示，从尾到头的遍历
+        System.out.println("====从尾到头的遍历====");
+        while (true) {
+            if(last == null) {
+                break;
+            }
+            //输出last 信息
+            System.out.println(last);
+            last = last.pre;
+        }
+
+
+    }
+}
+
+//定义一个Node 类，Node 对象 表示双向链表的一个结点
+class Node {
+    public Object item; //真正存放数据
+    public Node next; //指向后一个结点
+    public Node pre; //指向前一个结点
+    public Node(Object name) {
+        this.item = name;
+    }
+    public String toString() {
+        return "Node name=" + item;
+    }
+}
+```
+
 
 
 ### 2.4.3LinkedList 的增删改查案例
+
+```java
+package com.hspedu.list_;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+
+@SuppressWarnings({"all"})
+public class LinkedListCRUD {
+    public static void main(String[] args) {
+
+        LinkedList linkedList = new LinkedList();
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        System.out.println("linkedList=" + linkedList);
+
+        //演示一个删除结点的
+        linkedList.remove(); // 这里默认删除的是第一个结点
+        //linkedList.remove(2);
+
+        System.out.println("linkedList=" + linkedList);
+
+        //修改某个结点对象
+        linkedList.set(1, 999);
+        System.out.println("linkedList=" + linkedList);
+
+        //得到某个结点对象
+        //get(1) 是得到双向链表的第二个对象
+        Object o = linkedList.get(1);
+        System.out.println(o);//999
+
+        //因为LinkedList 是 实现了List接口, 遍历方式
+        System.out.println("===LinkeList遍历迭代器====");
+        Iterator iterator = linkedList.iterator();
+        while (iterator.hasNext()) {
+            Object next =  iterator.next();
+            System.out.println("next=" + next);
+
+        }
+
+        System.out.println("===LinkeList遍历增强for====");
+        for (Object o1 : linkedList) {
+            System.out.println("o1=" + o1);
+        }
+        System.out.println("===LinkeList遍历普通for====");
+        for (int i = 0; i < linkedList.size(); i++) {
+            System.out.println(linkedList.get(i));
+        }
+
+
+        //老韩源码阅读.
+        /* 1. LinkedList linkedList = new LinkedList();
+              public LinkedList() {}
+           2. 这时 linkeList 的属性 first = null  last = null
+           3. 执行 添加
+               public boolean add(E e) {
+                    linkLast(e);
+                    return true;
+                }
+            4.将新的结点，加入到双向链表的最后
+             void linkLast(E e) {
+                final Node<E> l = last;
+                final Node<E> newNode = new Node<>(l, e, null);
+                last = newNode;
+                if (l == null)
+                    first = newNode;
+                else
+                    l.next = newNode;
+                size++;
+                modCount++;
+            }
+
+         */
+
+        /*
+          老韩读源码 linkedList.remove(); // 这里默认删除的是第一个结点
+          1. 执行 removeFirst
+            public E remove() {
+                return removeFirst();
+            }
+         2. 执行
+            public E removeFirst() {
+                final Node<E> f = first;
+                if (f == null)
+                    throw new NoSuchElementException();
+                return unlinkFirst(f);
+            }
+          3. 执行 unlinkFirst, 将 f 指向的双向链表的第一个结点拿掉
+            private E unlinkFirst(Node<E> f) {
+                // assert f == first && f != null;
+                final E element = f.item;
+                final Node<E> next = f.next;
+                f.item = null;
+                f.next = null; // help GC
+                first = next;
+                if (next == null)
+                    last = null;
+                else
+                    next.prev = null;
+                size--;
+                modCount++;
+                return element;
+            }
+         */
+    }
+}
+```
 
 
 
 ## 2.5ArrayList 和 LinkedList 的比较
 
-|            | 底层结构 | 增删的效率         | 该查的效率 |
-| ---------- | -------- | ------------------ | ---------- |
-| ArrayList  | 可变数组 | 较低 数组扩容      | 较高       |
-| LinkedList | 双向链表 | 较高，通过链表追加 | 较低       |
+|                  | 底层结构 | 增删的效率         | 该查的效率 |
+| ---------------- | -------- | ------------------ | ---------- |
+| ```ArrayList```  | 可变数组 | 较低 数组扩容      | 较高       |
+| ```LinkedList``` | 双向链表 | 较高，通过链表追加 | 较低       |
 
+**两者都是线程不安全的**
 
+1. 如果改查的操作多，选择ArrayList
+2. 如果增删的操作多，选择LinkedList
+3. 一般来说，在程序中，80%~90%都是查询，因此大部分情况下选择ArrayList
+4. 在一个项目中，根据业务灵活选择，也有可能一个模块内使用ArrayLsit另一模块使用LinkedList
 
 # 3
 
@@ -630,7 +842,7 @@ class Book {
 
 1. 无序（添加和取出的顺序不一致），没有索引
 2. 不允许重复元素，所以最多包含一个null
-3. JDK API中set接口的实现类有
+3. JDK API中set接口的实现类有【看API】
 
 
 
@@ -642,11 +854,69 @@ class Book {
 
 ### 3.1.3Set 接口的遍历方式
 
+同Collection的遍历方式一样，以为Set接口是Collection接口的子接口。
+
+1. 可以使用迭代器
+2. 增强for
+3. **不能使用**索引的方式来获取
+
 
 
 ### 3.1.4Set 接口的常用方法举例
 
+1. 以Set 接口的实现类 HashSet 来讲解Set 接口的方法
+2.  set 接口的实现类的对象(Set接口对象), 不能存放重复的元素, 可以添加一个null
+3. set 接口对象存放数据是无序(即添加的顺序和取出的顺序不一致)
+4. 注意：取出的顺序的顺序虽然不是添加的顺序，但是他的固定.
 
+```java
+package com.hspedu.set_;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+@SuppressWarnings({"all"})
+public class SetMethod {
+    public static void main(String[] args) {
+        //老韩解读
+        //1. 以Set 接口的实现类 HashSet 来讲解Set 接口的方法
+        //2. set 接口的实现类的对象(Set接口对象), 不能存放重复的元素, 可以添加一个null
+        //3. set 接口对象存放数据是无序(即添加的顺序和取出的顺序不一致)
+        //4. 注意：取出的顺序的顺序虽然不是添加的顺序，但是他的固定.
+        Set set = new HashSet();
+        set.add("john");
+        set.add("lucy");
+        set.add("john");//重复
+        set.add("jack");
+        set.add("hsp");
+        set.add("mary");
+        set.add(null);//
+        set.add(null);//再次添加null
+        for(int i = 0; i <10;i ++) {
+            System.out.println("set=" + set);
+        }
+
+        //遍历
+        //方式1： 使用迭代器
+        System.out.println("=====使用迭代器====");
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()) {
+            Object obj =  iterator.next();
+            System.out.println("obj=" + obj);
+        }
+        set.remove(null);
+
+        //方式2: 增强for
+        System.out.println("=====增强for====");
+
+        for (Object o : set) {
+            System.out.println("o=" + o);
+        }
+        //set 接口对象，不能通过索引来获取
+    }
+}
+```
 
 
 
