@@ -1,7 +1,7 @@
 # [集合](./TCH_Han/Chapter14.md)  
 # 值得注意的概念
 - ```itit```快速生成while循环
-- 
+- idea在默认下回阉割部分数据显示，在Build,Execution...->Debugger->Data Views->Java->取消勾选Enblde altermative view for...
 - 
 -  
 1. [](#1)
@@ -494,7 +494,7 @@ public class ListExercise02 {
 
         for (int i = 1; i < list.size(); i++) {
             for (int j = 0; j < list.size() - 1; j++) {
-                Book book1 = (Book) list.get(j);
+                Book book1 = (Book) list.get(j);//向下转型 因为返回的是 Object
                 Book book2 = (Book) list.get(j + 1);
 
                 if (book1.getPrice() > book2.getPrice()) {
@@ -565,6 +565,8 @@ class Book {
 <img src="../img/TCH_Han/ch14_4.png" style="zoom:87%;" />
 
 ### 2.2.2ArrayList 的底层操作机制源码分析(重点，难点.)
+
+
 
 <img src="../img/TCH_Han/ch14_5.png" style="zoom:87%;" />
 
