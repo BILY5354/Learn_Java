@@ -2,7 +2,7 @@
 # 值得注意的概念
 - ```itit```快速生成while循环
 - idea在默认下回阉割部分数据显示，在Build,Execution...->Debugger->Data Views->Java->取消勾选Enblde altermative view for...
-- 
+- set接口对象不能用普通for循环，因为不能通过索引获取
 -  
 1. [](#1)
 2. [](#2)
@@ -923,6 +923,22 @@ public class SetMethod {
 ## 3.2Set 接口实现类-HashSet 
 
 ### 3.2.1HashSet 的全面说明
+
+1. ```HashSet```实现类Set接口
+
+2. ```HashSet```实际上是HashMap
+
+   - ```java
+     public HashSet() {
+         map = new HashMap<>();
+     }
+     ```
+
+3. 可以存放null值，但只能有一个null
+
+4. ```HashSet```不保证元素是有序的，取决于hash后，在确定索引的结果
+
+5. 不能有重复元素/对象，在前面set接口使用讲过
 
 
 
