@@ -1206,6 +1206,8 @@ import java.util.Objects;
 public class HashSetIncrement {
     public static void main(String[] args) {
 
+        HashSet hashSet = new HashSet();
+        
         for(int i = 1; i <= 12; i++) {
             hashSet.add(new A(i));//
         }
@@ -1239,11 +1241,8 @@ import java.util.Objects;
 public class HashSetIncrement {
     public static void main(String[] args) {
 
-        /*
-            当我们向hashset增加一个元素，-> Node -> 加入table , 就算是增加了一个size++
-
-         */
-
+        HashSet hashSet = new HashSet();
+        
         for(int i = 1; i <= 7; i++) {//在table的某一条链表上添加了 7个A对象
             hashSet.add(new A(i));//
         }
@@ -1282,6 +1281,84 @@ class A {
 
 
 ### 3.2.6```HashSet``` 课堂练习 1
+
+定义一个Employee类，改类包含：private成员属性和name,age要求：
+
+1. 创建3个Employee对象放入HashSet中
+2. 当name和age的值相同时，认为是相同员工，不能添加到HashSet集合中
+
+```java
+package com.java.learn_han.chapter14.list_;
+
+import java.util.HashSet;
+import java.util.Objects;
+
+/**
+ * @author CDUY
+ * @version 1.0
+ */
+
+/*定义一耳光Employee类，改类包含：private成员属性和name,age要求：
+        1. 创建3个Employee对象放入HashSet中
+        2. 当name和age的值相同时，认为是相同员工，不能添加到HashSet集合中*/
+public class HashSetExercise {
+    public static void main(String[] args) {
+        Employee employee1 = new Employee("小明", 10);
+        Employee employee2 = new Employee("小明", 10);
+        Employee employee3 = new Employee("小明", 90);
+
+        HashSet hashSet = new HashSet();
+        hashSet.add(employee1);
+        hashSet.add(employee2);
+        hashSet.add(employee3);
+
+        System.out.println(hashSet);
+    }
+}
+
+class Employee {
+    private String name;
+    private int age;
+
+    public Employee(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+   /* @Override 自己写的忽略 应该用快速生成
+    public boolean equals(Object obj) {
+        if (this.name.equals(((Employee) obj).name) && this.age == ((Employee) obj).age) {
+            return true;
+        } else {
+            return false;
+        }
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee employee = (Employee) o;
+        return age == employee.age &&
+                Objects.equals(name, employee.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
+```
+
+<img src="../img/TCH_Han/ch14_19.png" style="zoom:67%;" />
 
 
 
