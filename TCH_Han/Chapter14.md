@@ -3,7 +3,7 @@
 - ```itit```快速生成while循环
 - idea在默认下回阉割部分数据显示，在Build,Execution...->Debugger->Data Views->Java->取消勾选Enblde altermative view for...
 - set接口对象不能用普通for循环，因为不能通过索引获取
--  
+-  ```HashSet```是无序的，因为没有头结点，所以第一个取得数据取决于放的顺序，```LinkedHashSet```是有序的，因为有头结点。
 1. [](#1)
 2. [](#2)
 3. [](#3)
@@ -1515,7 +1515,64 @@ class Employee {
 
 ### 3.3.1```LinkedHashSet``` 的全面说明 
 
+1. ```LinkedHashSet``` 是```HashSet```的子类
+2. ```LinkedHashSet``` 底层是一个```LinkedHashMap```，底层维护一个数组 + 双向链表
+3. ```LinkedHashSet``` 根据元素的```hashCode```值来决定元素的存储位置，同时使用链表维护元素的次序，这使得元素看起来是以插入顺序保存的
+4. ```LinkedHashSet``` 不允许添加重复元素   
 
+<img src="../img/TCH_Han/ch14_21.png" style="zoom:67%;" />
+
+```java
+package com.hspedu.set_;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+@SuppressWarnings({"all"})
+public class LinkedHashSetSource {
+    public static void main(String[] args) {
+        //分析一下LinkedHashSet的底层机制
+        Set set = new LinkedHashSet();
+        set.add(new String("AA"));
+        set.add(456);
+        set.add(456);
+        set.add(new Customer("刘", 1001));
+        set.add(123);
+        set.add("HSP");
+
+        System.out.println("set=" + set);
+        //老韩解读
+        //1. LinkedHashSet 加入顺序和取出元素/数据的顺序一致
+        //2. LinkedHashSet 底层维护的是一个LinkedHashMap(是HashMap的子类)
+        //3. LinkedHashSet 底层结构 (数组table+双向链表)
+        //4. 添加第一次时，直接将 数组table 扩容到 16 ,存放的结点类型是 LinkedHashMap$Entry
+        //5. 数组是 HashMap$Node[] 存放的元素/数据是 LinkedHashMap$Entry类型
+        /*
+                //继承关系是在内部类完成.
+                static class Entry<K,V> extends HashMap.Node<K,V> {
+                    Entry<K,V> before, after;
+                    Entry(int hash, K key, V value, Node<K,V> next) {
+                        super(hash, key, value, next);
+                    }
+                }
+
+         */
+
+    }
+}
+class Customer {
+    private String name;
+    private int no;
+
+    public Customer(String name, int no) {
+        this.name = name;
+        this.no = no;
+    }
+}
+```
+
+- 看源码时为什么table的类型是NOde但是里买呢却是Extry呢？这就是之前的多态了，为什么会有多态呢，因为继承了Node
+- <img src="../img/TCH_Han/ch14_22.png" style="zoom:67%;" />
 
 ### 3.3.2```LinkedHashSet ```课后练习题 ```LinkedHashSetExercise.java```
 
