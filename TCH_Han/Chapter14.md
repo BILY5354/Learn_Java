@@ -1007,7 +1007,7 @@ class Dog { //定义了Dog类
 
 
 
-### 3.2.3HashSet 底层机制说明 
+### 3.2.3```HashSet``` 底层机制说明(1)：整体介绍 
 
 <img src="../img/TCH_Han/ch14_15.png" style="zoom:87%;" />
 
@@ -1056,7 +1056,11 @@ class Node { //结点, 存储数据, 可以指向下一个结点，从而形成�
 
 
 
+### 3.2.4```HashSet``` 底层机制说明(2)：```add```方法
+
 <img src="../img/TCH_Han/ch14_17.png" style="zoom:67%;" />
+
+
 
 ```java
 package com.hspedu.set_;
@@ -1170,11 +1174,118 @@ public class HashSetSource {
 
 
 
-### 3.2.4```HashSet``` 课堂练习 1
+### 3.2.5```HashSet``` 底层机制说明(2)：分析HanSet扩容和转成红黑树机制：
+
+<img src="../img/TCH_Han/ch14_18.png" style="zoom:67%;" />
+
+
+​       
+
+1. HashSet底层是HashMap, 第一次添加时，table 数组扩容到 16，临界值(threshold)是 16*加载因子(loadFactor)是0.75 = 12如果table 数组使用到了临界值 12,就会扩容到 16 * 2 = 32,新的临界值就是 32*0.75 = 24, 依次类推     
+
+```java
+public class HashSetIncrement {
+	public static void main(String[] args) {
+		HashSet hashSet = new HashSet();
+       		for(int i = 1; i <= 100; i++) {
+            	hashSet.add(i);//1,2,3,4,5...100
+        	}
+         }
+}
+```
+
+2. 在Java8中, 如果一条链表的元素个数到达 TREEIFY_THRESHOLD(默认是 8 )，并且table的大小 >= MIN_TREEIFY_CAPACITY(默认64),就会进行树化(红黑树),  否则仍然采用数组扩容机制
+
+```java
+package com.hspedu.set_;
+
+import java.util.HashSet;
+import java.util.Objects;
+
+@SuppressWarnings({"all"})
+public class HashSetIncrement {
+    public static void main(String[] args) {
+
+        for(int i = 1; i <= 12; i++) {
+            hashSet.add(new A(i));//
+        }
+    }
+}
+
+class A {
+    private int n;
+
+    public A(int n) {
+        this.n = n;
+    }
+    @Override
+    public int hashCode() {
+        return 100;
+    }
+}
+```
 
 
 
-### 3.2.5```HashSet``` 课后练习 2
+3. 当我们向hashset增加一个元素，-> Node -> 加入table , 就算是增加了一个size++。
+
+```java
+package com.hspedu.set_;
+
+import java.util.HashSet;
+import java.util.Objects;
+
+@SuppressWarnings({"all"})
+public class HashSetIncrement {
+    public static void main(String[] args) {
+
+        /*
+            当我们向hashset增加一个元素，-> Node -> 加入table , 就算是增加了一个size++
+
+         */
+
+        for(int i = 1; i <= 7; i++) {//在table的某一条链表上添加了 7个A对象
+            hashSet.add(new A(i));//
+        }
+
+        for(int i = 1; i <= 7; i++) {//在table的另外一条链表上添加了 7个B对象
+            hashSet.add(new B(i));//
+        }
+    }
+}
+
+class B {
+    private int n;
+
+    public B(int n) {
+        this.n = n;
+    }
+    @Override
+    public int hashCode() {
+        return 200;
+    }
+}
+
+class A {
+    private int n;
+
+    public A(int n) {
+        this.n = n;
+    }
+    @Override
+    public int hashCode() {
+        return 100;
+    }
+}
+```
+
+
+
+### 3.2.6```HashSet``` 课堂练习 1
+
+
+
+### 3.2.7```HashSet``` 课后练习 2
 
 
 
