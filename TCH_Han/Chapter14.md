@@ -1664,19 +1664,402 @@ class Car {
 
 ### 3.4.1```Map``` 接口实现类的特点 [很实用]
 
+1. ```Map```与Collection并列存在，用于保存具有映射关系的数据key-value
+2. ```Map```中的key和value可以是任何引用类型的数据，会封装到HashMao$Node对象中
+3. ```Map```中的key不允许重复，**原因和HashSet一样**
+4. ```Map```的value跨越重复
+5. ```Map```的key康有为null，value也可以，主要以key为null只能有一个，value为null可以多个
+6. 常用String类作为Mao的key
+7. key和value之间存在单向一对一关系，即通过指定的key总能找到对象的value
+
+```java
+package com.hspedu.map_;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@SuppressWarnings({"all"})
+public class Map_ {
+    public static void main(String[] args) {
+        //老韩解读Map 接口实现类的特点, 使用实现类HashMap
+        //1. Map与Collection并列存在。用于保存具有映射关系的数据:Key-Value(双列元素)
+        //2. Map 中的 key 和  value 可以是任何引用类型的数据，会封装到HashMap$Node 对象中
+        //3. Map 中的 key 不允许重复，原因和HashSet 一样，前面分析过源码.
+        //4. Map 中的 value 可以重复
+        //5. Map 的key 可以为 null, value 也可以为null ，注意 key 为null,
+        //   只能有一个，value 为null ,可以多个
+        //6. 常用String类作为Map的 key
+        //7. key 和 value 之间存在单向一对一关系，即通过指定的 key 总能找到对应的 value
+        Map map = new HashMap();
+        map.put("no1", "韩顺平");//k-v
+        map.put("no2", "张无忌");//k-v
+        map.put("no1", "张三丰");//当有相同的k , 就等价于替换.
+        map.put("no3", "张三丰");//k-v
+        map.put(null, null); //k-v
+        map.put(null, "abc"); //等价替换
+        map.put("no4", null); //k-v
+        map.put("no5", null); //k-v
+        map.put(1, "赵敏");//k-v
+        map.put(new Object(), "金毛狮王");//k-v
+        // 通过get 方法，传入 key ,会返回对应的value
+        System.out.println(map.get("no2"));//张无忌
+
+        System.out.println("map=" + map);
+
+
+
+    }
+}
+```
+
+8. ```Map```存放的数据的keyvalue示意图，一对k-v是放在一个Node中，有因为Node实现了Entry接口，有些书上也说一对k-v就是一个Entry
+
+### 3.4.3Map源码解读（难点）
+
+<img src="../img/TCH_Han/ch14_23.png" style="zoom:67%;" />
+
+<img src="../img/TCH_Han/ch14_24.png" style="zoom:67%;" />
+
+Node放入了Entry进行管理，Extry只是一个引用指向Node中的地址。
+
+```java
+package com.hspedu.map_;
+
+import java.util.HashMap;
+
+
+@SuppressWarnings({"all"})
+public class HashMapSource1 {
+    public static void main(String[] args) {
+        HashMap map = new HashMap();
+        map.put("java", 10);//ok
+        map.put("php", 10);//ok
+        map.put("java", 20);//替换value
+
+        System.out.println("map=" + map);//
+
+        /*老韩解读HashMap的源码+图解
+        1. 执行构造器 new HashMap()
+           初始化加载因子 loadfactor = 0.75
+           HashMap$Node[] table = null
+        2. 执行put 调用 hash方法，计算 key的 hash值 (h = key.hashCode()) ^ (h >>> 16)
+            public V put(K key, V value) {//K = "java" value = 10
+                return putVal(hash(key), key, value, false, true);
+            }
+         3. 执行 putVal
+         final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+                   boolean evict) {
+                Node<K,V>[] tab; Node<K,V> p; int n, i;//辅助变量
+                //如果底层的table 数组为null, 或者 length =0 , 就扩容到16
+                if ((tab = table) == null || (n = tab.length) == 0)
+                    n = (tab = resize()).length;
+                //取出hash值对应的table的索引位置的Node, 如果为null, 就直接把加入的k-v
+                //, 创建成一个 Node ,加入该位置即可
+                if ((p = tab[i = (n - 1) & hash]) == null)
+                    tab[i] = newNode(hash, key, value, null);
+                else {
+                    Node<K,V> e; K k;//辅助变量
+                // 如果table的索引位置的key的hash相同和新的key的hash值相同，
+                 // 并 满足(table现有的结点的key和准备添加的key是同一个对象  || equals返回真)
+                 // 就认为不能加入新的k-v
+                    if (p.hash == hash &&
+                        ((k = p.key) == key || (key != null && key.equals(k))))
+                        e = p;
+                    else if (p instanceof TreeNode)//如果当前的table的已有的Node 是红黑树，就按照红黑树的方式处理
+                        e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+                    else {
+                        //如果找到的结点，后面是链表，就循环比较
+                        for (int binCount = 0; ; ++binCount) {//死循环
+                            if ((e = p.next) == null) {//如果整个链表，没有和他相同,就加到该链表的最后
+                                p.next = newNode(hash, key, value, null);
+                                //加入后，判断当前链表的个数，是否已经到8个，到8个，后
+                                //就调用 treeifyBin 方法进行红黑树的转换
+                                if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                                    treeifyBin(tab, hash);
+                                break;
+                            }
+                            if (e.hash == hash && //如果在循环比较过程中，发现有相同,就break,就只是替换value
+                                ((k = e.key) == key || (key != null && key.equals(k))))
+                                break;
+                            p = e;
+                        }
+                    }
+                    if (e != null) { // existing mapping for key
+                        V oldValue = e.value;
+                        if (!onlyIfAbsent || oldValue == null)
+                            e.value = value; //替换，key对应value
+                        afterNodeAccess(e);
+                        return oldValue;
+                    }
+                }
+                ++modCount;//每增加一个Node ,就size++
+                if (++size > threshold[12-24-48])//如size > 临界值，就扩容
+                    resize();
+                afterNodeInsertion(evict);
+                return null;
+            }
+
+              5. 关于树化(转成红黑树)
+              //如果table 为null ,或者大小还没有到 64，暂时不树化，而是进行扩容.
+              //否则才会真正的树化 -> 剪枝
+              final void treeifyBin(Node<K,V>[] tab, int hash) {
+                int n, index; Node<K,V> e;
+                if (tab == null || (n = tab.length) < MIN_TREEIFY_CAPACITY)
+                    resize();
+
+            }
+         */
+
+
+    }
+}
+```
+
 
 
 ### 3.4.2```Map```接口常用方法
+
+```java
+package com.hspedu.map_;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@SuppressWarnings({"all"})
+public class MapMethod {
+    public static void main(String[] args) {
+        //演示map接口常用方法
+
+        Map map = new HashMap();
+        map.put("邓超", new Book("", 100));//OK
+        map.put("邓超", "孙俪");//替换-> 一会分析源码
+        map.put("王宝强", "马蓉");//OK
+        map.put("宋喆", "马蓉");//OK
+        map.put("刘令博", null);//OK
+        map.put(null, "刘亦菲");//OK
+        map.put("鹿晗", "关晓彤");//OK
+        map.put("hsp", "hsp的老婆");
+
+        System.out.println("map=" + map);
+
+//        remove:根据键删除映射关系
+        map.remove(null);
+        System.out.println("map=" + map);
+//        get：根据键获取值
+        Object val = map.get("鹿晗");
+        System.out.println("val=" + val);
+//        size:获取元素个数
+        System.out.println("k-v=" + map.size());
+//        isEmpty:判断个数是否为0
+        System.out.println(map.isEmpty());//F
+//        clear:清除k-v
+        //map.clear();
+        System.out.println("map=" + map);
+//        containsKey:查找键是否存在
+        System.out.println("结果=" + map.containsKey("hsp"));//T
+
+
+    }
+}
+
+class Book {
+    private String name;
+    private int num;
+
+    public Book(String name, int num) {
+        this.name = name;
+        this.num = num;
+    }
+}
+```
 
 
 
 ### 3.4.3```Map```接口遍历方法
 
+<img src="../img/TCH_Han/ch14_25.png" style="zoom:67%;" />
 
+```java
+package com.hspedu.map_;
+
+import java.util.*;
+
+@SuppressWarnings({"all"})
+public class MapFor {
+    public static void main(String[] args) {
+
+        Map map = new HashMap();
+        map.put("邓超", "孙俪");
+        map.put("王宝强", "马蓉");
+        map.put("宋喆", "马蓉");
+        map.put("刘令博", null);
+        map.put(null, "刘亦菲");
+        map.put("鹿晗", "关晓彤");
+
+        //第一组: 先取出 所有的Key , 通过Key 取出对应的Value
+        Set keyset = map.keySet();
+        //(1) 增强for
+        System.out.println("-----第一种方式-------");
+        for (Object key : keyset) {
+            System.out.println(key + "-" + map.get(key));
+        }
+        //(2) 迭代器
+        System.out.println("----第二种方式--------");
+        Iterator iterator = keyset.iterator();
+        while (iterator.hasNext()) {
+            Object key =  iterator.next();
+            System.out.println(key + "-" + map.get(key));
+        }
+
+        //第二组: 把所有的values取出
+        Collection values = map.values();
+        //这里可以使用所有的Collections使用的遍历方法
+        //(1) 增强for
+        System.out.println("---取出所有的value 增强for----");
+        for (Object value : values) {
+            System.out.println(value);
+        }
+        //(2) 迭代器
+        System.out.println("---取出所有的value 迭代器----");
+        Iterator iterator2 = values.iterator();
+        while (iterator2.hasNext()) {
+            Object value =  iterator2.next();
+            System.out.println(value);
+
+        }
+
+        //第三组: 通过EntrySet 来获取 k-v
+        Set entrySet = map.entrySet();// EntrySet<Map.Entry<K,V>>
+        //(1) 增强for
+        System.out.println("----使用EntrySet 的 for增强(第3种)----");
+        for (Object entry : entrySet) {
+            //将entry 转成 Map.Entry
+            Map.Entry m = (Map.Entry) entry;
+            System.out.println(m.getKey() + "-" + m.getValue());
+        }
+        //(2) 迭代器
+        System.out.println("----使用EntrySet 的 迭代器(第4种)----");
+        Iterator iterator3 = entrySet.iterator();
+        while (iterator3.hasNext()) {
+            Object entry =  iterator3.next();
+            //System.out.println(next.getClass());//HashMap$Node -实现-> Map.Entry (getKey,getValue)
+            //向下转型 Map.Entry
+            Map.Entry m = (Map.Entry) entry;
+            System.out.println(m.getKey() + "-" + m.getValue());
+        }
+
+
+    }
+}
+```
 
 
 
 ### 3.4.4```Map```接口课堂练习 
+
+```java
+package com.hspedu.map_;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+
+@SuppressWarnings({"all"})
+public class MapExercise {
+    public static void main(String[] args) {
+        //完成代码
+        Map hashMap = new HashMap();
+        //添加对象
+        hashMap.put(1, new Emp("jack", 300000, 1));
+        hashMap.put(2, new Emp("tom", 21000, 2));
+        hashMap.put(3, new Emp("milan", 12000, 3));
+
+
+        //遍历2种方式
+        //并遍历显示工资>18000的员工(遍历方式最少两种)
+        //1. 使用keySet  -> 增强for
+        Set keySet = hashMap.keySet();
+        System.out.println("====第一种遍历方式====");
+        for (Object key : keySet) {
+            //先获取value
+            Emp emp = (Emp) hashMap.get(key);
+            if(emp.getSal() >18000) {
+                System.out.println(emp);
+            }
+        }
+
+        //2. 使用EntrySet -> 迭代器
+        //   体现比较难的知识点
+        //   慢慢品，越品越有味道.
+        Set entrySet = hashMap.entrySet();
+        System.out.println("======迭代器======");
+        Iterator iterator = entrySet.iterator();
+        while (iterator.hasNext()) {
+            Map.Entry entry =  (Map.Entry)iterator.next();
+            //通过entry 取得key 和 value
+            Emp emp = (Emp) entry.getValue();
+            if(emp.getSal() > 18000) {
+                System.out.println(emp);
+            }
+        }
+
+    }
+}
+/**
+ * 使用HashMap添加3个员工对象，要求
+ * 键：员工id
+ * 值：员工对象
+ *
+ * 并遍历显示工资>18000的员工(遍历方式最少两种)
+ * 员工类：姓名、工资、员工id
+ */
+class Emp {
+    private String name;
+    private double sal;
+    private int id;
+
+    public Emp(String name, double sal, int id) {
+        this.name = name;
+        this.sal = sal;
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getSal() {
+        return sal;
+    }
+
+    public void setSal(double sal) {
+        this.sal = sal;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Emp{" +
+                "name='" + name + '\'' +
+                ", sal=" + sal +
+                ", id=" + id +
+                '}';
+    }
+}
+```
 
 
 
