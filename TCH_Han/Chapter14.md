@@ -2507,10 +2507,6 @@ public class Collections_ {
 
 
 
-### 4.1.3排序操作：（均为 static 方法) 
-
-
-
 ### 4.1.4查找、替换
 
 ```
