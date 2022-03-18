@@ -2245,14 +2245,14 @@ table.put("lic", 88);//替换
 在开发过程中，选择什么集合实现类，主要取决于业务操作特点，然后根据集合实现类特性进行选择：
 
 1. 先判断存储的类型（一组对象或一组键值对）
-2. 一组对象：Collection接口
+2. 一组对象【单列】：Collection接口
    - 允许重复：List
      - 增删多：LinkList ：底层维护了一个双向链表
      - 改查多：ArrayList：底层维护 Object类型的可变数组
    - 不允许重复：Set
      - 无序：HashSet：底层是HashMap 维护了一个哈希表 （数组+链表+红黑树）
      - 排序：TreeSet
-     - 插入和取出顺序一致：LinkedHashSet 维护数组+双向链表
+     - 插入和取出顺序一致：LinkedHashSet 【底层LinkeHashMapo的底层HashMap】维护数组+双向链表
 3. 一组键值对：Map
    - 键无序：HashMap 底层是 哈希表 jdk7： 数组+链表 jdk8：数组+链表+红黑树
    - 键排序：TreeMap
@@ -2261,7 +2261,152 @@ table.put("lic", 88);//替换
 
 ```
 ```
+
+
+### 3.9TreeSet到时候调整一下顺序
+
+```java
+package com.hspedu.set_;
+
+import java.util.Comparator;
+import java.util.TreeSet;
+
+@SuppressWarnings({"all"})
+public class TreeSet_ {
+    public static void main(String[] args) {
+
+        //老韩解读
+        //1. 当我们使用无参构造器，创建TreeSet时，仍然是无序的
+        //2. 老师希望添加的元素，按照字符串大小来排序
+        //3. 使用TreeSet 提供的一个构造器，可以传入一个比较器(匿名内部类)
+        //   并指定排序规则
+        //4. 简单看看源码
+        //老韩解读
+        /*
+        1. 构造器把传入的比较器对象，赋给了 TreeSet的底层的 TreeMap的属性this.comparator
+
+         public TreeMap(Comparator<? super K> comparator) {
+                this.comparator = comparator;
+            }
+         2. 在 调用 treeSet.add("tom"), 在底层会执行到
+
+             if (cpr != null) {//cpr 就是我们的匿名内部类(对象)
+                do {
+                    parent = t;
+                    //动态绑定到我们的匿名内部类(对象)compare
+                    cmp = cpr.compare(key, t.key);
+                    if (cmp < 0)
+                        t = t.left;
+                    else if (cmp > 0)
+                        t = t.right;
+                    else //如果相等，即返回0,这个Key就没有加入
+                        return t.setValue(value);
+                } while (t != null);
+            }
+         */
+
+//        TreeSet treeSet = new TreeSet();
+        TreeSet treeSet = new TreeSet(new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                //下面 调用String的 compareTo方法进行字符串大小比较
+                //如果老韩要求加入的元素，按照长度大小排序
+                //return ((String) o2).compareTo((String) o1);
+                return ((String) o1).length() - ((String) o2).length();
+            }
+        });
+        //添加数据.
+        treeSet.add("jack");
+        treeSet.add("tom");//3
+        treeSet.add("sp");
+        treeSet.add("a");
+        treeSet.add("abc");//3
+
+
+        System.out.println("treeSet=" + treeSet);
+    }
+}
+```
+
+
+
+### 3.10TreeMap
+
+```java
+package com.hspedu.map_;
+
+import java.util.Comparator;
+import java.util.TreeMap;
+
+@SuppressWarnings({"all"})
+public class TreeMap_ {
+    public static void main(String[] args) {
+
+        //使用默认的构造器，创建TreeMap, 是无序的(也没有排序)
+        /*
+            老韩要求：按照传入的 k(String) 的大小进行排序
+         */
+//        TreeMap treeMap = new TreeMap();
+        TreeMap treeMap = new TreeMap(new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                //按照传入的 k(String) 的大小进行排序
+                //按照K(String) 的长度大小排序
+                //return ((String) o2).compareTo((String) o1);
+                return ((String) o2).length() - ((String) o1).length();
+            }
+        });
+        treeMap.put("jack", "杰克");
+        treeMap.put("tom", "汤姆");
+        treeMap.put("kristina", "克瑞斯提诺");
+        treeMap.put("smith", "斯密斯");
+        treeMap.put("hsp", "韩顺平");//加入不了
+
+        System.out.println("treemap=" + treeMap);
+
+        /*
+
+            老韩解读源码：
+            1. 构造器. 把传入的实现了 Comparator接口的匿名内部类(对象)，传给给TreeMap的comparator
+             public TreeMap(Comparator<? super K> comparator) {
+                this.comparator = comparator;
+            }
+            2. 调用put方法
+            2.1 第一次添加, 把k-v 封装到 Entry对象，放入root
+            Entry<K,V> t = root;
+            if (t == null) {
+                compare(key, key); // type (and possibly null) check
+
+                root = new Entry<>(key, value, null);
+                size = 1;
+                modCount++;
+                return null;
+            }
+            2.2 以后添加
+            Comparator<? super K> cpr = comparator;
+            if (cpr != null) {
+                do { //遍历所有的key , 给当前key找到适当位置
+                    parent = t;
+                    cmp = cpr.compare(key, t.key);//动态绑定到我们的匿名内部类的compare
+                    if (cmp < 0)
+                        t = t.left;
+                    else if (cmp > 0)
+                        t = t.right;
+                    else  //如果遍历过程中，发现准备添加Key 和当前已有的Key 相等，就不添加
+                        return t.setValue(value);
+                } while (t != null);
+            }
+         */
+
+    }
+}
+```
+
+
+
 # 4
+
+
 
 ## 4.1Collections 工具类
 
