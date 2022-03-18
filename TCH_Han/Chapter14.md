@@ -2257,7 +2257,7 @@ table.put("lic", 88);//替换
    - 键无序：HashMap 底层是 哈希表 jdk7： 数组+链表 jdk8：数组+链表+红黑树
    - 键排序：TreeMap
    - 键插入和取出顺序一致：LinkedHashMap
-   - 读取文件：Properties
+   - 读取文件：Properties 
 
 ```
 ```
