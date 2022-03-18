@@ -1714,7 +1714,7 @@ public class Map_ {
 
 8. ```Map```存放的数据的keyvalue示意图，一对k-v是放在一个Node中，有因为Node实现了Entry接口，有些书上也说一对k-v就是一个Entry
 
-### 3.4.3Map源码解读（难点）
+### 3.4.2```Map``` 源码解读（难点）
 
 <img src="../img/TCH_Han/ch14_23.png" style="zoom:67%;" />
 
