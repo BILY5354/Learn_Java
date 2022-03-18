@@ -63,3 +63,19 @@ class Dog {
     }
 }
 
+interface a {
+    void hey();
+    interface  b {
+        public void hi();
+    }
+}
+
+class c implements a{
+
+    @Override
+    public void hey() {
+
+    }
+}
+
+

@@ -1877,6 +1877,21 @@ class Book {
 
 ### 3.4.3```Map```接口遍历方法
 
+- ```Map map = new HashMap();```
+
+1. 先取出所有 key ，通过 key 取出对应的 value
+   - ```Set keySet = map.keySet();```
+   - 增强 for
+   - 迭代器
+2. 把所有的 value 取出
+   - ```Collection values = map.values();```
+   - 增强 for
+   - 迭代器
+3. 通过 EntrySet 来获取 k-v
+   - ```Set entrySet  = map.entrySet();```
+   - 增强 for
+   - 迭代器
+
 <img src="../img/TCH_Han/ch14_25.png" style="zoom:67%;" />
 
 ```java
@@ -1956,6 +1971,16 @@ public class MapFor {
 
 
 ### 3.4.4```Map```接口课堂练习 
+
+>我**片面**的理解是：
+>
+>怎么拿```Map```中的值，看我本次想用```HashMap```中的哪一个方法拿，是 keySet 还是 entrySet 还是其它。
+>
+>一旦确定了用什么方法拿，就要知道它的返回类型是什么，比如 keySet 了，既然叫 key，那么返回的就是键，如果用的是 entrySet，既然是 entry，那么就是一整个 entry（键值对），那么获取到的返回值肯定可以使用 getValuer 和 getKey 方法的。
+>
+>得到后怎么遍历呢，用增强 for 或 迭代器。
+
+<img src="../img/TCH_Han/ch14_26.png" style="zoom:67%;" />
 
 ```java
 package com.hspedu.map_;
@@ -2069,13 +2094,13 @@ class Emp {
 
 ### 3.5.1HashMap 小结 
 
-
+<img src="../img/TCH_Han/ch14_27.png" style="zoom:67%;" />
 
 ### 3.5.2HashMap 底层机制及源码剖析
 
+<img src="../img/TCH_Han/ch14_28.png" style="zoom:67%;" />
 
 
-### 3.5.3HashMap 底层机制及源码剖析
 
 
 
