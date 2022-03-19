@@ -4,10 +4,10 @@
 - idea在默认下回阉割部分数据显示，在Build,Execution...->Debugger->Data Views->Java->取消勾选Enblde altermative view for...
 - set接口对象不能用普通for循环，因为不能通过索引获取
 -  ```HashSet```是无序的，因为没有头结点，所以第一个取得数据取决于放的顺序，```LinkedHashSet```是有序的，因为有头结点。
-1. [](#1)
-2. [](#2)
-3. [](#3)
-4. [](#4)
+1. [集合的介绍](#1)
+2. [```List```](#2)
+3. [```Set```](#3)
+4. [```Collections```工具类](#4)
 5. [作业](#作业)  
 # 1
 
