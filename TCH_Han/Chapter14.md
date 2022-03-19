@@ -2512,5 +2512,85 @@ public class Collections_ {
 ```
 ```
 # 作业
+
+## 1
+
+```java
+package com.java.learn_han.chapter14.homework;
+
+import java.util.ArrayList;
+
+public class Homework01 {
+    public static void main(String[] args) {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(new News("新冠确诊病例超千万，数百万印度教信徒赴恒河\"圣浴\"引民众担忧"));
+        arrayList.add(new News("男子突然想起2个月前钓的鱼还在网兜里，捞起一看赶紧放生"));
+
+        int size = arrayList.size();
+        for (int i = size - 1; i >= 0; i--) {
+            //System.out.println(arrayList.get(i));
+            News news = (News)arrayList.get(i);
+            System.out.println(processTitle(news.getTitle()));
+        }
+
+    }
+    //专门写一个方法，处理现实新闻标题 process处理
+    public static String processTitle(String title) {
+
+        if(title == null) {
+            return "";
+        }
+
+        if(title.length() > 15) {
+            return title.substring(0, 15) + "..."; //[0,15)
+        } else {
+            return title;
+        }
+
+    }
+}
+
+
+class News {
+    private String title;
+    private String contend;
+
+    public News(String title) {
+        this.title = title;
+        this.contend = null;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContend() {
+        return contend;
+    }
+
+    public void setContend(String contend) {
+        this.contend = contend;
+    }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "title='" + title + '\'' +
+                '}';
+    }
+}
 ```
-```
+
+
+
+## 7 试写出Vector和ArrayList的比较
+
+|           | 底层结构         | 版本   | 线程安全（同步）效率 | 扩容倍数                                                     |
+| --------- | ---------------- | ------ | -------------------- | ------------------------------------------------------------ |
+| ArrayList | 可变数组         | jdk1.2 | 不安全，效率高       | 如果使用有参构造器按照1.5被扩容，如果是无参构造器1.第一次扩容10 2.从第二次按照1.5倍 |
+| Vector    | 可变数组Object[] | jdk1.0 | 安全，效率不高       | 如果是无参，默认10，满后，按照2被扩容如果是指定大小创建Vector则每次按照2被扩容 |
+
