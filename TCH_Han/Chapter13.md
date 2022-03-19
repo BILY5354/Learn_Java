@@ -6,8 +6,11 @@
 -  ```StringBuffer```用于存放数据的数组不是```final```所以是存放在堆中的，和```String```存放在栈中不同。
 1. [包装类](#1)
 2. [```String,StringBuffer,StringBuilder```](#2)
-3. [](#3)
-4. [](#4)
+3. [```Math```](#3)
+4. [```Arrays```](#4)
+4. [```System```](#5)
+4. [```BigInteger```和```BigDeciaml```](#6)
+4. [```日期类```](#7)
 5. [作业](#作业)  
 # 1
 

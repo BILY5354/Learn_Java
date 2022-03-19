@@ -170,8 +170,11 @@ grep -nri 命名 TCH_Han | cat --number
 #### [第13章 常用类(P460 - P498)](./TCH_Han/Chapter13.md)  
 - [包装类](./TCH_Han/Chapter13.md#1)
 - [```String,StringBuffer,StringBuilder```](./TCH_Han/Chapter13.md#2)
-- [](./TCH_Han/Chapter13.md#3)
-- [](./TCH_Han/Chapter13.md#4)  
+- [```Math```](./TCH_Han/Chapter13.md#3)
+- [```Arrays```](./TCH_Han/Chapter13.md#4)  
+- [```System```](./TCH_Han/Chapter13.md#5)  
+- [```BigInteger```和```BigDeciaml```](./TCH_Han/Chapter13.md#6)  
+- [```日期类```](./TCH_Han/Chapter13.md#7)    
 - [作业](./TCH_Han/Chapter13.md#作业)  
 
 #### [第14章 集合(P499 - P553)](./TCH_Han/Chapter14.md)  
