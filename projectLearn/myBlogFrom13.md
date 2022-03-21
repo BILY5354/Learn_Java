@@ -95,6 +95,19 @@
 
 
 
+## 线上
+
+```sh
+wget https://labfile.oss.aliyuncs.com/courses/1367/lou-springboot.zip
+unzip lou-springboot.zip
+
+//运行项目
+cd lou-springboot
+mvn spring-boot:run
+```
+
+
+
 项目初始化时我们选择的打包方式为 Jar ，因此项目开发完成进行打包时的结果是一个 Jar 包， Java 运行 Jar 包的命令为 `java -jar xxx.jar` ，结合以上两个原因我们可以使用这种方式启动 Spring Boot 项目，接下来我们来演示这一过程。
 
 - 首先，点击下方工具栏中的 Terminal 打开命令行窗口
