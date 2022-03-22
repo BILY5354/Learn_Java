@@ -13,7 +13,7 @@ public class Homework2 {
         arrayList.add(new Car("宾利", 60000));
 
         arrayList.remove(1);
-        arrayList.contains(Car)
+
     }
 }
 
