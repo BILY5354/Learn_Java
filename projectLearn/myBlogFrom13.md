@@ -91,6 +91,13 @@
 	service mysqld restart
 
 13. 使用SQLYog工具连接mysql
+
+//看端口
+show variables like 'port';
+//修改端口需要
+setenforce 0
+//重启
+service mysqld restart
 ```
 
 
