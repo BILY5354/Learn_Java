@@ -1,5 +1,7 @@
 package com.java.learn_han;
 
+import org.omg.CORBA.PRIVATE_MEMBER;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,12 +13,20 @@ import java.util.List;
  */
 public class TestDbConnection {
 
+    private static String SERVER_MYSQL5_7 = "jdbc:mysql://192.168.23.129:3306/";
+    private static String SERVER_MYSQL5_7_USER = "root";
+    private static String SERVER_MYSQL5_7_PASS = "root";
+    private static String SERVER_MYSQL8 = "jdbc:mysql://localhost:3306/";
+    private static String SERVER_MYSQL8_USER = "root";
+    private static String SERVER_MYSQL8_PASS = "123456";
+
+    private static String TABLE_NAME = "tbl_book";
 
     public static Connection getConnection() {
         String driver = "com.mysql.jdbc.Driver";  //获取mysql数据库的驱动类
-        String url = "jdbc:mysql://192.168.23.130:3326/test"; //连接数据库（kucun是数据库名）
-        String name = "test";//连接mysql的用户名
-        String pwd = "root80";//连接mysql的密码
+        String url = SERVER_MYSQL5_7 + "ssm_db"; //连接数据库（kucun是数据库名）
+        String name = SERVER_MYSQL5_7_USER;//连接mysql的用户名
+        String pwd = SERVER_MYSQL5_7_PASS;//连接mysql的密码
         try {
             Class.forName(driver);
             Connection conn = DriverManager.getConnection(url, name, pwd);//获取连接对象
@@ -59,7 +69,7 @@ public class TestDbConnection {
         if (!cc.isClosed())
             System.out.println("Succeeded connecting to the Database!");
         Statement statement = cc.createStatement();
-        String sql = "select * from fun";
+        String sql = "select * from " + TABLE_NAME;
         ResultSet rs = statement.executeQuery(sql);
         while (rs.next()) {
             System.out.println(rs.getString("id") + " " + rs.getString("name"));
