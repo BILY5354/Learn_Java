@@ -1,0 +1,143 @@
+{
+  "main": {
+    "id": "f3e7ff5d9ef04f02",
+    "type": "split",
+    "children": [
+      {
+        "id": "eec36a3310c9e12f",
+        "type": "leaf",
+        "state": {
+          "type": "graph",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2bda46b420aecca0",
+    "type": "split",
+    "children": [
+      {
+        "id": "72fd4a6a660fbc1a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4e6c3fe19b8ff85f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "d1c6c3ce8c319681",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "1d069b6fa5e008d2",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "b61ad6372b5915e6",
+            "type": "leaf",
+            "state": {
+              "type": "recent-files",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "568ce7c83dd1d005",
+    "type": "split",
+    "children": [
+      {
+        "id": "8bd05ff94ea30852",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d3ff113b39f0a8c6",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "018faf474b4cb914",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "acb28b9f4070863b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          },
+          {
+            "id": "1e4730032fa21651",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 328.5
+  },
+  "active": "eec36a3310c9e12f",
+  "lastOpenFiles": [
+    "readme.md",
+    "notion.md",
+    "00 Inbox/模板.md",
+    "TCH_Han/Chapter7.md",
+    "img/TCH_Han/ch6_1.png",
+    "TCH_Han/Chapter6.md",
+    "TCH_Han/Chapter1.md",
+    "TCH_Han/Chapter14.md",
+    "TCH_Han/Chapter15.md",
+    "TCH_Han/Chapter17.md"
+  ]
+}
