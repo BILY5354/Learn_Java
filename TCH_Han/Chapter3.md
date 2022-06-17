@@ -12,16 +12,14 @@
 4. [基本数据类型与```String```类型转换](#4)  
 4. [作业](#作业)
 ## 1
-
 **图（必记）**
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171455829.png)
 
-![](../img/TCH_Han/ch3_2.png)
 
 
 
 ## 2
-
-![](../img/TCH_Han/ch3_3.png)
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171456633.png)
 
 ### 2.1 数据类型转换-自动转换
 
@@ -84,15 +82,11 @@ char c2 = m;//错
 
 
 ## 3
-
-![](../img/TCH_Han/ch3_ASCII.png)
-
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171456375.png)
 
 ## 4
 
 ### 4.1 基本型转```String```
-
 ```java
 int n1 = 100;
 float f1 = 1.1f;
@@ -105,7 +99,6 @@ String s4 = b1 + "";
 ```
 
 ### 4.2 ```Stirng```转基本型
-
 ```java
 String s5 = "123";
 int num1 = Integer.parseInt(s5);
@@ -118,7 +111,6 @@ boolean b = Boolean.parseBoolean("true");
 ```
 
 ### 4.3 ```String```转```char```
-
 ```java
 String s1 = "Hello";
 char c1 = s1.charAt(0);
@@ -128,20 +120,16 @@ System.out.println(c1);//输出 H
 
 
 ## 作业
-
-<img src="../img/TCH_Han/ch3_0.png" style="zoom: 67%;" />
-
-<img src="../img/TCH_Han/ch3_1.png" style="zoom: 67%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171457374.png)
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171457661.png)
 
 1. as
-
 ```
 n3 = 30
 n5 = 8
 ```
 
 2. as
-
 ```java
 public class myHomework2 {
 	public static void main(String args[]) {
@@ -181,7 +169,6 @@ public class myHomework3 {
 ```
 
 4. 
-
 ```java
 public class myHomework4 {
 	public static void main(String argsp[]) {

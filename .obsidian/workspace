@@ -7,8 +7,12 @@
         "id": "eec36a3310c9e12f",
         "type": "leaf",
         "state": {
-          "type": "graph",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "TCH_Han/Chapter10.md",
+            "mode": "source",
+            "source": false
+          }
         }
       }
     ],
@@ -65,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "568ce7c83dd1d005",
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "TCH_Han/Chapter10.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,7 +113,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "TCH_Han/Chapter10.md"
+              }
             }
           },
           {
@@ -116,6 +124,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "TCH_Han/Chapter10.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,19 +134,20 @@
       }
     ],
     "direction": "horizontal",
-    "width": 328.5
+    "width": 328.5,
+    "collapsed": true
   },
   "active": "eec36a3310c9e12f",
   "lastOpenFiles": [
-    "readme.md",
-    "notion.md",
-    "00 Inbox/模板.md",
+    "TCH_Han/Chapter10.md",
+    "TCH_Han/Chapter8.md",
     "TCH_Han/Chapter7.md",
-    "img/TCH_Han/ch6_1.png",
     "TCH_Han/Chapter6.md",
+    "TCH_Han/Chapter5.md",
+    "TCH_Han/Chapter4.md",
+    "TCH_Han/Chapter3.md",
+    "TCH_Han/Chapter2.md",
     "TCH_Han/Chapter1.md",
-    "TCH_Han/Chapter14.md",
-    "TCH_Han/Chapter15.md",
-    "TCH_Han/Chapter17.md"
+    "readme.md"
   ]
 }

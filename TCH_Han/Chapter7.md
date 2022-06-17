@@ -219,7 +219,7 @@ class BB {
 } 		
 ```
 
-![](../img/TCH_Han/ch7_1.png)
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171503653.png)
 
 
 
@@ -280,7 +280,7 @@ class BB {
 } 	
 ```
 
-<img src="../img/TCH_Han/ch7_2.png" style="zoom:67%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171504283.png)
 
 - 解释：引用类型传递是传地址，在方法调用时，置为空了，应该是什么也没有，但操作3最终的结果也是```10```呢？
 
@@ -288,7 +288,7 @@ class BB {
 
   同样，操作2也是相同的道理，所以在操作2中，尽管**改变了对象的数值**，**但此对象非之前建立连接的对象**，所以没有成功改变原对象的数据。
 
-![](../img/TCH_Han/ch7_4.png)
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171504263.png)
 
 
 
@@ -327,12 +327,11 @@ class MyTools {
 }
 ```
 
-![](../img/TCH_Han/ch7_3.png)
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171504852.png)
 
 
 
 ## 3
-
 ### 3.1 课堂练习(1)：递归实现斐波那契
 
 > 我（**片面**）对递归的理解就是，递归函数会一直调用自己直到不能调用为止，那么在调用自己过程中怎么实现传值呢？
@@ -552,8 +551,7 @@ void shows() {}						   //方法名不同，所以不是
 
 ### 4.2 课堂练习(1)：重载练习
 
-<img src="../img/TCH_Han/ch7_5.png" style="zoom:67%;" />
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171506092.png)
 ```java
 //1
 public class myHomework {
@@ -630,8 +628,7 @@ class Methods {
 访问修饰符 返回类型 方法名(数据类型... 形参名) { }
 ```
 
-- 例子
-
+- 例子：
 ```java
 //普通做法
 class Methods {
@@ -669,9 +666,6 @@ class Methods {
 3. 可变参数的**本质就是数组**
 4. 可变参数可以和普通类型的参数一起放在形参列表，但必须保证可变参数在最后
 5. 一个形参列表中只能出现一个可变参数
-
-
-
 ```java
 class T { 
     public void f1(int... nums) { 
@@ -693,8 +687,7 @@ class T {
 
 ### 5.2 课堂练习(1)：可变参数练习
 
-<img src="../img/TCH_Han/ch7_6.png" style="zoom:67%;" />
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171505296.png)
 ```java
 public class myHomework {
 	public static void main(String[] args) {
@@ -839,8 +832,7 @@ class Person {
 	}
 }
 ```
-
-<img src="../img/TCH_Han/ch7_7.png"  />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171505190.png)
 
 
 
@@ -874,32 +866,18 @@ Person p = new Person("CDUY", 20);
    - 构造器初始化```age = 20; name = CDUY```
 4. 在对象中堆的地址返回给```p```（```p```是对象名，也可以理解为**对象的引用**）
 
-<img src="../img/TCH_Han/ch7_8.png" style="zoom:67%;" />
-
-
-
-
-
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171506749.png)
 
 ## 7
-
 ### 7.1 ```this```关键字
 
 ```this```即表示当前对象。
 
 1. ```this```关键字可以访问本类的属性、方法、构造器
-
 2. ```this```用于区分当前类的属性和局部变量
-
 3. 访问成员方法的语法：```this.方法名(参数列表);```
-
-4. 访问构造器语法：```this(参数列表);```，**注意只能在构造器使用**，(即只能在构造器中访问另外一个构造器, 必须放在第一 
-
-   条语句) 
-
+4. 访问构造器语法：```this(参数列表);```，**注意只能在构造器使用**，(即只能在构造器中访问另外一个构造器, 必须放在第一条语句) 
 5. ```this```不能再类定义的外部使用，只能在类定义的方法中使用
-
 ```java
 //之前是这样写的
 class Person {
@@ -929,7 +907,6 @@ class Person {
 
 
 ### 7.2 课堂练习(1)：```this```练习
-
 ```java
 public class myHomework {
 	public static void main(String[] args) {
@@ -962,7 +939,6 @@ class Person {
 
 
 ## 作业
-
 ### 编写一个类定义方法使返回数组最大值
 
 写本题时，应该想到数组是否合理是否为空，所以韩老师使用了```arr!= null && arr.length > 0```判断。

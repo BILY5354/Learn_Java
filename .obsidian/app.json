@@ -6,5 +6,6 @@
   "newFileFolderPath": "00 Inbox",
   "attachmentFolderPath": "00 attachment",
   "fileSortOrder": "alphabetical",
-  "promptDelete": false
+  "promptDelete": false,
+  "strictLineBreaks": true
 }

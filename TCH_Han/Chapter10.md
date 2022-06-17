@@ -50,32 +50,21 @@ static 访问修饰符 数据类型 变量名;
 ### 1.2.2 类变量内存剖析
 
 ```JDK```版本不同可能会导致静态变量存储的位置不同，但是要注意的是：
-
  - ```staic```变量是**同一个类**中所有对象**共享**
-
  -  ```staic```类变量，在类加载时候就生产
-
-  
 
 ### 1.2.3 类变量使用注意事项与细节讨论
 
 1. 什么时候需要用类变量：
-
    - 当需要让某个类的所有对象都共享一个变量是，就可以考虑使用类变量（静态变量）
-
 2. 类变量与实例变量（普通属性）区别：
-
    - **类变量**是该类的所有对象**共享**的，而**实例变量**是每个对象**独享**的
-
 3. 加上```static```称为类变量或静态变量，否则称为实例变量/普通变量/非静态变量
-
 4. 类变量的方法方式有：（前提是满足访问修饰符的访问权限和范围）
-
    ```java
    类名.类变量名	//推荐 注意！实例变量此种访问方式错误
    对象名.类变量名
    ```
-
 5. 类变量是在类加载是就初始化了，也就是即使没有创建对象，只要类加载了，就可以使用类变量
 6. 类变量的生命周期是随类的加载开始，随着类消亡而销毁（看例子）
 
@@ -101,23 +90,16 @@ class C {
 }
 ```
 
-
-
-
-
 ### 1.2.4 类方法基本介绍
 
 如果希望不创建实例也可以调用某个方法（即当做工具类使用），这时把方法做成静态方法便非常合适。
 
 - 类方法也叫静态方法
-
 ```java
 访问修饰符 static 数据返回类型 方法名() {}//推荐
 static 访问修饰符 数据返回类型 方法名() {}
 ```
-
 - 类方法的调用**前提是**满足访问修饰符的访问权限
-
 ```java
 class B {
     public static void printStart () {
@@ -129,7 +111,6 @@ class B {
 
 
 类方法使用案例
-
 ```java
 package com.hspedu.static_; 
 
@@ -315,9 +296,7 @@ class Person { //StaticExercise03.java 2min 看
 # 2
 
 ## 2.1 理解```main```方法语法
-
-<img src="../img/TCH_Han/ch10_1.png" style="zoom:87%;" />
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171514068.png)
 ```java
 public class myHomework {
 	public static void main(String[] args) {
@@ -328,7 +307,7 @@ public class myHomework {
 	}
 }
 ```
-<img src="../img/TCH_Han/ch10_2.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171515329.png)
 
 
 
@@ -369,23 +348,18 @@ public class Main01 {
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch10_3.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171515164.png)
 
 ## 2.3 案例演示
 
 如果想在```IDEA```中传入参数怎么弄？如图：
-
-<img src="../img/TCH_Han/ch10_4.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171515139.png)
 
 # 3
-
 ## 3.1 代码块基本介绍
 
 - 代码块又称为**初始化块**，属于类中的成员（类中的一部分），类似于方法，将逻辑语句封装在方法体中，通过```{}```包围起来
-
 - 但与方法不同，没有方法名，没有返回，没有参数，只有方法体，而且不用通过对象或类显示调用，而是加载类时，或创建对象时**隐式调用**
-
 ```java
 [修饰符] {
   代码  
@@ -446,8 +420,7 @@ class Movie {
     };
 }
 ```
-
-<img src="../img/TCH_Han/ch10_5.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171515157.png)
 
 1. 相当于另外一种形式的构造器（对构造器的补充机制），可以做初始化的操作。
 2. 场景：如果多个构造器中都有重复的语句，可以抽取到初始化块中，提高代码的重用性。
@@ -479,9 +452,7 @@ class  AA {
 }
 
 ```
-
-<img src="../img/TCH_Han/ch10_6.png" style="zoom:87%;" />
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171516039.png)
 - 创建子类对象实例，父类也会被加载
 
 ```java
@@ -506,8 +477,7 @@ class  AA extends BB {
 }
 
 ```
-
-<img src="../img/TCH_Han/ch10_7.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171516954.png)
 
 - 使用类的静态成员时（静态属性、静态方法）
 
@@ -526,8 +496,7 @@ class Cat {
      };
  }
 ```
-
-<img src="../img/TCH_Han/ch10_8.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171516223.png)
 
 ### 3.2.2 ```static```静态代码块
 
@@ -552,9 +521,7 @@ class DD {
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch10_9.png" style="zoom:87%;" />
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171516356.png)
 - 如果只是使用/调用类的静态成员时，普通代码块并不会执行。**普通代码块就是构造器的补充，如果构造器无调用，普通代码块也不会被调用**。
 
 ```java
@@ -578,8 +545,7 @@ class DD {
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch10_10.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171516817.png)
 
 > **小结：**
 >
@@ -618,14 +584,11 @@ class DD {
        }
    }
    ```
-   
-   <img src="../img/TCH_Han/ch10_11.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171517770.png)
    
 2. 调用普通代码块和普通属性的初始化
    - 注意：普通代码块和普通属性初始化调用优先级一样，如果有多个普通代码块和多个普通属性初始化，则按定义顺序调用
-   
 3. 调用构造方法
-
 ```java
 package com.hspedu.codeblock_;
 
@@ -665,13 +628,7 @@ class A {
 
 }
 ```
-
-<img src="../img/TCH_Han/ch10_12.png" style="zoom:87%;" />
-
-
-
-
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171517739.png)
 5. 构造器的最前面其实隐含了```super()```和调用普通代码块，新写一个类演示，静态相关的代码块，属性初始化，在类加载时，就执行完毕，因此优先于构造器和普通代码块执行的
 
    ```java
@@ -692,7 +649,6 @@ class A {
 创建一个子类对象时（继承关系），其静态代码块，静态属性初始化，普通代码块，普通属性初始化，构造方法的调用顺序：
 
 演示：
-
 ```java
 package com.hspedu.codeblock_;
 
@@ -720,11 +676,9 @@ class BBB extends AAA  {
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch10_13.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171517879.png)
 
 ### 3.2.5  代码块调用顺序(3)
-
 ```java
 package com.java.learn_han.chapter10.codeblock_;
 
@@ -788,8 +742,7 @@ class B02 extends A02 { //
 }
 
 ```
-
-<img src="../img/TCH_Han/ch10_14.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171517703.png)
 
 创建一个子类（继承）,其静态代码块、静态属性初始化、普通代码块、普通属性初始化、构造方法的调用顺训如下：
 
@@ -810,8 +763,7 @@ class B02 extends A02 { //
 
 
 
-##　3.3 课堂练习(1)：看图写结果
-
+## 3.3 课堂练习(1)：看图写结果
 ```java
 package com.java.learn_han.chapter10.codeblock_;
 
@@ -832,8 +784,7 @@ class Test {
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch10_19.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171519203.png)
 
 ## 3.4 课堂练习(2)：看图写结果
 
@@ -873,8 +824,7 @@ class Test{
 
 }
 ```
-
-<img src="../img/TCH_Han/ch10_20.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171518155.png)
 
 # 4
 
@@ -885,13 +835,8 @@ class Test{
 1. 所谓类的单例设计模式，就是采取一定的方法保证在整个软件系统中，对某个类只能存在一个对象实例，并且该类只提供一个取得其对象实例的方法。
 
 2. 单例模式有两种方式：
-
    - 饿汉式
-
-   <img src="../img/TCH_Han/ch10_15.png" style="zoom:87%;" />
-
-   ​	
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171518969.png)
    - 懒汉式
 
 
@@ -944,8 +889,7 @@ class GirlFriend {
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch10_17.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171519984.png)
 
 **饿汉式的缺点是有时并没有使用到该实例，却也会创造出该对象即“女朋友”**，可能造成创建了对象却没有使用，浪费资源。（看被注释```public static int n1 = 100;```这一行）
 
@@ -995,23 +939,19 @@ class Cat {
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch10_18.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171519458.png)
 
 ## 4.3 单例模式应用实例
 
 步骤：
-
 1. 构造器私有化 防止直接```new```
 2. 类的内部创建对象
 3. 向外暴露一个静态的公共方法 ```getInstance```
 4. 代码实现
 
 
-
 ## 4.4 饿汉式 vs 懒汉式
-
-<img src="../img/TCH_Han/ch10_16.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171519938.png)
 
 1. 单例模式的两种实现方式
 2. 饿汉式的问题：在类加载时就创建，可能存在资源浪费问题
@@ -1024,7 +964,6 @@ class Cat {
 **```final```可以修饰类、属性、方法和局部变量**
 
 出现一下情况就会使用到```final```：
-
 1. 当**不希望类被继承**时
 2. 当**不希望父类的某个方法被子类覆盖/重写**时
 3. 当**不希望类的某个属性的值被修改**时
@@ -1048,9 +987,7 @@ final class A {//1. 类
 ## 5.2 ```final```关键字使用注意事项和细节讨论
 
 1. ```final```修饰的属性又叫常量，一般用```XX_XX_XX```命名。
-
 2. ```final```修饰的属性在定义时，必须**赋初值，并不能再修改**，赋值可以在如下位置之一：
-
    - 定义时：```public final```
    - 在构造器中
    - 在代码块中。
@@ -1071,7 +1008,6 @@ final class A {//1. 类
    ```
 
 3. 如果```final```修饰的属性是静态的，则初始化的位置只能是：
-
    - 定义时
    - 在静态代码块 
    - **不能在构造器中赋值**，因为类加载完后才有可能执行构造器。
@@ -1086,11 +1022,8 @@ final class A {//1. 类
        }
    }
    ```
-
 4. ```final```类不能继承，但是可以实例化对象。
-
 5. 如果类不是```final```类，但是含有```final```方法，则改方法虽然不能重写，但是可以被继承。
-
    ```java
    class DD {
        public final void cal() {
@@ -1102,13 +1035,9 @@ final class A {//1. 类
    //在main方法中
    new EE().cal();
    ```
-
 6. 如一个类已是```final```类，就无必要将方法修饰成```final```方法。
-
 7. ```final```不能修饰构造方法（即构造器）
-
 8. ```final```和```static```往往搭配使用效率更高，不会导致类加载，递增编译器做了优化处理，[不会类加载这点可对比下懒汉式](#4.2.2 懒汉式)
-
    ```java
    class Demo {
        public static final int i = 10000;
@@ -1119,13 +1048,9 @@ final class A {//1. 类
    
    //main 打印 BBB.num 输出 -> 10000 
    ```
-
 9. 包装类等```Interger、Double、Float、Boolean```等都是```final```，```String```也是```final```类，**这些类都不能被继承**
 
-
-
 ## 5. 3 ```final```课堂练习(1)：写圆面积计算
-
 ```java
 package com.java.learn_han.chapter10.final_;
 
@@ -1159,9 +1084,7 @@ class Circle {
 
 
 # 6
-
 ## 6.1 抽象类快速入门
-
 当父类的一些方法不能确定时，可以用```abstract```关键字来修饰该方法，这个方法就是抽象方法。**当一个类中存在抽象方法时，需要将该类声明为abstract类**。
 
 ```java
@@ -1179,9 +1102,7 @@ abstract class Animal {
 
 
 ## 6.2 抽象类介绍
-
 1. 用```abstract```关键字来修饰一个类时，这个类就叫抽象类
-
    ```java
    abstract class Animal {//抽象类
        String name;
@@ -1189,7 +1110,6 @@ abstract class Animal {
        abstract public void cry();//抽象方法
    }
    ```
-
 2. 用```abstract```关键字来修饰一个方法时，这个方法就是抽象方法
 3. 抽象类的价值更多作用是在与设计，是设计者设计好后，让子类继承并实现抽象类
 4. 抽象类，是面试常问的知识点，在框架和设计模式使用较多
@@ -1197,64 +1117,42 @@ abstract class Animal {
 
 
 ## 6.3 抽象类使用事项和细节讨论
-
 1. 抽象类不能被实例化。
-
    ```java
    //在 main 中
    new A();//错误
    
    abstract class A {}
    ```
-
 2. 抽象类不一定包含```abstract```方法，可以有具体的实现方法。
-
 3. 一旦类包含了```abstract```方法，则这个类必须声明为```abstract```。
-
 4. ```abstract```只能修饰类和方法，不能修饰属性和其它的。
-
    ```java
    class C {
        public abstract int n1 = 1;//错误
    }
    ```
-
 5. 抽象类可以有任意成员**抽象类本质还是类**，比如：非抽象方法、构造器、静态属性
-
 6. 抽象方法不能有主体，即不能实现
-
    ```java
    class A {
        abstract public hi() {};//错误不能有 {}
    }
    ```
-
 7. 如果一个类继承了抽象类，则它必须实现抽象类的所有抽象方法，除非它自己也声明为```abstract```类。
-
    - 所谓实现就是有```{}```即方法体
-
 8. 抽象方法不能使用```private```、```final```、```static```来修饰，因为这些关键字都是和重写相违背的
-
    - 如果为私有就没办法重写了
    - ```final```本意就是不希望子类重写
    - ```static```与重写相违背
 
-
-
 ## 6.4 课堂练习(1)：抽象类
-
-
 
 ## 6.5 抽象类最佳实践-模板设计模式
 
-
-
 # 7
-
 ## 7.1 接口快速入门
-
-<img src="../img/TCH_Han/ch10_21.png" style="zoom:87%;" />
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171520923.png)
 ```java
 
 package com.java.learn_han.chapter10.interface_;
@@ -1322,8 +1220,7 @@ public class Computer {
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch10_22.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171521105.png)
 
 ## 7.2 接口基本介绍
 
@@ -1343,7 +1240,6 @@ class 类名 implements 接口 {
 ```
 
 例子：
-
 ```java
 package com.hspedu.interface_;
 
@@ -1371,36 +1267,23 @@ public interface AInterface {
 ## 7.3 注意事项和细节
 
 1. 接口不能被实例化
-
 2. 接口中的所有方法时```public```方法，接口中抽象方法，可以不用```abstract```修饰
-
 3. 一个普通类实现接口，就必须将该接口的所有方法都实现
-
 4. 抽象类实现接口，可以不用实现接口的方法
-
 5. 一个类同时可以实现多个接口
-
 6. 接口的属性只能是```final```，而且是```public static final```修饰符，比如：```int a = 1;```实际上是```public static final int a = 1;```**必须初始化**。
-
    ```java
    //证明为public static final， main方法中
    System.out.println(IB.n1);//证明为 static
    IB.n1 = 30;//错误 证明为final
    //public 证明不是默认 在其它包不可调用
    ```
-
 7. 接口中属性的访问形式：```接口名.属性名```
-
 8. 接口不能继承其它的类，但是可以继承多个别的接口
-
    ```interface A extends B, C { }//错误 ```
-
 9. 接口的修饰符只能是```public```和默认，这点与类的修饰符是相同
 
-
-
 ## 7.4 课堂练习(1)：判断对错
-
 ```java
 package com.hspedu.interface_;
 
@@ -1420,23 +1303,16 @@ interface A {
 class B implements A { 
 }
 ```
-
-
-
 都正确且为23
 
 ## 7.5 实现接口 VS 继承类
 
 **当子类继承了父类，就自动拥有父类的功能，如果子类需要扩展功能，可以通过实现接口**，
-
-<img src="../img/TCH_Han/ch10_23.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171521233.png)
 
 ## 7. 6 接口的多态特性
-
 ### 7.6.1 多态参数
-
 1. 接口引用可以指向实现了接口类的对象（前面提到的电脑类
-
 ```java
 package com.java.learn_han.chapter10.interface_;
 
@@ -1448,9 +1324,7 @@ public class Computer {
     }
 }
 ```
-
 2. 接口类型的变量可以指向实现该接口的对象实例
-
 ```java
 //main 中
 IF if01 = new Monster();//正确
@@ -1461,10 +1335,7 @@ class Monster implements IF {}
 class Car implements IF {}
 ```
 
-
-
 ### 7.6.2 多态数组
-
 ```java
 package com.java.learn_han.chapter10.interface_;
 
@@ -1509,11 +1380,9 @@ class Camera_ implements Usb {
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch10_24.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171521356.png)
 
 ### 7.6.3 接口存在多态传递现象
-
 ```java
 package com.hspedu.interface_;
 
@@ -1542,14 +1411,9 @@ class Teacher implements IG {
 }
 ```
 
-
-
 # 8
-
 ## 8.1 内部类基本介绍
-
 ### 8.1.1 内部类介绍
-
 ```java
 class Outer {//外部类
     class Inner {//内部类
@@ -1558,15 +1422,10 @@ class Outer {//外部类
 class Other {//外部其它类    
 }
 ```
-
-
-
 一个类的内部又完整的嵌套了另一个类结构。被嵌套的类称为内部类，嵌套其它的类称为外部类。内部类的最大的特点就是可以直接访问私有属性，并且可以提现类与类之间的包含关系。
-
 **类的5大成员分别是：**属性、方法、构造器、代码块、内部类。
 
 ### 8.1.2 内部类分类
-
 1. 定义在外部类局部位置（方法中/代码块）
    - 局部内部类（有类名）
    - 匿名内部类（没有类名，**重难点！**）
@@ -1574,19 +1433,14 @@ class Other {//外部其它类
    - 成员内部类（没用```static```修饰）
    - 静态内部类（使用```static```修饰）
 
-
-
 ## 8.2 局部内部类的使用
-
 说明：局部内部类时定义在外部类的局部位置，比如方法中，并且有类名字。
-
 1. 可以直接访问外部类的所有成员，包含私有的
 2. 不能添加访问修饰符，因为其地位就是一个局部变量。局部变量是不能使用修饰符。
    - 但是可以使用```final```修饰，因为局部变量也可以使用```final```
 3. 作用域：仅仅在定义它的方法或代码块中
 4. 局部内部类----访问---->外部类的成员 （访问方式：直接访问）
 5. 外部类----访问---->局部内部类的成员（访问方式：创建对象，再访问**一定要在作用域内**）
-
 >1. 局部内部类定义在方法中/代码块
 >2. 作用域在方法题或者代码块中
 >3. 本质仍然是一个类
@@ -1627,12 +1481,9 @@ class Outer02 {//外部类
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch10_25.png" style="zoom:87%;" />
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171522487.png)
 6. 外部其它类----不能访问---->局部内部类，因为局部内部类地位是一个局部变量。
 7. 如果外部类和局部内部类的成会员重名时，默认遵循就近原则，如果想访问外部类的成员，则可以使用```外部类名.this.成员```。
-
 ```java
 package com.java.learn_han.chapter10.interface_;
 
@@ -1667,77 +1518,59 @@ class Outer02 {//外部类
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch10_26.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171522539.png)
 
 
 
 ## 8.5  匿名内部类的使用
-
 ### 8.5.1 匿名内部类介绍
-
 1. 本质是类
 2. 内部类
 3. 无类名
 4. 同时还是一个对象
-
 说明：匿名内部类是定义在外部类的局部位置，比如方法中，**没有类名**，（**接口是不能```new```的！**）
-
 ```java
 new 类或接口(参数列表) {
 	类体
 };
 ```
 
-
-
 ### 8.5.2  基于接口的匿名内部类
-
 1. 需求： 想使用IA接口,并创建对象
-
 2. 传统方式，是写一个类，实现该接口，并创建对象
-
-   - ```java
-     class Outer04 {//外部类
-         private int n1 = 10;
-         public void method() {
-              IA tiger = new Tiger();
-     		tiger.cry();//传统写法
-         }
-     }
-     
-     interface IA {//接口
-         public void cry();
-     }
-     
-     //类 tiger 实现 IA 代码略...
-     //类 Dog 实现 IA 代码略...
-     ```
-
-3. 现在需求是 Tiger/Dog 类只是使用一次，后面不再使用
-
-4.  可以使用匿名内部类来简化开发
-
-   - ```java
-     class Outer04 {//外部类
-         private int n1 = 10;
-         public void method() {
-              IA tiger = new IA() {
-              	 @Override
-                  public void cry() {
-                      System.out.println("老虎叫");
-                  }
-              };
-             tiger.cry();//使用内部类
-         }
-     }
-     ```
-
-5.  tiger的编译类型 ? IA
-
-6.  tiger的运行类型 ? **就是匿名内部类**  Outer04$1
-
-   - ```java
+	```java
+	 class Outer04 {//外部类
+		 private int n1 = 10;
+		 public void method() {
+			  IA tiger = new Tiger();
+			tiger.cry();//传统写法
+		 }
+	 }
+	 interface IA {//接口
+		 public void cry();
+	 }
+	 //类 tiger 实现 IA 代码略...
+	 //类 Dog 实现 IA 代码略...```
+	```
+1. 现在需求是 Tiger/Dog 类只是使用一次，后面不再使用
+2.  可以使用匿名内部类来简化开发
+	```java
+	 class Outer04 {//外部类
+		 private int n1 = 10;
+		 public void method() {
+			  IA tiger = new IA() {
+				 @Override
+				  public void cry() {
+					  System.out.println("老虎叫");
+				  }
+			  };
+			 tiger.cry();//使用内部类
+		 }
+	 }
+	 ```
+1.  tiger的编译类型 ? IA
+2.  tiger的运行类型 ? **就是匿名内部类**  Outer04$1
+   ```java
      class Outer04$1 implements IA {
          @Override
          public void cry() {
@@ -1745,17 +1578,12 @@ new 类或接口(参数列表) {
          }
      }
      ```
-
    - 如何知道该匿名内部类的名字为 Outer04$1 ，其中Outer04是外部类名称
-
      ```java
      System.out.println("tiger的运行类型=" + tiger.getClass());
      ```
-
 7. ```jdk```底层在创建匿名内部类 Outer04$1,立即马上就创建了 Outer04$1实例，并且把地址返回给 tiger
-
 8. 匿名内部类使用一次，就不能再使用
-
    ```java
    tiger.cry();//tiger是对象可以多次使用的
    tiger.cry();
@@ -1766,7 +1594,6 @@ new 类或接口(参数列表) {
 
 
 ### 8.5.3 基于类的匿名内部类
-
 ```java
 class Outer04 { //外部类
     private int n1 = 10;//属性
@@ -1786,11 +1613,8 @@ class Father {//类
 ```
 
 1. father编译类型 Father
-
 2. father运行类型 Outer04$2
-
 3. 底层会创建匿名内部类
-
    ```java
    System.out.println("father对象的运行类型=" + father.getClass());//Outer04$2  
    
@@ -1815,14 +1639,10 @@ class Father {//类
        }
    }
    ```
-
 4. 同时也直接返回了 匿名内部类 Outer04$2的对象
-
 5.  注意```jack```参数列表会传递给构造器
-
 6. 但是，如果时抽象类，则必须实现方法
-
-   - ```java
+    ```java
      class Outer04 { 
          private int n1 = 10;
          public void method() {
@@ -1842,13 +1662,10 @@ class Father {//类
      }
      ```
 
-
-
 ### 8.5.4 匿名内部类的细节
 
 - 因为匿名内部类既是一个类的定义，同时它本身也是一个对象，因此从语法上看，既有定义类的特征，也有创建对象的特征，因此可以调用匿名内部类方法。
-
-- ```java
+```java
   class Outer05 {
       private int n1 = 99;
       public void f1() {
@@ -1877,14 +1694,13 @@ class Father {//类
       }
   }
   ```
-
   - 可以直接访问外部类的所有成员，包含私有的
   - 不能添加访问修饰符，因为其地位是一个局部变量
   - 作用域：仅仅在定义它的方法或代码块中
   - 匿名内部类--->访问--->外部类成员（访问方式：直接访问）
   - 外部其它类--->不能访问--->匿名内部类（因为匿名内部类地位是一个局部变量）
   - 如果外部类和匿名内部类的成员重名时，匿名内部类访问的话，默认遵循就近原则，如果想访问外部类成员的话可以使用```外部类名.this.成员```去访问
-  
+
   ```java
   class Outer05 {
       private int n1 = 99;
@@ -1896,12 +1712,9 @@ class Father {//类
   }
   ```
   
-  
-
 ### 8.5.5匿名内部类最佳实践
 
 - 当做实参直接传递
-
   ```java
   package com.hspedu.innerclass;
   
@@ -1930,7 +1743,6 @@ class Father {//类
   ```
 
   传统写法->硬编码，因为要写一个类，如果该方法**需使用多次**才推荐
-
   ```java
   package com.hspedu.innerclass;
   
@@ -1960,8 +1772,7 @@ class Father {//类
       }
   }
   ```
-
-- <img src="../img/TCH_Han/ch10_30.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171525324.png)
 
   ```java
   package com.java.learn_han.chapter10.Innerclass;
@@ -1998,19 +1809,12 @@ class Father {//类
   }
   ```
 
-  
-
-
-
 ## 8.6 成员内部类的使用
 
 **没有写在方法中也没有写在代码块中，成员内部类：是定义在外部类的成员位置上。**
-
-<img src="../img/TCH_Han/ch10_31.png" style="zoom:87%;" />
-
-<img src="../img/TCH_Han/ch10_32.png" style="zoom:87%;" />
-
-<img src="../img/TCH_Han/ch10_33.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171525715.png)
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171526574.png)
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171526794.png)
 
 # 这里的代码感觉有错，具体看11章练习题7
 
@@ -2170,8 +1974,7 @@ public class Test {//外部类
     } 
 }
 ```
-
-<img src="../img/TCH_Han/ch10_34.png" style="zoom:87%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171526317.png)
 
 # 作业
 

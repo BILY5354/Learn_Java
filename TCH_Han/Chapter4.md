@@ -27,9 +27,7 @@ b++;		//等价 b = (byte)(b+1);
 4. [用户输入和进制简要](#4)
 5. [作业](#作业)  
 ## 1
-
 ### 1.0 看代码写结果
-
 ```java
 //1.1
 int x = 5;
@@ -71,16 +69,10 @@ System.out.println("x=" + x + ",y=" + y)
 
 [答案在此](#答案)
 
-
-
 ## 2
-
-###　2.1 三元运算符
-
-```条件表达式  ? 表达式1:表达式2```其中条件表达式为真则结果为表达式1，否则为表达式2。
-
-三元运算符**两个表达式要为可以赋给接受变量的类型**（或可以自动转换）。
-
+### 2.1 三元运算符
+- ```条件表达式  ? 表达式1:表达式2```其中条件表达式为真则结果为表达式1，否则为表达式2。
+- 三元运算符**两个表达式要为可以赋给接受变量的类型**（或可以自动转换）。
 ```java
 public class copyTCH_HanTenaryOperatorDetail {
     public static void main(String[] args) {
@@ -94,39 +86,31 @@ public class copyTCH_HanTenaryOperatorDetail {
 
 
 ### 2.2 运算符优先级
-
-<img src="../img/TCH_Han/ch4_0.png" style="zoom:80%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171458501.png)
 
 
 
 ## 3
-
 ### 3.0 标识符命名规范
 
 1. 变量名不能以数字开头
-
 2. 包名：多单词组成时左右字母都要**小写**
    - ```aaa.bbb.ccc```或```com.cduy.learn```
-
 3. 类名、接口名：多单词组成时，所有**单词的首字母大写**
    - ```XxxYyyZzz```或```MyMethods```
-
 4. 变量名、方法名：多单词组成时，**第一个单词首字母小写**，第二个开始**首字母大写**
    - ```firstMethod```
-
 5. 常量名：**所有字母大写，多单词组成时用下划线连接**
    - ```CLOSE_TAG``` 
 
 
 
 ## 4
-
 ### 用户输入 
 
 [该片段来自菜鸟教程](https://www.runoob.com/java/java-scanner-class.html)
 
 - 使用```next()```方法
-
 ```java
 import java.util.Scanner;
 
@@ -148,9 +132,7 @@ public class myHomework {
 ```
 
 
-
 - 使用```nextLine()```方法
-
 ```java
 import java.util.Scanner;
 
@@ -170,9 +152,7 @@ public class myHomework {
 //输入Hello world，输出Hello world
 ```
 
-
-
-- 区别
+**区别:**
 - next():
   - 1、一定要读取到有效字符后才可以结束输入。
   - 2、对输入有效字符之前遇到的空白，next() 方法会自动将其去掉。
@@ -187,8 +167,7 @@ public class myHomework {
 
 
 ### 原码、反码、补码
-
-![](../img/TCH_Han/ch4_1.png)
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171459082.png)
 
 
 

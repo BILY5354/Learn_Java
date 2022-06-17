@@ -1,11 +1,8 @@
 # [程序控制结构](./TCH_Han/Chapter5.md)  
 # 值得注意的概念
 - ```switch```需要留意的地方
-
-<img src="../img/TCH_Han/ch5_3.png" style="zoom:67%;" />
-
-<img src="../img/TCH_Han/ch5_4.png" style="zoom: 67%;" />
-
+	![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171500204.png)
+	![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171500371.png)
 - 嵌套的循环**最好不要超过三层**
 
 
@@ -67,7 +64,7 @@ public class myHomework {
 
 金字塔样式如下
 
-![](../img/TCH_Han/ch5_5.png)
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171501702.png)
 
 ```java
 import java.util.Scanner;
@@ -209,15 +206,11 @@ public class myHomework {
 ```
 ```
 ## 作业
-
-<img src="../img/TCH_Han/ch5_0.png" style="zoom:67%;" />
-
-<img src="../img/TCH_Han/ch5_1.png" style="zoom:67%;" />
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171501655.png)
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171501910.png)
 
 
 ### 过路口
-
 ```java
 public class myHomework1 {
 	public static void main(String args[]) {

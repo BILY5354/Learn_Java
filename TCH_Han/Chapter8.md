@@ -205,9 +205,7 @@ class Person {
 
 
 ### 2.2 课堂练习(1)：封装练习
-
-<img src="../img/TCH_Han/ch8_1.png" style="zoom:67%;" />
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171507781.png)
 ```java
 //AccountTest.java
 package com.java.learn_han.chapter8.encap;
@@ -288,7 +286,6 @@ public class Account {
   
 
 ## 3
-
 ### 3.1 面向对象编程三大特性之继承
 
 ```class 子类 extends 父类{}```便是继承
@@ -445,17 +442,10 @@ public class TopBase {
 }
 ```
 
-<img src="../img/TCH_Han/ch8_3.png" style="zoom:80%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171508714.png)
 
 ```ctrl```+```h```看继承关系。
-
-<img src="../img/TCH_Han/ch8_2.png" style="zoom:99%;" />
-
-
-
-  
-
-  
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171508266.png)
 
 ### 3.3 继承的本质分析
 
@@ -498,10 +488,7 @@ class Son extends Father { //子类
     String name = "大头儿子"; 
 }
 ```
-
-
-
-<img src="../img/TCH_Han/ch8_6.png" style="zoom:67%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171508163.png)
 
 
 
@@ -654,7 +641,6 @@ public class B extends A {
   
 
 ## 5
-
 ### 5.1方法重写/覆盖```override```
 
 方法覆盖（重写）是**子类**有一个方法和**父类**的某个方法名称、返回类型、参数一样，那么子类的此方法便覆盖了父类的方法。
@@ -662,19 +648,13 @@ public class B extends A {
 **载注意事项和使用细节**:
 
 1. 子类的方法的**形参列表**，**方法名称**，要和**父类**的方法的形参列表，方法名称**完全一样**。
-
 2. 子类方法的**返回类型**和**父类**方法类型**一样**，或者**是**父类返回类型的**子类**，比如这样定义是正确的。
    - 父类```public Object getInfo() {}```
    - 子类```public String getInfo() {}```
-   
 3. 子类方法不能缩小父类方法的访问权限 。
-
    - ```public``` > ```protected``` >　```默认``` > ```private```，下面是正确的，因为子类是**扩大**了父类的访问权限，并不是缩小。　
-
    - 父类```void sayOk() {}```
-
    - 子类```public void sayOk() {}```
-
 ```java
 //Override01.java
 package com.java.learn_han.chapter8.override_;
@@ -733,7 +713,6 @@ public class Dog extends Animal {
   
 
 ### 5.2 课堂联系(1)：重写父类方法
-
 ```java
 //OverrideExercise.java
 package com.java.learn_han.chapter8.override_;
@@ -819,15 +798,9 @@ public class Student extends Person {
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch8_4.png" style="zoom:99%;" />
-
-  
-
-  
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171509413.png)
 
 ### 5.3 重写与重载区别
-
 > 我（**片面**）理解是：
 >
 > 重载是什么，比如一个方法可以有好多不同的参数
@@ -846,9 +819,7 @@ public class Student extends Person {
   
 
 ## 6
-
 ### 6.1  面向对象编程三大特性之多态
-
 ```java
 //Poly01.java
 package com.hspedu.poly_;
@@ -948,9 +919,6 @@ public class Master {
 
 ```
 
-​    
-
-  
 
 ### 6.2 多态的基本介绍（难点）
 
@@ -962,7 +930,6 @@ public class Master {
 1. 方法的多态
    - 方法重载体现多态
    - 方法重写体现多态
-
 ```java
 package com.java.learn_han.chapter8.poly_;
 
@@ -1000,10 +967,7 @@ class A extends B {
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch8_5.png" style="zoom:99%;" />
-
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171509345.png)
 
 2. 对象的多态（**核心，难点**）
 
@@ -1058,17 +1022,11 @@ public class Dog extends Animal {
     } 
 }
 ```
-
-<img src="../img/TCH_Han/ch8_7.png" style="zoom:99%;" />
-
-​    
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171510102.png)
   
-
 ### 6.3 多态的快速入门案例
 
 [在一开始的案例中](#6.1  面向对象编程三大特性之多态)可以用多态方便地增加新的“喂食类型”，比如“小花猪”喜欢吃“米饭”，只需创造米饭与小花猪并继承然在主函数调用```feed```方法即可，十分方便。
-
 ```java
 //Poly01.java
 package com.hspedu.poly_;
@@ -1111,7 +1069,6 @@ public class Rice extends Food {
   
 
 ### 6.4 多态的注意事项和细节讨论
-
 多态的**前提**是：两个对象（类）存在继承关系
 
 #### 6.4.1 多态的向上转型
@@ -1238,8 +1195,7 @@ class Sub extends Base {//子类
     int count = 20;//属性
 }
 ```
-
-<img src="../img/TCH_Han/ch8_8.png" style="zoom:99%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171510295.png)
 
 ####  6.4.5 ```instancedOf```比较操作符，
 
@@ -1271,15 +1227,9 @@ class AA {} //父类
 
 class BB extends AA {}//子类
 ```
-
-<img src="../img/TCH_Han/ch8_9.png" style="zoom:99%;" />
-
-  
-
-  
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171510098.png)
 
 ### 6. 5 课堂练习(1)：判断代码是否正确
-
 ```java
 public class PolyExercise01 {
     public void main (String[] args) {
@@ -1299,11 +1249,7 @@ public class PolyExercise01 {
 ```
 
   
-
-  
-
 ### 6.6 课堂练习(2)：看代码说出结果
-
 ```java
 //PolyExercise02.java
 package com.hspedu.poly_;
@@ -1338,12 +1284,7 @@ class Sub extends Base {//子类
 ```
 
 - 最后一个：[方法的调用是看运行类型](#6.4 多态的注意事项和细节讨论)
-
-<img src="../img/TCH_Han/ch8_10.png" style="zoom:99%;" />
-
-  
-
-  
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171511802.png)
 
 ### 6. 7 ```Java```的动态绑定机制 （重点难点）
 
@@ -1355,7 +1296,6 @@ class Sub extends Base {//子类
 
 
 看出结果
-
 ```java
 public class myHomework {
 	public static void main(String[] args) {
@@ -1392,13 +1332,8 @@ class B extends A {
 	}
 }
 ```
-
-<img src="../img/TCH_Han/ch8_11.png" style="zoom:99%;" />
-
-
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171511877.png)
 现在呢？
-
 ```java
 public class myHomework {
 	public static void main(String[] args) {
@@ -1430,8 +1365,7 @@ class B extends A {
 }
 ```
 
-<img src="../img/TCH_Han/ch8_12.png" style="zoom:99%;" />
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171511569.png)
 >[与前面提到的一样](#6.4 多态的注意事项和细节讨论)，即编译时由编译类型来处理，运行时由运行类型来处理，调用方法时，按照从子类(运行类型)开始查找方法。
 >
 >- **一个方法能不能调用或属性的值**，由**编译类型**确定
@@ -1439,17 +1373,10 @@ class B extends A {
 >- **调用哪个方法**（父类？子类？）由**运行类型**确定，
 >  - 所以```a.sum()```，子类没有就到父类查找，然执行子类```getI()```方法因为a的运行类型是```B```（子类）并使用子类的属性```i = 20```，因为属性没有动态绑定（在哪声明，在哪使用）
 
-  
-
-  
-
+ 
 ### 6. 8 多态的应用
-
 #### 6.8.1 多态数组
-
-<img src="../img/TCH_Han/ch8_13.png" style="zoom:67%;" />
-
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171511561.png)
 
 ```java
 //PloyArray.java
@@ -1558,11 +1485,7 @@ public class Teacher extends Person{
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch8_14.png" style="zoom:99%;" />
-
-
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171511181.png)
 **现在问题来了，如何调用老师或学生的特有方法呢？**
 
 只记录了增加的部分
@@ -1621,18 +1544,12 @@ public class Teacher extends Person {
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch8_15.png" style="zoom:99%;" />
-
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171512611.png)
 
 #### 6.8.2 多态参数（值得再做）
-
 - [案例1在前面已有体现](#6.1  面向对象编程三大特性之多态)
 - 案例2（下）
-
-<img src="../img/TCH_Han/ch8_16.png" style="zoom:80%;" />
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171512649.png)
 ```java
 //PloyParameter.java
 package com.java.learn_han.chapter8.polyparameter;
@@ -1749,17 +1666,9 @@ public class Manager extends Employee{
     }
 }
 ```
-
-<img src="../img/TCH_Han/ch8_17.png" style="zoom:99%;" />
-
-****
-
-​    
-
-​    
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171512874.png)  
 
 ## 7
-
 ### 7.1 ```equals```方法
 
 **```==```和```equals```的对比（面试题）**
@@ -1774,7 +1683,6 @@ public class Manager extends Employee{
 
 
 - **分析```Object```方法**
-
 ```java
 //Stirng.java
 public boolean equals(Object anObject) {
@@ -1813,10 +1721,7 @@ public boolean equals(Object obj) {
 }
 ```
 
-
-
 - 判断结果
-
 ```java
 Integer integer1 = new Integer(1000);
 Integer integer2 = new Integer(1000);
@@ -1928,13 +1833,9 @@ class Person_{//类
     public String name;
 }
 ```
-
-<img src="../img/TCH_Han/ch8_18.png" style="zoom:99%;" />
-
-  
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171513674.png)
 
 ### 7.4   课堂练习(3)：看输出
-
 ```java
 int it = 65; 
 float fl = 65.0f; 
@@ -1961,15 +1862,10 @@ System.out.println(“hello” == new java.sql.Date()); //编译错误， 不是
 >韩老师的 6 个小结: 
 >
 >1. 提高具有哈希结构的容器的效率！ 
->
 >2. 两个引用，如果指向的是**同一个**对象，则哈希值肯定是**一样**的。
->
 >3. 两个引用，如果指向的是不同对象，则哈希值是不一样的 。*不太严谨*
->
 >4. 哈希值主要**根据地址号**来的， **不**能完全将哈希值**等价于地址**。 
->
 >5. 案例演示```HashCode_.java```: ```obj.hashCode()``` 测试：```A obj1 = new A(); A obj2 = new A(); A obj3 = obj1```。 
->
 >6. 后面在集合，中 ```hashCode``` 如果需要的话，也会重写, 在讲解集合时，老韩在说如何重写 ```hashCode()```。
 
 ```java
@@ -1989,10 +1885,7 @@ public class HashCode_ {
 }
 class AA {}
 ```
-
-<img src="../img/TCH_Han/ch8_19.png" style="zoom:99%;" />
-
-  
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171513385.png)
 
 ### 7.4 ```toString```方法
 
@@ -2064,15 +1957,10 @@ class Monster {
 
 
 ### 7.5 ```finalize```方法
-
-<img src="../img/TCH_Han/ch8_20.png" style="zoom:80%;" />
-
-
-
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171513500.png)
 ****
 
 ## 8
-
 ### 8.1 断点调试```debug```
 
 
@@ -2084,7 +1972,6 @@ class Monster {
 ## 作业
 
   #### 定义一个对象数组
-
 ```java
 //Homework1.java
 package com.java.learn_han.chapter8.homework;

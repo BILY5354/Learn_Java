@@ -149,7 +149,6 @@ public class myHomework {
 
 
 ## 2
-
  三大排序（冒泡、排序、选择）
 
 ### 2.0 **总结**
@@ -171,7 +170,6 @@ public class myHomework {
 **下面三个例子都是升序**，由小到大。
 
 ### 2.1 冒泡排序
-
 ```java
 class Sort {
 	public void bubble (int a[], int size) {
@@ -193,7 +191,6 @@ class Sort {
 
 
 ### 2.2 选择排序
-
 ```java
 class Sort {
 	public void select (int a[], int size) {
@@ -217,7 +214,6 @@ class Sort {
 
 
 ### 2.3 插入排序
-
 因为插入排序的特点，所以是没有temp的
 
 ```java
@@ -242,7 +238,6 @@ class Sort {
 
 
 ### 2.4 实现相同功能时与```C```的对比
-
 ```C```面向过程的语言，在实现一个具体功能时（冒泡排序为例）。只需写一个实现冒泡的**函数**并在主函数**直接调用**即可。可```Java```不同，面向对象的思想就是将世界的不同对象封装成类，所以我不可能单独写一个函数然后像```C```那样直接调用。那么怎么定义？
 
 ```c
@@ -304,9 +299,7 @@ public class myHomework {
 
 
 ## 3
-
 ### 3.1 二维数组的使用
-
 ```java
 //二维数组声明
 int[][] arr;	int[] arr[];	int arr[][];
@@ -340,7 +333,7 @@ int[][] arr = {{1, 2, 3}, {8, 8, 8}, {66, 2}};
 
 ### 3.2 案例：杨辉三角
 
-![](../img/TCH_Han/ch6_1.png)
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171502511.png)
 
 ```java
 public class myHomework {
@@ -383,9 +376,8 @@ public class myHomework {
 
 ## 作业
 
-<img src="../img/TCH_Han/ch6_2.png" style="zoom:80%;" />
-
-<img src="../img/TCH_Han/ch6_3.png" style="zoom:80%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171503635.png)
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171503789.png)
 
 ### 将元素插入升序数组
 
@@ -506,7 +498,7 @@ public class myHomework4 {
 
 - 先找怎么随机生成一个数，发现值在0.0到1.0，所以要扩大100倍加1并且转型。
 
-<img src="../img/TCH_Han/ch6_4.png" style="zoom:80%;" />
+![](https://raw.githubusercontent.com/BILY5354/Learn_Java/master/img/TCH_Han/202206171503918.png)
 
 ```java
 public class myHomework5 {
